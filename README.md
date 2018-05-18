@@ -1,10 +1,11 @@
 # apcomsci_space
 
-space themed program.
+space themed (shoot-em-up?) program.
 
 PSA SAVE WORK AND COMMIT THEM PLEASE!
 
 * libgdx thing
+    * DOCUMENTATION IS BLOCKED SO FIND SOLUTION
 * watch a tutorial or _something_
     * https://www.youtube.com/watch?v=YCGmXVCvogY
     * https://www.youtube.com/watch?v=pcsAuGauqIk
