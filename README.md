@@ -1,6 +1,6 @@
 # apcomsci_space
 
-space themed (shoot-em-up?) program.
+space themed program.
 
 PSA SAVE WORK AND COMMIT THEM PLEASE!
 
