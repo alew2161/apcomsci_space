@@ -1,16 +1,24 @@
 package com.qxbytes.screens;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input.Keys;
+import com.badlogic.gdx.Input;
+import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.qxbytes.afterspace.SpaceGame;
+import com.qxbytes.camera.CameraInputProcessor;
 
-public class GameScreen implements Screen{
+public class GameScreen implements Screen {
+	
+	 final float WORLD_WIDTH = Gdx.graphics.getWidth();
+	 final float WORLD_HEIGHT = Gdx.graphics.getHeight();
 	
 	public static final float SPEED = 120;
 	
+	OrthographicCamera camera;
+
 	Texture img;
 	float x;
 	float y;
@@ -24,6 +32,11 @@ public class GameScreen implements Screen{
 	@Override
 	public void show() {
 		img = new Texture("badlogic.jpg");
+
+	    camera = new OrthographicCamera(WORLD_WIDTH ,WORLD_HEIGHT);
+	    camera.position.set(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
+
+	    Gdx.input.setInputProcessor(new CameraInputProcessor(camera));
 	}
 
 	@Override
@@ -31,18 +44,9 @@ public class GameScreen implements Screen{
 		
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		
-		if (Gdx.input.isKeyPressed(Keys.UP)) {
-			y+= SPEED * Gdx.graphics.getDeltaTime();
-		} else if (Gdx.input.isKeyPressed(Keys.DOWN)) {
-			y-= SPEED * Gdx.graphics.getDeltaTime();
-		} else if (Gdx.input.isKeyPressed(Keys.LEFT)) {
-			x-= SPEED * Gdx.graphics.getDeltaTime();
-		} else if (Gdx.input.isKeyPressed(Keys.RIGHT)) {
-			x+= SPEED * Gdx.graphics.getDeltaTime();
-		}
-		
+		camera.update();
 		game.getBatch().begin();
+		game.getBatch().setProjectionMatrix(camera.combined);
 		game.getBatch().draw(img, x, y);
 		game.getBatch().end();
 		
