@@ -23,7 +23,7 @@ public class GameScreen implements Screen{
 	
 	@Override
 	public void show() {
-		//img = new Texture("badlogic.jpg");
+		img = new Texture("badlogic.jpg");
 	}
 
 	@Override
@@ -43,7 +43,7 @@ public class GameScreen implements Screen{
 		}
 		
 		game.getBatch().begin();
-		//game.getBatch().draw(img, x, y);
+		game.getBatch().draw(img, x, y);
 		game.getBatch().end();
 		
 	}
