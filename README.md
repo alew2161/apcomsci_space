@@ -2,7 +2,9 @@
 
 space themed program.
 
-PSA SAVE WORK AND COMMIT THEM PLEASE!
+PSA: SAVE WORK AND COMMIT THEM PLEASE!
+
+[re-write branch.]
 
 * libgdx thing
     * DOCUMENTATION IS BLOCKED SO FIND SOLUTION
