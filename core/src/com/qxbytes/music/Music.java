@@ -1,4 +1,4 @@
-package com.qxbytes.spacegame;
+package com.qxbytes.music;
 import java.util.Random;
 
 import com.badlogic.gdx.Game;
@@ -10,7 +10,7 @@ import com.badlogic.gdx.utils.Timer;
 
 //Owen was here
 
-public class music {
+public class Music {
 
 	Sound background1 = Gdx.audio.newSound(Gdx.files.internal("file")); //background music1
 	Sound background2 = Gdx.audio.newSound(Gdx.files.internal("file"));//
