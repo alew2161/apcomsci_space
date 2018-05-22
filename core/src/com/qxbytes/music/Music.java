@@ -1,12 +1,8 @@
 package com.qxbytes.music;
-import java.util.Random;
 
-import com.badlogic.gdx.Game;
+import java.util.Random;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.ai.btree.Task;
 import com.badlogic.gdx.audio.Sound;
-import com.badlogic.gdx.math.RandomXS128;
-import com.badlogic.gdx.utils.Timer;
 
 //Owen was here
 
