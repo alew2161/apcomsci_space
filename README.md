@@ -4,8 +4,6 @@ space themed program.
 
 PSA: SAVE WORK AND COMMIT THEM PLEASE!
 
-[re-write branch.]
-
 * libgdx thing
     * DOCUMENTATION IS BLOCKED SO FIND SOLUTION
 * watch a tutorial or _something_
