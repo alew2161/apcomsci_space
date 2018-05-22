@@ -7,7 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.qxbytes.afterspace.SpaceGame;
+import com.qxbytes.spacegame.SpaceGame;
 import com.qxbytes.camera.CameraInputProcessor;
 
 public class GameScreen implements Screen {
