@@ -18,7 +18,7 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class Entities implements ApplicationListener{
+public class Entity implements ApplicationListener{
 	private static final int FRAME_COLS = 6, FRAME_ROWS = 5; //number of rows & columns on atlas
 
 	private float elapsedTime; //seconds counter determining when to restart animation meme
