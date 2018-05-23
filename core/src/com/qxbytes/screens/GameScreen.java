@@ -12,8 +12,8 @@ import com.qxbytes.camera.CameraInputProcessor;
 
 public class GameScreen implements Screen {
 	
-	 final float WORLD_WIDTH = Gdx.graphics.getWidth();
-	 final float WORLD_HEIGHT = Gdx.graphics.getHeight();
+	final float WORLD_WIDTH = Gdx.graphics.getWidth();
+	final float WORLD_HEIGHT = Gdx.graphics.getHeight();
 	
 	public static final float SPEED = 120;
 	
