@@ -48,6 +48,9 @@ public class GameScreen implements Screen {
 		game.getBatch().begin();
 		game.getBatch().setProjectionMatrix(camera.combined);
 		game.getBatch().draw(img, x, y);
+		/*
+		 * Draw Everything now by passing the Batch in
+		 */
 		game.getBatch().end();
 		
 	}

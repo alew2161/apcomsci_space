@@ -1,5 +1,6 @@
 package com.qxbytes.entities;
 /*owen was here
+
  * 
  * 
  * NOTE: THIS CLASS ONLY WORKS FOR ONE SPRITE 
@@ -21,13 +22,24 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 public class Entity implements ApplicationListener{
 	private static final int FRAME_COLS = 6, FRAME_ROWS = 5; //number of rows & columns on atlas
 
-	private float elapsedTime; //seconds counter determining when to restart animation meme
+	private float elapsedTime; //seconds counter determining when to restart animation
+	
+	private EntityGraphics graphics;
+	private EntityPhysics physics;
+	
+	/**
+	 * 
+	 */
 	private SpriteBatch batch0;
 	private Texture textureAtlas0;
 	private Animation<TextureRegion> animation0; //need <TextureRegion> to specify attributes with batch.draw & batch.clear
 
-
-
+	public Entity() {
+		
+	}
+	/**
+	 * What is the point of this
+	 */
 	public void create() { 
 		// Load the sprite sheet as a Texture
 		textureAtlas0 = new Texture(Gdx.files.internal("meme.png"));
@@ -62,12 +74,12 @@ public class Entity implements ApplicationListener{
 		batch0.dispose();
 		textureAtlas0.dispose();
 	}
-
+	/**
+	 * Called when rendered; do NOT create a new batch; there should only be ONE batch
+	 * 
+	 */
 	public void render() {        
-		Gdx.gl.glClearColor(0, 0, 0, 1);// clear screen in order to update
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);// may need to be changed to GL10 modifier, but currently works *GL10 is not present in library!
-		elapsedTime += Gdx.graphics.getDeltaTime(); // Accumulate elapsed animation time
-
+		
 		// Get current frame of animation for the current stateTime
 		TextureRegion currentFrame = animation0.getKeyFrame(elapsedTime, true);
 		batch0.begin();

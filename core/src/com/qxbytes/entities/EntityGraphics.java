@@ -13,7 +13,7 @@ public class EntityGraphics{
 	private TextureAtlas textureAtlas; // defines necessities 
 	private Sprite sprite;
 	private int currentFrame = 1; //defines which image file to display 
-	private String currentAtlasKey = new String("homogenous meme"); //need to use sprite packer tool to create atlas
+	private String currentAtlasKey = new String(""); //need to use sprite packer tool to create atlas
 
 
 	public void establish() {
@@ -22,7 +22,8 @@ public class EntityGraphics{
 		AtlasRegion region = textureAtlas.findRegion("0001");
 		sprite = new Sprite(region);
 		sprite.setPosition(120, 100);
-		sprite.scale(2.5f);}
+		sprite.scale(2.5f);
+	}
 
 	public void run() {
 		currentFrame++;
