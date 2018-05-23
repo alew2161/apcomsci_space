@@ -15,8 +15,10 @@ public class EntityGraphics{
 	private int currentFrame = 1; //defines which image file to display 
 	private String currentAtlasKey = new String(""); //need to use sprite packer tool to create atlas
 
-
-	public void establish() {
+	/**
+	 * Run only once
+	 */
+	public EntityGraphics() {
 		batch = new SpriteBatch();
 		textureAtlas = new TextureAtlas(Gdx.files.internal("data/spritesheet.atlas"));
 		AtlasRegion region = textureAtlas.findRegion("0001");
@@ -49,14 +51,15 @@ public class EntityGraphics{
 		textureAtlas.dispose();
 	}
 
+	/**
+	 * Called 120 fps
+	 * @param g
+	 */
+	public void render(SpriteBatch g) {
+		 run();
 
-	public void render() {
-		 Gdx.gl.glClearColor(0, 0, 0, 1);
-	        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-	        
-	        batch.begin();
-	        sprite.draw(batch);
-	        batch.end();
+	     sprite.draw(g);
+
 	}
 
 

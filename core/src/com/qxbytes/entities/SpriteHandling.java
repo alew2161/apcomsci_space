@@ -19,24 +19,14 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
-public class SpriteHandling implements ApplicationListener{
-	private static final int FRAME_COLS = 6, FRAME_ROWS = 5; //number of rows & columns on atlas
-
-	private float elapsedTime; //seconds counter determining when to restart animation
-	
-	private EntityGraphics graphics;
-	private EntityPhysics physics;
-	private SpriteBatch batch0;
+public class SpriteHandling{
+	private static final int FRAME_COLS = 8, FRAME_ROWS = 8; //number of rows & columns on atlas
 	private Texture textureAtlas0;
 	private Animation<TextureRegion> animation0; //need <TextureRegion> to specify attributes with batch.draw & batch.clear
 
-	public SpriteHandling() {
-		
-	}
-
-	public void create() { 
+	public void create(String fileName) { 
 		// Load the sprite sheet as a Texture
-		textureAtlas0 = new Texture(Gdx.files.internal("meme.png"));
+		textureAtlas0 = new Texture(Gdx.files.internal(fileName));
 		//need to use libgdx tool to configure atlas
 		//splicing sprite sheet
 		TextureRegion[][] tmp = TextureRegion.split(textureAtlas0, 
@@ -57,33 +47,11 @@ public class SpriteHandling implements ApplicationListener{
 
 		// Instantiate a SpriteBatch for drawing and reset the elapsed animation
 		// time to 0
-		batch0 = new SpriteBatch();//creating a batch
-		elapsedTime = 0f; // setting time to 0
 		/*batch0 = new SpriteBatch(); 
 		textureAtlas0 = new TextureAtlas(Gdx.files.internal("meme.atlas"));
 		animation0 = new Animation<TextureRegion>(0.025f, textureAtlas0);*/
 	}
 
-	public void dispose() {//disposing of animation & stored atlas/batch
-		batch0.dispose();
-		textureAtlas0.dispose();
-	}
-	public void render() {        
-		
-		// Get current frame of animation for the current stateTime
-		TextureRegion currentFrame = animation0.getKeyFrame(elapsedTime, true);
-		batch0.begin();
-		batch0.draw(currentFrame, 50, 50); // Draw current frame at (50, 50)
-		batch0.end();
-	}
-	//unimplemented methods from here on
-	public void resize(int width, int height) {
-	}
 
-	public void pause() {
-	}
-
-	public void resume() {
-	}
 
 }
