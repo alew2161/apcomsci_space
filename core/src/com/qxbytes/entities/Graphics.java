@@ -8,7 +8,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
 import com.badlogic.gdx.utils.Timer;
-public class Graphics implements ApplicationListener{
+public class Graphics{
 	private SpriteBatch batch;
 	private TextureAtlas textureAtlas; // defines necessities 
 	private Sprite sprite;
