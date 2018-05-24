@@ -13,6 +13,16 @@ public class EntityPhysics {
 	 */
 	public EntityPhysics(World world, BodyDef definition) {
 		
-		world.createBody(definition);
+		entityBody = world.createBody(definition);
 	}
+	public void update() {
+		
+	}
+	public Body getEntityBody() {
+		return entityBody;
+	}
+	public void setEntityBody(Body entityBody) {
+		this.entityBody = entityBody;
+	}
+	
 }

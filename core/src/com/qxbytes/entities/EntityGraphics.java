@@ -6,11 +6,14 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 public class EntityGraphics {
 	String name;
-	private SpriteBatch batch;
 	private Texture texture;
-	private Sprite sprite;
+	private Sprite sprite;//change with animation
 
-
+	/**
+	 * Make it take an ANIMATION parameter ; make a method in Sprite Handler so that I can call the name of the animation through a simple method
+	 * such as getAnimation(5) or getAnimation("run").
+	 * @param fileName
+	 */
 	public EntityGraphics(String fileName) {
 		fileName= name; //to fix scope of string
 		create();
@@ -21,20 +24,23 @@ public class EntityGraphics {
 	}
 
 	public void create() {        
-		batch = new SpriteBatch();
 		texture = new Texture(Gdx.files.internal(name));
 		sprite = new Sprite(texture);
 	}
 
 	public void dispose() {
-		batch.dispose();
 		texture.dispose();
 	}
 
 	public void render(SpriteBatch g) {  
-
-		sprite.draw(g);
+		/**
+		 * We will ned to replace all instances of SPRITE with ANIMATION somehow. 
+		 */
+		g.draw(sprite,sprite.getX(),sprite.getY());
+		
 
 	}
+
+	
 
 }

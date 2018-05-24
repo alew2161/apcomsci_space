@@ -6,7 +6,9 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.qxbytes.screens.GameScreen;
 
 public class SpaceGame extends Game {
-	
+	/**
+	 * The main (and only) sprite batch there is/ should be
+	 */
 	private SpriteBatch batch;
 
 	@Override
