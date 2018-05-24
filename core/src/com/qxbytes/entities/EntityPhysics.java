@@ -12,6 +12,7 @@ public class EntityPhysics {
 	 * @param body definition
 	 */
 	public EntityPhysics(World world, BodyDef definition) {
+		
 		world.createBody(definition);
 	}
 }
