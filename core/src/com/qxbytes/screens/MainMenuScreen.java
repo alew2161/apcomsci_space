@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
 
@@ -18,6 +19,7 @@ public class MainMenuScreen implements Screen {
 	private Skin skin;
     private Stage stage;
 	SpaceGame game;
+	BitmapFont font;
 	
 	public MainMenuScreen(SpaceGame game) 
 	{
@@ -31,19 +33,28 @@ public class MainMenuScreen implements Screen {
         stage = new Stage();
 
         final TextButton button = new TextButton("Meme", skin, "default");
+        final TextButton button1 = new TextButton("XD",skin,"default");
         
         button.setWidth(200f);
         button.setHeight(20f);
+        button1.setWidth(200f);
+        button1.setHeight(20f);
         button.setPosition(Gdx.graphics.getWidth() /2 - 100f, Gdx.graphics.getHeight()/2 - 10f);
-
+        button1.setPosition(Gdx.graphics.getWidth() /2 - 100f, Gdx.graphics.getHeight()/2 - 50f);
         button.addListener(new ClickListener(){
             @Override 
             public void clicked(InputEvent event, float x, float y){
             	game.setScreen(new GameScreen(game));
             }
         });
-        
+        button1.addListener(new ClickListener(){
+            @Override 
+            public void clicked(InputEvent event, float x, float y){
+            	Gdx.app.exit();
+            }
+        });
         stage.addActor(button);
+        stage.addActor(button1);
         
         Gdx.input.setInputProcessor(stage);
 	}
