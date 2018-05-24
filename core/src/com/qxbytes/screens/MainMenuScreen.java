@@ -30,7 +30,7 @@ public class MainMenuScreen implements Screen {
         skin = new Skin(Gdx.files.internal("uiskin.json"));
         stage = new Stage();
 
-        final TextButton button = new TextButton("start", skin, "default");
+        final TextButton button = new TextButton("Meme", skin, "default");
         
         button.setWidth(200f);
         button.setHeight(20f);
