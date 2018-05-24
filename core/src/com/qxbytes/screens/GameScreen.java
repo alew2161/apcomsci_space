@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
-import com.qxbytes.camera.CameraInputProcessor;
+import com.qxbytes.camera.MainInputProcessor;
 import com.qxbytes.spacegame.SpaceGame;
 
 public class GameScreen implements Screen {
@@ -45,7 +45,7 @@ public class GameScreen implements Screen {
 	    camera = new OrthographicCamera(WORLD_WIDTH ,WORLD_HEIGHT);
 	    camera.position.set(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
 
-	    Gdx.input.setInputProcessor(new CameraInputProcessor(camera));
+	    Gdx.input.setInputProcessor(new MainInputProcessor(camera));
 	}
 
 	@Override

@@ -4,9 +4,9 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 
-public class CameraInputProcessor implements InputProcessor {
+public class MainInputProcessor implements InputProcessor {
 	private OrthographicCamera camera;
-	public CameraInputProcessor(OrthographicCamera camera) {
+	public MainInputProcessor(OrthographicCamera camera) {
 		this.camera = camera;
 	}
 	@Override
