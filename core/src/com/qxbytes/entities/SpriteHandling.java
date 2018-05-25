@@ -1,12 +1,12 @@
 package com.qxbytes.entities;
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
-import com.badlogic.gdx.utils.Timer;
-import com.badlogic.gdx.utils.Timer.Task;
 
 public class SpriteHandling {
 	private SpriteBatch batch;
@@ -14,27 +14,33 @@ public class SpriteHandling {
 	private Sprite sprite;
 	private int currentFrame = 1;
 	private String currentAtlasKey = new String("0001");
+	private ArrayList<Animation> allAnimations = new ArrayList<Animation>();
+	private ArrayList<Sprite> allSprites = new ArrayList<Sprite>();
 	/**
 	 * Constructor also renders animation so graphics class is redundant for animations
 	 * @param Atlas
 	 * @param SizeX
 	 * @param SizeY
 	 */
-	public SpriteHandling(String Atlas, int SizeX, int SizeY) {
-		create();
-		resize(SizeX, SizeY);
-		render();
-		dispose();
-	}
-
-	public void create() {        
+	public SpriteHandling(String FileName) {
 		batch = new SpriteBatch();
-		textureAtlas = new TextureAtlas(Gdx.files.internal("spritesheet.atlas"));
+		textureAtlas = new TextureAtlas(Gdx.files.internal(FileName));
 		AtlasRegion region = textureAtlas.findRegion("0001");
 		sprite = new Sprite(region);
-		sprite.setPosition(120, 100);
-		sprite.scale(2.5f);
-		Timer.schedule(new Task(){
+		
+	}
+	public Animation getAnimation(int num) {
+		return allAnimations.get(num);
+	}
+	public Sprite getSprite(int num) {
+		return allSprites.get(num);
+	}
+	public void createSprite(String FileName) {        
+		
+		/**
+		  sprite.setPosition(120, 100);
+		sprite.scale(2.5f);used in 
+		 * Timer.schedule(new Task(){
 			@Override
 			public void run() {
 				currentFrame++;
@@ -44,10 +50,10 @@ public class SpriteHandling {
 				sprite.setRegion(textureAtlas.findRegion(currentAtlasKey));
 			}
 		}
-		,0,1/30.0f);
+		,0,1/30.0f);*/
 	}
 
-	public void dispose() {
+	/**public void dispose() {
 		batch.dispose();
 		textureAtlas.dispose();
 	}
@@ -62,5 +68,5 @@ public class SpriteHandling {
 	}
 
 	public void resize(int width, int height) {
-	}
+	}*/
 }
