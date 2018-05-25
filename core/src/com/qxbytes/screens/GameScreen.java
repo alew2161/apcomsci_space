@@ -8,6 +8,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
 import com.qxbytes.camera.MainInputProcessor;
+import com.qxbytes.entities.BodyPresets;
+import com.qxbytes.entities.Entity;
 import com.qxbytes.spacegame.SpaceGame;
 
 public class GameScreen implements Screen {
@@ -27,6 +29,8 @@ public class GameScreen implements Screen {
 	Texture img;
 	float x;
 	float y;
+	
+	Entity testDummy = new Entity(world, BodyPresets.PLAYER, null);
 	
 	/**
 	 * End Temporary
@@ -51,6 +55,9 @@ public class GameScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		world.step(delta, 1, 1);
+		
+		testDummy.render(game.getBatch());
+		
 		
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);

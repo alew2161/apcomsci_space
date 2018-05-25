@@ -25,4 +25,17 @@ public class Entity {
 		physics.update();
 		//TODO: Link up physics component with graphics component
 	}
+	public EntityGraphics getGraphics() {
+		return graphics;
+	}
+	public void setGraphics(EntityGraphics graphics) {
+		this.graphics = graphics;
+	}
+	public EntityPhysics getPhysics() {
+		return physics;
+	}
+	public void setPhysics(EntityPhysics physics) {
+		this.physics = physics;
+	}
+	
 }
