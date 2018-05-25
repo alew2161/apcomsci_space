@@ -9,6 +9,8 @@ import com.badlogic.gdx.physics.box2d.World;
 public class Entity {
 	private EntityGraphics graphics;
 	private EntityPhysics physics;
+    
+
 	/**
 	 * Ideally, when an object is created, a call to the Sprite Handler will return an animation to be passed into the constructor. Fix this
 	 * Owen. Remember: Owen is not a word.
@@ -17,18 +19,18 @@ public class Entity {
 	 * @param animation
 	 */
 	public Entity(World world, BodyDef definition, Animation animation) {
-		physics = new EntityPhysics(world,definition);//<-- Try to make it as simple as that
+		physics = new EntityPhysics(this,world,definition);//<-- Try to make it as simple as that
 		
-		//graphics = new EntityGraphics(animation);
-		//Store the sprite the body represents in UserData
-        physics.getEntityBody().setUserData(graphics.getSprite());
-        //Access the sprite
-        ((Sprite)physics.getEntityBody().getUserData()).setPosition(physics.getEntityBody().getPosition().x,physics.getEntityBody().getPosition().y);
+		graphics = new EntityGraphics(null);
 	}
 	public void render(SpriteBatch g) {
 		graphics.render(g);
 		physics.update();
-		//TODO: Link up physics component with graphics component
+		//Store the sprite the body represents in UserData
+        physics.getEntityBody().setUserData(graphics.getSprite());
+        //Access the sprite
+        ((Sprite)physics.getEntityBody().getUserData()).setPosition(physics.getEntityBody().getPosition().x,physics.getEntityBody().getPosition().y);
+	
 	}
 	public EntityGraphics getGraphics() {
 		return graphics;

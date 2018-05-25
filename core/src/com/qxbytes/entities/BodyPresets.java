@@ -5,6 +5,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 public class BodyPresets {
+	public static final float PIXELS_TO_METERS = 100f;
 	public static final BodyDef GROUND = new BodyDef();
 	public static final BodyDef ENEMY = new BodyDef();
 	public static final BodyDef BULLET = new BodyDef();
