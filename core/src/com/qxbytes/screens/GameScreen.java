@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.qxbytes.camera.MainInputProcessor;
 import com.qxbytes.entities.BodyPresets;
 import com.qxbytes.entities.Entity;
+import com.qxbytes.keyboard.KeyProcessor;
 import com.qxbytes.spacegame.SpaceGame;
 
 /**
@@ -59,7 +60,8 @@ public class GameScreen implements Screen {
 	@Override
 	public void render(float delta) {
 		world.step(1/60f, 6, 2);
-		
+		KeyProcessor a = new KeyProcessor();
+		a.detectInput();
 		
 		
 		
