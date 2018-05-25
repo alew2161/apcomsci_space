@@ -1,6 +1,7 @@
 package com.qxbytes.entities;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.World;
@@ -19,6 +20,10 @@ public class Entity {
 		physics = new EntityPhysics(world,definition);//<-- Try to make it as simple as that
 		
 		//graphics = new EntityGraphics(animation);
+		//Store the sprite the body represents in UserData
+        physics.getEntityBody().setUserData(graphics.getSprite());
+        //Access the sprite
+        ((Sprite)physics.getEntityBody().getUserData()).setPosition(physics.getEntityBody().getPosition().x,physics.getEntityBody().getPosition().y);
 	}
 	public void render(SpriteBatch g) {
 		graphics.render(g);

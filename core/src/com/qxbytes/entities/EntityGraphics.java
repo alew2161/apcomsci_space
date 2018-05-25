@@ -24,7 +24,10 @@ public class EntityGraphics {
 	}
 
 	public void create() {        
-		texture = new Texture(Gdx.files.internal(name));
+		/**
+		 * Temp
+		 */
+		texture = new Texture(Gdx.files.internal("badlogic.jpg"));
 		sprite = new Sprite(texture);
 	}
 
@@ -40,7 +43,18 @@ public class EntityGraphics {
 		
 
 	}
+	/**
+	 * Temp Sprite
+	 */
+	public Sprite getSprite() {
+		return sprite;
+	}
 
+	public void setSprite(Sprite sprite) {
+		this.sprite = sprite;
+	}
+
+	
 	
 
 }
