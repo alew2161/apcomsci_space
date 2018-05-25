@@ -2,6 +2,10 @@ package com.qxbytes.screens;
 
 import com.badlogic.gdx.Screen;
 
+/**
+ * Game Over screen.
+ * You're dead pal.
+ */
 public class GameOverScreen implements Screen {
 
 	@Override

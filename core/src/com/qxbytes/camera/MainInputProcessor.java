@@ -20,6 +20,7 @@ public class MainInputProcessor implements InputProcessor {
 	      if(keycode == Input.Keys.DOWN)
 	         camera.translate(0f,-1f);
 		return false;
+		//	delete later.
 	}
 
 	@Override

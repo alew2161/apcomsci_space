@@ -14,7 +14,12 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.Texture;
 
+/**
+ * Main menu screen.
+ * @param game SpaceGame
+ */
 public class MainMenuScreen implements Screen {
+
 
 	private Skin skin;
     private Stage stage;

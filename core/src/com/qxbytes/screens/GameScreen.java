@@ -12,6 +12,10 @@ import com.qxbytes.entities.BodyPresets;
 import com.qxbytes.entities.Entity;
 import com.qxbytes.spacegame.SpaceGame;
 
+/**
+ * Main Game screen.
+ * @param game SpaceGame
+ */
 public class GameScreen implements Screen {
 	
 	final float WORLD_WIDTH = Gdx.graphics.getWidth();
@@ -20,7 +24,7 @@ public class GameScreen implements Screen {
 	public static final float SPEED = 60;
 	
 	private OrthographicCamera camera;
-	private World world = new World(new Vector2(0,-1f), false);
+	private World world = new World(new Vector2(0,-1f), true);
 	
 	/**
 	 * Temporary
@@ -54,17 +58,20 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-		world.step(delta, 1, 1);
+		world.step(1/60f, 6, 2);
 		
-		testDummy.render(game.getBatch());
+		
 		
 		
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		camera.update();
 		game.getBatch().begin();
+		
 		game.getBatch().setProjectionMatrix(camera.combined);
+		testDummy.render(game.getBatch());
 		game.getBatch().draw(img, x, y);
+		
 		/*
 		 * Draw Everything now by passing the Batch in
 		 */

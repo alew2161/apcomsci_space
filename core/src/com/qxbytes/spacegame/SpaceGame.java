@@ -7,7 +7,7 @@ import com.qxbytes.screens.GameScreen;
 
 public class SpaceGame extends Game {
 	/**
-	 * The main (and only) sprite batch there is/ should be
+	 * The main (and only) sprite batch there is- and it should be.
 	 */
 	private SpriteBatch batch;
 

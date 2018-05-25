@@ -12,7 +12,7 @@ public class DesktopLauncher {
 		config.backgroundFPS = 30;	//	power saver
 		config.foregroundFPS = 120;	//	nobody needs more than 120fps in this game. 
 		config.vSyncEnabled = false; // here we go.	
-		config.forceExit = false;
+		config.forceExit = false;	//	apparently i need to do this.
 		new LwjglApplication(new SpaceGame(), config);
 	}
 }

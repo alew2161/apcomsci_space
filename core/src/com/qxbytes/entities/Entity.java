@@ -19,9 +19,10 @@ public class Entity {
 	 * @param animation
 	 */
 	public Entity(World world, BodyDef definition, Animation animation) {
+		graphics = new EntityGraphics(null);
 		physics = new EntityPhysics(this,world,definition);//<-- Try to make it as simple as that
 		
-		graphics = new EntityGraphics(null);
+		
 	}
 	public void render(SpriteBatch g) {
 		graphics.render(g);

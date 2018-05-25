@@ -14,11 +14,13 @@ public class EntityPhysics {
 	 * @param body definition
 	 */
 	public EntityPhysics(Entity entity, World world, BodyDef definition) {
-		definition.position.set(100/BodyPresets.PIXELS_TO_METERS, 100/BodyPresets.PIXELS_TO_METERS);
+		definition.position.set(200, 200);
 		entityBody = world.createBody(definition);
 		
 		PolygonShape shape = new PolygonShape();
-        shape.setAsBox(entity.getGraphics().getSprite().getWidth()/2 / BodyPresets.PIXELS_TO_METERS, entity.getGraphics().getSprite().getHeight()
+        shape.setAsBox(
+        		entity.getGraphics().getSprite().getWidth()/2 / BodyPresets.PIXELS_TO_METERS,
+        		entity.getGraphics().getSprite().getHeight()
                 /2 / BodyPresets.PIXELS_TO_METERS);
         
         FixtureDef x = BodyPresets.NORMAL;
@@ -30,7 +32,7 @@ public class EntityPhysics {
 	}
 	
 	public void update() {
-		
+		System.out.println("Location: "+ entityBody.getPosition());
 	}
 	public Body getEntityBody() {
 		return entityBody;

@@ -27,7 +27,7 @@ public class EntityGraphics {
 		/**
 		 * Temp
 		 */
-		texture = new Texture(Gdx.files.internal("badlogic.jpg"));
+		texture = new Texture("badlogic.jpg");
 		sprite = new Sprite(texture);
 	}
 
