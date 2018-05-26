@@ -1,5 +1,4 @@
 package com.qxbytes.entities;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -10,37 +9,35 @@ public class EntityGraphics {
 	private Sprite sprite;//change with animation
 
 	/**
+	 * TODO:
 	 * Make it take an ANIMATION parameter ; make a method in Sprite Handler so that I can call the name of the animation through a simple method
 	 * such as getAnimation(5) or getAnimation("run").
 	 * @param fileName
 	 */
+	
 	public EntityGraphics(String fileName) {
-		fileName= name; //to fix scope of string
+		name = fileName; //to fix scope of string. Owen can't figure out which side is assigned to which. It's left <-- right
 		create();
-		/**probably won't use this but it's  helpful
-    	pause();
-    	resume();*/
-		dispose();
+		
 	}
 
 	public void create() {        
 		/**
 		 * Temp
 		 */
-		texture = new Texture("badlogic.jpg");
+		texture = new Texture(name);
 		sprite = new Sprite(texture);
-	}
+		
 
-	public void dispose() {
-		texture.dispose();
 	}
 
 	public void render(SpriteBatch g) {  
 		/**
 		 * We will ned to replace all instances of SPRITE with ANIMATION somehow. 
 		 */
-		g.draw(sprite,sprite.getX(),sprite.getY());
-		
+
+		g.draw(sprite,sprite.getX()*Const.PTM,sprite.getY()*Const.PTM);
+
 
 	}
 	/**

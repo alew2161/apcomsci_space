@@ -1,9 +1,8 @@
 package com.qxbytes.spacegame;
 
 import com.badlogic.gdx.Game;
-import com.qxbytes.screens.MainMenuScreen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.qxbytes.screens.GameScreen;
+import com.qxbytes.screens.MainMenuScreen;
 
 public class SpaceGame extends Game {
 	/**

@@ -13,13 +13,13 @@ public class Entity {
 
 	/**
 	 * Ideally, when an object is created, a call to the Sprite Handler will return an animation to be passed into the constructor. Fix this
-	 * Owen. Remember: Owen is not a word.
+	 * Owen. Remember: Owen is not a word. TODO: Make Graphics accept an ANIMATION parameter
 	 * @param world
 	 * @param definition
 	 * @param animation
 	 */
 	public Entity(World world, BodyDef definition, Animation animation) {
-		graphics = new EntityGraphics(null);
+		graphics = new EntityGraphics("badlogic.jpg");
 		physics = new EntityPhysics(this,world,definition);//<-- Try to make it as simple as that
 		
 		

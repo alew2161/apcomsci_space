@@ -14,25 +14,26 @@ public class EntityPhysics {
 	 * @param body definition
 	 */
 	public EntityPhysics(Entity entity, World world, BodyDef definition) {
-		definition.position.set(200, 200);
+		definition.position.set((200 + 128)/Const.PTM, (200 + 128)/Const.PTM);
+		definition.type = BodyDef.BodyType.DynamicBody;
 		entityBody = world.createBody(definition);
 		
 		PolygonShape shape = new PolygonShape();
-        shape.setAsBox(
-        		entity.getGraphics().getSprite().getWidth()/2 / BodyPresets.PIXELS_TO_METERS,
-        		entity.getGraphics().getSprite().getHeight()
-                /2 / BodyPresets.PIXELS_TO_METERS);
-        
-        FixtureDef x = BodyPresets.NORMAL;
-        x.shape = shape;
-        entityBody.createFixture(x);
-        
+        shape.setAsBox(128 / Const.PTM, 128
+                        / Const.PTM);
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = shape;
+        fixtureDef.density = 0.1f;
+
+        entityBody.createFixture(fixtureDef);
+
         shape.dispose();
 
 	}
 	
 	public void update() {
-		System.out.println("Location: "+ entityBody.getPosition());
+
 	}
 	public Body getEntityBody() {
 		return entityBody;

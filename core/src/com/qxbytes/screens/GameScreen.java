@@ -5,10 +5,12 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.qxbytes.camera.MainInputProcessor;
-import com.qxbytes.entities.BodyPresets;
+import com.qxbytes.entities.Const;
 import com.qxbytes.entities.Entity;
 import com.qxbytes.keyboard.KeyProcessor;
 import com.qxbytes.spacegame.SpaceGame;
@@ -24,6 +26,9 @@ public class GameScreen implements Screen {
 	
 	public static final float SPEED = 60;
 	
+	private Box2DDebugRenderer debug;
+	private     Matrix4 debugMatrix;
+
 	private OrthographicCamera camera;
 	private World world = new World(new Vector2(0,-1f), true);
 	
@@ -35,7 +40,7 @@ public class GameScreen implements Screen {
 	float x;
 	float y;
 	
-	Entity testDummy = new Entity(world, BodyPresets.PLAYER, null);
+	Entity testDummy = new Entity(world, Const.PLAYER, null);
 	
 	/**
 	 * End Temporary
@@ -55,11 +60,14 @@ public class GameScreen implements Screen {
 	    camera.position.set(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
 
 	    Gdx.input.setInputProcessor(new MainInputProcessor(camera));
+        debug = new Box2DDebugRenderer();
+
 	}
 
 	@Override
 	public void render(float delta) {
-		world.step(1/60f, 6, 2);
+		world.step(delta, 6, 2);
+		
 		KeyProcessor a = new KeyProcessor();
 		a.detectInput();
 		
@@ -68,6 +76,8 @@ public class GameScreen implements Screen {
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		camera.update();
+		debugMatrix = game.getBatch().getProjectionMatrix().cpy().scale(Const.PTM, 
+                Const.PTM, 0);
 		game.getBatch().begin();
 		
 		game.getBatch().setProjectionMatrix(camera.combined);
@@ -78,7 +88,8 @@ public class GameScreen implements Screen {
 		 * Draw Everything now by passing the Batch in
 		 */
 		game.getBatch().end();
-		
+        debug.render(world, debugMatrix);
+
 	}
 
 	@Override
