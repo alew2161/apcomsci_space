@@ -13,22 +13,21 @@ public class EntityPhysics {
 	 * @param world
 	 * @param body definition
 	 */
-	public EntityPhysics(Entity entity, World world, BodyDef definition) {
-		definition.position.set((200 + 128)/Const.PTM, (200 + 128)/Const.PTM);
-		definition.type = BodyDef.BodyType.DynamicBody;
+	public EntityPhysics(Entity entity, World world, BodyDef definition, FixtureDef fixture) {
+
 		entityBody = world.createBody(definition);
 		
-		PolygonShape shape = new PolygonShape();
-        shape.setAsBox(128 / Const.PTM, 128
-                        / Const.PTM);
+//		PolygonShape shape = new PolygonShape();
+//        shape.setAsBox(128 / Const.PTM, 128
+//                        / Const.PTM);
+//
+//        FixtureDef fixtureDef = new FixtureDef();
+//        fixtureDef.shape = shape;
+//        fixtureDef.density = 0.1f;
 
-        FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.shape = shape;
-        fixtureDef.density = 0.1f;
+        entityBody.createFixture(fixture);
 
-        entityBody.createFixture(fixtureDef);
-
-        shape.dispose();
+//        shape.dispose();
 
 	}
 	

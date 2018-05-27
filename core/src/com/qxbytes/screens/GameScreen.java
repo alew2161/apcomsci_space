@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.qxbytes.camera.MainInputProcessor;
 import com.qxbytes.entities.Const;
 import com.qxbytes.entities.Entity;
+import com.qxbytes.entities.SpriteHandler;
 import com.qxbytes.keyboard.KeyProcessor;
 import com.qxbytes.spacegame.SpaceGame;
 
@@ -40,7 +41,11 @@ public class GameScreen implements Screen {
 	float x;
 	float y;
 	
-	Entity testDummy = new Entity(world, Const.PLAYER, null);
+	/**
+	 * Insert TEST Sprite handler image
+	 */
+	
+	Entity testDummy = new Entity(world, Const.PLAYER, SpriteHandler.);
 	
 	/**
 	 * End Temporary
