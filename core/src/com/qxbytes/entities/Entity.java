@@ -27,7 +27,7 @@ public class Entity {
 	public Entity(World world, BodyDef.BodyType type, float xPixels, float yPixels, float widthPixels, float heightPixels, Animation<TextureRegion> animation) {
 		BodyDef definition = new BodyDef();
 		definition.position.set(xPixels/Const.PTM, yPixels/Const.PTM);
-		definition.type = BodyDef.BodyType.DynamicBody;
+		definition.type = type;
 		
 		PolygonShape shape = new PolygonShape();
         shape.setAsBox(widthPixels/2 / Const.PTM, heightPixels/2

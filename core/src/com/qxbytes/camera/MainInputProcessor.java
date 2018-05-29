@@ -12,13 +12,13 @@ public class MainInputProcessor implements InputProcessor {
 	@Override
 	public boolean keyDown(int keycode) {
 		if(keycode == Input.Keys.RIGHT)
-	         camera.translate(1f,0f);
+	         camera.translate(10f,0f);
 	      if(keycode == Input.Keys.LEFT)
-	         camera.translate(-1f,0f);
+	         camera.translate(-10f,0f);
 	      if(keycode == Input.Keys.UP)
-	         camera.translate(0f,1f);
+	         camera.translate(0f,10f);
 	      if(keycode == Input.Keys.DOWN)
-	         camera.translate(0f,-1f);
+	         camera.translate(0f,-10f);
 		return false;
 		//	delete later.
 	}
