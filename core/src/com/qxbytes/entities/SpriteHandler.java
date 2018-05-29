@@ -20,6 +20,7 @@ public class SpriteHandler {
 		createAnimation("spikeSpriteSheet.atlas", .2f);
 		createAnimation("bullet.atlas", .2f);
 		createAnimation("turretSpriteSheet.atlas", 2f);
+		createAnimation("dumpSpriteSheet.atlas", 2f);
 	}
 
 	private static void createAnimation(String fileName, float frameDuration) {
