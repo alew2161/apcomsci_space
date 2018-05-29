@@ -53,6 +53,7 @@ public class GameScreen implements Screen {
 	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(0));
 	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(1));
 	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(2));
+	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(3));
 
 	/**
 	 * End Temporary
