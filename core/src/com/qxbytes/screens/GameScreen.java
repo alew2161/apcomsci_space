@@ -27,7 +27,7 @@ public class GameScreen implements Screen {
 	final float WORLD_HEIGHT = Gdx.graphics.getHeight();
 	
 	public static final float SPEED = 60;
-	
+	public static float deltaTime = 0;
 	private Box2DDebugRenderer debug;
 	private     Matrix4 debugMatrix;
 
@@ -74,6 +74,7 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
+		deltaTime = delta;
 		world.step(delta, 6, 2);
 		
 		KeyProcessor a = new KeyProcessor();

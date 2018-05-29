@@ -4,12 +4,13 @@ import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.qxbytes.screens.GameScreen;
 
 public class EntityGraphics {
 	//String name;
 	private Sprite positionData;//THIS SPRITE WILL NEVER BE RENDERED AND IS ONLY USED FOR POSITION DATA
 	private Animation<TextureRegion> animation;
-	private int lifetime = 0;
+	private float lifetime = 0;
 
 	/**
 	 * TODO:
@@ -40,10 +41,9 @@ public class EntityGraphics {
 		/**
 		 * We will ned to replace all instances of SPRITE with ANIMATION somehow. 
 		 */
-		lifetime+=Gdx.graphics.getDeltaTime();
+		lifetime+= GameScreen.deltaTime;
+		System.out.println(lifetime);
 		g.draw(animation.getKeyFrame(lifetime),(positionData.getX()*Const.PTM-positionData.getRegionWidth()/2),(positionData.getY()*Const.PTM)-positionData.getRegionHeight()/2);
-		System.out.println(positionData.getX()*Const.PTM);
-		System.out.println(positionData.getY()*Const.PTM);
 
 	}
 	/**
