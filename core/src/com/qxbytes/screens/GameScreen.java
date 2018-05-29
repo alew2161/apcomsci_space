@@ -32,6 +32,8 @@ public class GameScreen implements Screen {
 
 	private OrthographicCamera camera;
 	private World world = new World(new Vector2(0,-1f), true);
+	SpriteHandler test = new SpriteHandler();
+	
 	
 	/**
 	 * Temporary
@@ -43,10 +45,10 @@ public class GameScreen implements Screen {
 	
 	/**
 	 * Insert TEST Sprite handler image
+	 * problem is that testDummy does not contain fixtureDef	
 	 */
 	
-	Entity testDummy = new Entity(world, Const.PLAYER, SpriteHandler.);
-	
+	Entity testDummy = new Entity(world, Const.PLAYER, test.getAnimation(0));
 	/**
 	 * End Temporary
 	 * 
