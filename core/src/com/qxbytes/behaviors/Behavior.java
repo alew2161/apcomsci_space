@@ -9,4 +9,11 @@ public abstract class Behavior {
 		
 	}
 	public abstract void doBehavior();
+	public Entity getEntity() {
+		return entity;
+	}
+	public void setEntity(Entity entity) {
+		this.entity = entity;
+	}
+	
 }

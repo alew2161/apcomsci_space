@@ -16,7 +16,6 @@ public class EntityPhysics {
 
 		entityBody = world.createBody(definition);
 		
-
         entityBody.createFixture(fixture);
 
 	}
