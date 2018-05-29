@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.qxbytes.camera.MainInputProcessor;
@@ -48,7 +49,7 @@ public class GameScreen implements Screen {
 	 * problem is that testDummy does not contain fixtureDef	
 	 */
 	
-	Entity testDummy = new Entity(world, Const.PLAYER, test.getAnimation(0));
+	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 200, 200, 200, 200, SpriteHandler.getAnimation(0));
 	/**
 	 * End Temporary
 	 * 
