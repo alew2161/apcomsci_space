@@ -10,6 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
+import com.qxbytes.behaviors.DirectControl;
 import com.qxbytes.camera.MainInputProcessor;
 import com.qxbytes.entities.Const;
 import com.qxbytes.entities.Entity;
@@ -50,15 +51,17 @@ public class GameScreen implements Screen {
 	 */
 	
 	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(0));
-	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(1));
-	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(2));
-	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(3));
-	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(4));
-	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(5));
+	//Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(1));
+	//Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(2));
+	//Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(3));
+	//Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(4));
+	//Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(5));
 	/**
 	 * End Temporary
 	 * 
 	 */
+	DirectControl a = new DirectControl(testDummy);
+	
 	private SpaceGame game;
 	
 	public GameScreen(SpaceGame game) {
@@ -82,7 +85,7 @@ public class GameScreen implements Screen {
 		deltaTime = delta;
 		world.step(delta, 6, 2);
 		
-		
+		a.doBehavior();
 		
 		
 		
@@ -97,11 +100,11 @@ public class GameScreen implements Screen {
 		game.getBatch().setProjectionMatrix(camera.combined);
 		ground.render(game.getBatch());
 		testDummy.render(game.getBatch());
-		testDummy1.render(game.getBatch());
-		testDummy2.render(game.getBatch());
+		//testDummy1.render(game.getBatch());
+		/**testDummy2.render(game.getBatch());
 		testDummy3.render(game.getBatch());
 		testDummy4.render(game.getBatch());
-		testDummy5.render(game.getBatch());
+		testDummy5.render(game.getBatch());*/
 		
 		
 		/*
