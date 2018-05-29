@@ -19,7 +19,6 @@ public class SpriteHandler {
 	 */
 	public SpriteHandler() {
 		createAnimation("spritesheet.atlas");
-		getAnimation(0);
 	}
 
 	private static void createAnimation(String fileName) {
