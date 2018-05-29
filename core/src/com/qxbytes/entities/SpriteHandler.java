@@ -18,7 +18,7 @@ public class SpriteHandler {
 	 * Initializer block WILL THROW an error!
 	 */
 	public SpriteHandler() {
-		createAnimation("redRobotWalkRight.atlas", 0.05f);
+		createAnimation("redRobotWalkRight.atlas", 0.2f);
 	}
 
 	private static void createAnimation(String fileName, float frameDuration) {

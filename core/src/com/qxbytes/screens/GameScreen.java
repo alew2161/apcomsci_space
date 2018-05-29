@@ -32,7 +32,7 @@ public class GameScreen implements Screen {
 	private     Matrix4 debugMatrix;
 
 	private OrthographicCamera camera;
-	private World world = new World(new Vector2(0,-1f), true);
+	private World world = new World(new Vector2(0,-.1f), true);
 	SpriteHandler test = new SpriteHandler();
 	
 	
