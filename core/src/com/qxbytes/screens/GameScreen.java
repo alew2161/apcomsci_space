@@ -95,9 +95,11 @@ public class GameScreen implements Screen {
 		game.getBatch().begin();
 		
 		game.getBatch().setProjectionMatrix(camera.combined);
+		
 		testDummy.render(game.getBatch());
 		testDummy1.render(game.getBatch());
 		testDummy2.render(game.getBatch());
+		testDummy3.render(game.getBatch());
 		game.getBatch().draw(img, x, y);
 		
 		/*
