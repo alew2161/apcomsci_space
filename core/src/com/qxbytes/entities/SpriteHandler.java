@@ -14,11 +14,11 @@ public class SpriteHandler {
 	private static ArrayList<Animation<TextureRegion>> allAnimations = new ArrayList<Animation<TextureRegion>>();
 	private static TextureAtlas textureAtlas;
 	private static Animation<TextureRegion> animation;
-	/**
-	 * Initializer block WILL THROW an error!
-	 */
+
 	public SpriteHandler() {
 		createAnimation("redRobotWalkRight.atlas", 0.2f);
+		createAnimation("spikeSpriteSheet.atlas", .2f);
+		createAnimation("bullet.atlas", .2f);
 	}
 
 	private static void createAnimation(String fileName, float frameDuration) {

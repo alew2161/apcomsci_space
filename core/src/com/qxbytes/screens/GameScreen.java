@@ -33,7 +33,8 @@ public class GameScreen implements Screen {
 
 	private OrthographicCamera camera;
 	private World world = new World(new Vector2(0,-.1f), true);
-	SpriteHandler test = new SpriteHandler();
+	SpriteHandler robot = new SpriteHandler();
+	
 	
 	
 	/**
@@ -50,6 +51,9 @@ public class GameScreen implements Screen {
 	 */
 	
 	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(0));
+	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(1));
+	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(2));
+
 	/**
 	 * End Temporary
 	 * 
@@ -91,6 +95,8 @@ public class GameScreen implements Screen {
 		
 		game.getBatch().setProjectionMatrix(camera.combined);
 		testDummy.render(game.getBatch());
+		testDummy1.render(game.getBatch());
+		testDummy2.render(game.getBatch());
 		game.getBatch().draw(img, x, y);
 		
 		/*
