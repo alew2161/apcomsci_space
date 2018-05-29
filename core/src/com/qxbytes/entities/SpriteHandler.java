@@ -18,12 +18,12 @@ public class SpriteHandler {
 	 * Initializer block WILL THROW an error!
 	 */
 	public SpriteHandler() {
-		createAnimation("spritesheet.atlas");
+		createAnimation("redRobotWalkRight.atlas", 0.05f);
 	}
 
-	private static void createAnimation(String fileName) {
+	private static void createAnimation(String fileName, float frameDuration) {
 		textureAtlas = new TextureAtlas(Gdx.files.internal(fileName));
-		animation = new Animation<TextureRegion>(1f/15f, textureAtlas.getRegions());
+		animation = new Animation<TextureRegion>(frameDuration, textureAtlas.getRegions());
 		allAnimations.add(animation);
 		System.out.println("animation added "+fileName);
 	}
