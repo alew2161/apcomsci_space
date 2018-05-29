@@ -1,5 +1,4 @@
 package com.qxbytes.entities;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -42,7 +41,6 @@ public class EntityGraphics {
 		 * We will ned to replace all instances of SPRITE with ANIMATION somehow. 
 		 */
 		lifetime+= GameScreen.deltaTime;
-		System.out.println(lifetime);
 		TextureRegion currentFrame = animation.getKeyFrame(lifetime, true);
 		g.draw(currentFrame,(positionData.getX()*Const.PTM-positionData.getRegionWidth()/2),(positionData.getY()*Const.PTM)-positionData.getRegionHeight()/2);
 
