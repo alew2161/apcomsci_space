@@ -4,6 +4,10 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 
 public class Const {
+	/**
+	 * DIVIDE = Pixels --> Meters
+	 * MULTIPLY = Meters --> Pixels
+	 */
 	public static final float PTM = 100f;
 	public static final BodyDef GROUND = new BodyDef();
 	public static final BodyDef ENEMY = new BodyDef();

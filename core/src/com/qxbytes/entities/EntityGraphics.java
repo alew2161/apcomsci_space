@@ -19,7 +19,9 @@ public class EntityGraphics {
 	
 	public EntityGraphics(Animation<TextureRegion> animation) {
 		this.animation = animation;
-		this.positionData = new Sprite(animation.getKeyFrame(0).getTexture());
+		this.positionData = new Sprite(animation.getKeyFrame(1).getTexture());
+		this.positionData.setRegionHeight(animation.getKeyFrame(1).getRegionHeight());
+		this.positionData.setRegionWidth(animation.getKeyFrame(1).getRegionWidth());
 		//create();
 	
 	}
@@ -39,8 +41,9 @@ public class EntityGraphics {
 		 * We will ned to replace all instances of SPRITE with ANIMATION somehow. 
 		 */
 		lifetime+=Gdx.graphics.getDeltaTime();
-		g.draw(animation.getKeyFrame(lifetime),positionData.getX()*Const.PTM-positionData.getWidth()/2,positionData.getY()*Const.PTM-positionData.getHeight()/2);
-
+		g.draw(animation.getKeyFrame(lifetime),(positionData.getX()*Const.PTM-positionData.getRegionWidth()/2),(positionData.getY()*Const.PTM)-positionData.getRegionHeight()/2);
+		System.out.println(positionData.getX()*Const.PTM);
+		System.out.println(positionData.getY()*Const.PTM);
 
 	}
 	/**

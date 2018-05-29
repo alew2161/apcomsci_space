@@ -49,7 +49,7 @@ public class GameScreen implements Screen {
 	 * problem is that testDummy does not contain fixtureDef	
 	 */
 	
-	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 200, 200, 200, 200, SpriteHandler.getAnimation(0));
+	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(0));
 	/**
 	 * End Temporary
 	 * 
