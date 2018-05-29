@@ -86,12 +86,13 @@ public class GameScreen implements Screen {
 		
 		
 		
-		Gdx.gl.glClearColor(1, 0, 0, 1);
+		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		camera.update();
 		debugMatrix = game.getBatch().getProjectionMatrix().cpy().scale(Const.PTM, 
                 Const.PTM, 0);
 		game.getBatch().begin();
+		game.getBatch().draw(img, x, y);
 		
 		game.getBatch().setProjectionMatrix(camera.combined);
 		ground.render(game.getBatch());
@@ -101,7 +102,7 @@ public class GameScreen implements Screen {
 		testDummy3.render(game.getBatch());
 		testDummy4.render(game.getBatch());
 		testDummy5.render(game.getBatch());
-		game.getBatch().draw(img, x, y);
+		
 		
 		/*
 		 * Draw Everything now by passing the Batch in
