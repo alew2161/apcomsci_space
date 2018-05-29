@@ -10,7 +10,6 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.qxbytes.behaviors.KeyProcessor;
 import com.qxbytes.camera.MainInputProcessor;
 import com.qxbytes.entities.Const;
 import com.qxbytes.entities.Entity;
@@ -46,16 +45,15 @@ public class GameScreen implements Screen {
 	float y;
 	
 	/**
-	 * Insert TEST Sprite handler image
-	 * problem is that testDummy does not contain fixtureDef	
+	 * Insert TEST Sprite handler image	
 	 */
 	
-	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(0));
-	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(1));
-	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(2));
-	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(3));
-	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(4));
-
+	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(0));
+	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(1));
+	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(2));
+	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(3));
+	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(4));
+	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(5));
 	/**
 	 * End Temporary
 	 * 
@@ -83,8 +81,7 @@ public class GameScreen implements Screen {
 		deltaTime = delta;
 		world.step(delta, 6, 2);
 		
-		KeyProcessor a = new KeyProcessor();
-		a.detectInput();
+		
 		
 		
 		
@@ -102,6 +99,7 @@ public class GameScreen implements Screen {
 		testDummy2.render(game.getBatch());
 		testDummy3.render(game.getBatch());
 		testDummy4.render(game.getBatch());
+		testDummy5.render(game.getBatch());
 		game.getBatch().draw(img, x, y);
 		
 		/*

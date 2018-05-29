@@ -45,10 +45,3 @@ repeat: none
   orig: 32, 64
   offset: 0, 0
   index: -1
-0007
-  rotate: false
-  xy: 0, 0
-  size: 32, 64
-  orig: 32, 64
-  offset: 0, 0
-  index: -1

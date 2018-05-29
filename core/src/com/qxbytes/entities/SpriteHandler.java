@@ -1,11 +1,8 @@
 package com.qxbytes.entities;
-import java.io.Console;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
@@ -19,9 +16,12 @@ public class SpriteHandler {
 		createAnimation("redRobotWalkRight.atlas", 0.2f);
 		createAnimation("spikeSpriteSheet.atlas", .2f);
 		createAnimation("bullet.atlas", .2f);
-		createAnimation("turretSpriteSheet.atlas", 2f);
-		createAnimation("dumpSpriteSheet.atlas", 2f);
-		createAnimation("greenRobotWalk.atlas", 2f);
+		createAnimation("turretSpriteSheet.atlas", .5f);
+		/**
+		 * Can't have this - all sprites are ON ONE sprite sheet, BUT each has a DIFFERENT texture atlas!
+		 */
+		createAnimation("dumpSpriteSheet.atlas", .2f);
+		createAnimation("greenRobotWalkRight.atlas", .2f);
 	}
 
 	private static void createAnimation(String fileName, float frameDuration) {
