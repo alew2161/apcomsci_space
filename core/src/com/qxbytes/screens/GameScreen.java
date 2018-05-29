@@ -10,7 +10,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.qxbytes.behaviors.KeyProcessor;
+import com.qxbytes.behaviors.DirectControl;
 import com.qxbytes.camera.MainInputProcessor;
 import com.qxbytes.entities.Const;
 import com.qxbytes.entities.Entity;
@@ -51,10 +51,10 @@ public class GameScreen implements Screen {
 	 */
 	
 	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(0));
-	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(1));
-	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(2));
-	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(3));
-	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 200, 200, SpriteHandler.getAnimation(4));
+	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 300, 300, 200, 200, SpriteHandler.getAnimation(1));
+	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 200, 200, 200, 200, SpriteHandler.getAnimation(2));
+	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 500, 500, 200, 200, SpriteHandler.getAnimation(3));
+	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 600, 600, 200, 200, SpriteHandler.getAnimation(4));
 
 	/**
 	 * End Temporary
@@ -68,7 +68,7 @@ public class GameScreen implements Screen {
 	
 	@Override
 	public void show() {
-		img = new Texture("badlogic.jpg");
+		img = new Texture("floor1.png");
 
 	    camera = new OrthographicCamera(WORLD_WIDTH ,WORLD_HEIGHT);
 	    camera.position.set(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
@@ -83,8 +83,8 @@ public class GameScreen implements Screen {
 		deltaTime = delta;
 		world.step(delta, 6, 2);
 		
-		KeyProcessor a = new KeyProcessor();
-		a.detectInput();
+		DirectControl a = new DirectControl(testDummy);
+		a.doBehavior();
 		
 		
 		
