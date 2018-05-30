@@ -16,28 +16,32 @@ public class DirectControl extends Behavior{
 	@Override
 	public void doBehavior() {
 		if(Gdx.input.isKeyPressed(Input.Keys.W)){
-			System.out.println("w");
-			Vector2 world = new Vector2(Gdx.input.getX(), Gdx.input.getY());//needs to be replaced w/ world vector
-			Vector2 loc= new Vector2(Gdx.input.getX(),Gdx.input.getY());// needs to be replaced w/ pos of entity
+			System.out.println("mouse");
+			Vector2 world = new Vector2(0,0.5f);//needs to be replaced w/ world vector
+			Vector2 loc= new Vector2(0,0);
+			loc.add(world);// needs to be replaced w/ pos of entity
 			this.getEntity().getPhysics().getEntityBody().applyForce(world, loc, true);
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.A)) {
-			System.out.println("a");
-			Vector2 world = new Vector2(Gdx.input.getX(), Gdx.input.getY());//needs to be replaced w/ world vector
-			Vector2 loc= new Vector2(Gdx.input.getX(),Gdx.input.getY());// needs to be replaced w/ pos of entity
+			System.out.println("mouse");
+			Vector2 world = new Vector2(-0.5f,0);//needs to be replaced w/ world vector
+			Vector2 loc= new Vector2(0,0);
+			loc.add(world);// needs to be replaced w/ pos of entity
 			this.getEntity().getPhysics().getEntityBody().applyForce(world, loc, true);
 
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.S)) {
-			System.out.println("s");
-			Vector2 world = new Vector2(Gdx.input.getX(), Gdx.input.getY()-10);//needs to be replaced w/ world vector
-			Vector2 loc= new Vector2(Gdx.input.getX(),Gdx.input.getY()+100);// needs to be replaced w/ pos of entity
+			System.out.println("mouse");
+			Vector2 world = new Vector2(0,-0.5f);//needs to be replaced w/ world vector
+			Vector2 loc= new Vector2(0,0);
+			loc.add(world);// needs to be replaced w/ pos of entity
 			this.getEntity().getPhysics().getEntityBody().applyForce(world, loc, true);
 		}
-		if(Gdx.input.isButtonPressed((Input.Buttons.LEFT))) {
+		if(Gdx.input.isKeyPressed(Input.Keys.D)) {
 			System.out.println("mouse");
-			Vector2 world = new Vector2(10,-.5f);//needs to be replaced w/ world vector
-			Vector2 loc= new Vector2(10,10);// needs to be replaced w/ pos of entity
+			Vector2 world = new Vector2(0.5f,0);//needs to be replaced w/ world vector
+			Vector2 loc= new Vector2(0,0);
+			loc.add(world);// needs to be replaced w/ pos of entity
 			this.getEntity().getPhysics().getEntityBody().applyForce(world, loc, true);
 		}
 		
