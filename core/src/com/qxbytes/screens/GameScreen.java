@@ -18,6 +18,9 @@ import com.qxbytes.entities.Entity;
 import com.qxbytes.entities.SpriteHandler;
 import com.qxbytes.spacegame.SpaceGame;
 import com.qxbytes.camera.CameraUpdater;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 
 /**
@@ -60,7 +63,8 @@ public class GameScreen implements Screen {
 	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(3), new DoNothing());
 	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(4), new DoNothing());
 	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(5), new DoNothing());
-
+private TiledMap map;
+private OrthogonalTiledMapRenderer renderer;
 	/**
 	 * End Temporary
 	 * 
@@ -74,7 +78,9 @@ public class GameScreen implements Screen {
 	
 	@Override
 	public void show() {
-		img = new Texture("untitled.png");
+		TmxMapLoader loader =new TmxMapLoader();
+		map= loader.load("untitled1.tmx");
+		//img = new Texture("untitled.png");
 
 	    camera = new OrthographicCamera(WORLD_WIDTH ,WORLD_HEIGHT);
 	    camera.position.set(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
@@ -107,6 +113,7 @@ public class GameScreen implements Screen {
 		testDummy3.render(game.getBatch());
 		testDummy4.render(game.getBatch());
 		testDummy5.render(game.getBatch());
+		renderer.render();
 		
 		/*
 		 * Draw Everything now by passing the Batch in
@@ -143,6 +150,8 @@ public class GameScreen implements Screen {
 	@Override
 	public void dispose() {
 		img.dispose();
+		map.dispose();
+		renderer.dispose();
 		
 	}
 
