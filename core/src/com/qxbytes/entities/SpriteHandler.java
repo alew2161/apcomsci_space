@@ -2,12 +2,19 @@ package com.qxbytes.entities;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.MapLayer;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 public class SpriteHandler {
+	private TiledMap map;
+	private OrthogonalTiledMapRenderer renderer;
 
 	private static ArrayList<Animation<TextureRegion>> allAnimations = new ArrayList<Animation<TextureRegion>>();
 	private static TextureAtlas textureAtlas;
@@ -32,7 +39,16 @@ public class SpriteHandler {
 		allAnimations.add(animation);
 		System.out.println("animation added "+fileName);
 	}
-
+/*private void generateTerrain(String fileName, float frameDuration) {
+	
+	map = new TmxMapLoader().load("untitled1.tmx");
+	MapLayer objects = map.getLayers().get("object");
+	objects.
+	textureAtlas = new TextureAtlas(Gdx.files.internal(fileName));
+	animation = new Animation<TextureRegion>(frameDuration, textureAtlas.getRegions());
+	allAnimations.add(animation);
+	System.out.println("animation added "+fileName);
+}*/
 	public static Animation<TextureRegion> getAnimation(int num) {
 		return allAnimations.get(num);
 		

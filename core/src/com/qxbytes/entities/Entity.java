@@ -46,6 +46,7 @@ public class Entity {
         fixtureDef.shape = shape;
         fixtureDef.density = .5f;
         fixtureDef.restitution = 0.3f;
+        fixtureDef.friction = 1;
 
 
         initialize(world,definition,fixtureDef,animation,behavior);
