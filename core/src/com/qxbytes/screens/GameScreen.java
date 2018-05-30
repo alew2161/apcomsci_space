@@ -6,12 +6,17 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
+import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
+import com.badlogic.gdx.physics.box2d.ChainShape;
+import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.qxbytes.behaviors.DirectControl;
 import com.qxbytes.behaviors.DoNothing;
@@ -36,6 +41,7 @@ public class GameScreen implements Screen {
 	public static float deltaTime = 0;
 	private Box2DDebugRenderer debug;
 	private     Matrix4 debugMatrix;
+	private float tileSize;
 
 	private OrthographicCamera camera;
 	private World world = new World(new Vector2(0,-.5f), true);
@@ -96,6 +102,39 @@ public class GameScreen implements Screen {
 	    
         debug = new Box2DDebugRenderer();
         cameraUdate = new CameraUpdater(camera,testDummy);
+        
+        TiledMapTileLayer interactionLayer = (TiledMapTileLayer) map.getLayers().get("object");
+          tileSize = interactionLayer.getTileHeight();
+        for(int row = 0; row < interactionLayer.getHeight(); row++) {
+        	for(int col = 0; col < interactionLayer.getWidth(); col++) {
+            	Cell cell = interactionLayer.getCell(col , row);
+            	if(cell == null) continue;
+            	if(cell.getTile() == null) continue;
+            	BodyDef definition = new BodyDef();// alexander idk where u initialized bodydef
+            	definition.type = BodyType.StaticBody; 
+            	definition.position.set(
+            			(col+.5f)* tileSize/100, (row+.5f)*tileSize/100);
+            	ChainShape cs = new ChainShape(); 
+            	Vector2[] v = new Vector2[3];
+            	v[0] = new Vector2(-tileSize/2/100, -tileSize/2/100);
+
+            	v[1]= new Vector2(-tileSize/2/100, tileSize/2/100);
+            	
+            	v[2]= new Vector2(tileSize/2/100, tileSize/2/100);
+            	
+            	cs.createChain(v);
+            	
+            	FixtureDef fdef = new FixtureDef();
+            	 fdef.friction = 1;
+            	 fdef.shape = cs;
+            	 fdef.filter.categoryBits = 1;
+            	 fdef.filter.maskBits = -1;
+            	 fdef.isSensor = false;
+            	 world.createBody(definition).createFixture(fdef);
+            	 
+            }
+        }
+        
 	}
 
 	@Override

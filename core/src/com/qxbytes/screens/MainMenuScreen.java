@@ -34,8 +34,8 @@ public class MainMenuScreen implements Screen {
         skin = new Skin(Gdx.files.internal("uiskin.json"));
         stage = new Stage();
 
-        final TextButton button = new TextButton("Meme", skin, "default");
-        final TextButton button1 = new TextButton("XD",skin,"default");
+        final TextButton button = new TextButton("Start", skin, "default");
+        final TextButton button1 = new TextButton("MEME!!!!",skin,"default");
         
         button.setWidth(200f);
         button.setHeight(20f);
@@ -47,6 +47,7 @@ public class MainMenuScreen implements Screen {
             @Override 
             public void clicked(InputEvent event, float x, float y){
             	game.setScreen(new GameScreen(game));
+            
             }
         });
         button1.addListener(new ClickListener(){
