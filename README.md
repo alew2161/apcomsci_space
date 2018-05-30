@@ -4,7 +4,7 @@ space themed program.
 
 PSA: SAVE WORK AND COMMIT THEM PLEASE!
 
-* libgdx
+* libgdx used for lib
 * watch a tutorial or _something_
     * https://www.youtube.com/watch?v=YCGmXVCvogY
     * https://www.youtube.com/watch?v=pcsAuGauqIk
