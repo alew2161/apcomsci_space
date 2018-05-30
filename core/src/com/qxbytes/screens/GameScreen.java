@@ -81,8 +81,8 @@ private TiledMap map;
 	public void show() {
 		
 		
-		//img = new Texture("untitled.png");
-		map = new TmxMapLoader().load("untitled.tmx");
+		img = new Texture("untitled.png");
+		map = new TmxMapLoader().load("untitled1.tmx");
 		renderer = new OrthogonalTiledMapRenderer(map);
 		
 
@@ -118,7 +118,7 @@ private TiledMap map;
 		testDummy4.render(game.getBatch());
 		testDummy5.render(game.getBatch());
 		renderer.render();
-		
+		renderer.setView(camera);
 		/*
 		 * Draw Everything now by passing the Batch in
 		 */
