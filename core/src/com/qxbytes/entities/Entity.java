@@ -33,6 +33,7 @@ public class Entity {
 	}
 	public Entity(World world, BodyDef.BodyType type, float xPixels, float yPixels, float widthPixels, float heightPixels, Animation<TextureRegion> animation, Behavior behavior) {
 		BodyDef definition = new BodyDef();
+		definition.fixedRotation = true;
 		definition.position.set(xPixels/Const.PTM, yPixels/Const.PTM);
 		definition.type = type;
 		
@@ -44,7 +45,8 @@ public class Entity {
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
         fixtureDef.density = .5f;
-        fixtureDef.restitution = 0.5f;
+        fixtureDef.restitution = 0.3f;
+
 
         initialize(world,definition,fixtureDef,animation,behavior);
 	}
