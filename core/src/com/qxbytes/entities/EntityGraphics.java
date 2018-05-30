@@ -16,7 +16,6 @@ public class EntityGraphics {
 	 * 
 	 * @param animation
 	 */
-	
 	public EntityGraphics(Animation<TextureRegion> animation) {
 		this.animation = animation;
 		this.positionData = new Sprite(animation.getKeyFrame(1).getTexture());
