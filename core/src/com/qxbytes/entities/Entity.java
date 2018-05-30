@@ -32,10 +32,12 @@ public class Entity {
 		PolygonShape shape = new PolygonShape();
         shape.setAsBox(widthPixels/2 / Const.PTM, heightPixels/2
                         / Const.PTM);
+       
 
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
-        fixtureDef.density = 0.5f;
+        fixtureDef.density = .5f;
+        fixtureDef.restitution = 0.01f;
 
         initialize(world,definition,fixtureDef,animation);
 	}
