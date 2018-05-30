@@ -1,6 +1,7 @@
 package com.qxbytes.camera;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.qxbytes.entities.Const;
 import com.qxbytes.entities.Entity;
 import com.badlogic.gdx.math.Vector2;
 
@@ -20,10 +21,13 @@ public class CameraUpdater {
 	}
 
 	public void render() {
-
-		camera.position.set((entity.getPhysics().getEntityBody().getPosition().x)*100,
-				(entity.getPhysics().getEntityBody().getPosition().y)*100
+		
+		camera.position.set((entity.getPhysics().getEntityBody().getPosition().x)*Const.PTM,
+				(entity.getPhysics().getEntityBody().getPosition().y)*Const.PTM
 				,0);
+		if (camera.position.y - camera.viewportHeight/2 < 0) {
+			camera.position.y = camera.viewportHeight/2;
+		}
 		camera.update();
 	}
 }
