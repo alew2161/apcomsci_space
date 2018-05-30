@@ -20,8 +20,7 @@ public class CameraUpdater {
 	}
 
 	public void render() {
-		System.out.print(entity.getPhysics().getEntityBody().getPosition().x+"\n");
-		System.out.print(entity.getPhysics().getEntityBody().getPosition().y+"\n");
+
 		camera.position.set((entity.getPhysics().getEntityBody().getPosition().x)*100,
 				(entity.getPhysics().getEntityBody().getPosition().y)*100
 				,0);
