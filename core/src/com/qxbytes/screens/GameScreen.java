@@ -5,6 +5,9 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TmxMapLoader;
+import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -12,15 +15,12 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.qxbytes.behaviors.DirectControl;
 import com.qxbytes.behaviors.DoNothing;
+import com.qxbytes.camera.CameraUpdater;
 import com.qxbytes.camera.MainInputProcessor;
 import com.qxbytes.entities.Const;
 import com.qxbytes.entities.Entity;
 import com.qxbytes.entities.SpriteHandler;
 import com.qxbytes.spacegame.SpaceGame;
-import com.qxbytes.camera.CameraUpdater;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 
 /**
@@ -63,8 +63,11 @@ public class GameScreen implements Screen {
 	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(3), new DoNothing());
 	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(4), new DoNothing());
 	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(5), new DoNothing());
-private TiledMap map;
+	Entity interactions = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(5), new DoNothing());
+
+	private TiledMap map;
 	private OrthogonalTiledMapRenderer renderer;
+
 //OrthogonalTiledMapRenderer renderer = new OrthogonalTiledMapRenderer(map, 2f);//1f / 32f);
 	/**
 	 * End Temporary
@@ -97,6 +100,9 @@ private TiledMap map;
 
 	@Override
 	public void render(float delta) {
+		/*boolean collisionX;
+		collisionX = collisionLayer.getCell((int) ((testDummy.getPhysics().getEntityBody().getPosition().x)*100), (int) ((testDummy.getPhysics().getEntityBody().getPosition().y)*100)).getTile().getProperties().containsKey("object");
+		System.out.println(collisionX);*/
 		deltaTime = delta;
 		world.step(delta, 6, 2);
 	

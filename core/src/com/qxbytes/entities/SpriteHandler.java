@@ -5,12 +5,14 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 
 public class SpriteHandler {
 
 	private static ArrayList<Animation<TextureRegion>> allAnimations = new ArrayList<Animation<TextureRegion>>();
 	private static TextureAtlas textureAtlas;
 	private static Animation<TextureRegion> animation;
+	TiledMapTileLayer collisionLayer = new TiledMapTileLayer(0, 0, 0, 0);
 
 	public SpriteHandler() {
 		createAnimation("redRobotWalkRight.atlas", 0.2f);
@@ -30,8 +32,6 @@ public class SpriteHandler {
 		allAnimations.add(animation);
 		System.out.println("animation added "+fileName);
 	}
-
-
 
 	public static Animation<TextureRegion> getAnimation(int num) {
 		return allAnimations.get(num);
