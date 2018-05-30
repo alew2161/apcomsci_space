@@ -31,7 +31,7 @@ public class GameScreen implements Screen {
 	
 	final float WORLD_WIDTH = Gdx.graphics.getWidth();
 	final float WORLD_HEIGHT = Gdx.graphics.getHeight();
-	
+
 	public static final float SPEED = 60;
 	public static float deltaTime = 0;
 	private Box2DDebugRenderer debug;
@@ -64,7 +64,8 @@ public class GameScreen implements Screen {
 	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(4), new DoNothing());
 	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(5), new DoNothing());
 private TiledMap map;
-private OrthogonalTiledMapRenderer renderer;
+	private OrthogonalTiledMapRenderer renderer;
+//OrthogonalTiledMapRenderer renderer = new OrthogonalTiledMapRenderer(map, 2f);//1f / 32f);
 	/**
 	 * End Temporary
 	 * 
@@ -78,9 +79,12 @@ private OrthogonalTiledMapRenderer renderer;
 	
 	@Override
 	public void show() {
-		TmxMapLoader loader =new TmxMapLoader();
-		map= loader.load("untitled1.tmx");
+		
+		
 		//img = new Texture("untitled.png");
+		map = new TmxMapLoader().load("untitled.tmx");
+		renderer = new OrthogonalTiledMapRenderer(map);
+		
 
 	    camera = new OrthographicCamera(WORLD_WIDTH ,WORLD_HEIGHT);
 	    camera.position.set(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
@@ -103,7 +107,7 @@ private OrthogonalTiledMapRenderer renderer;
 		debugMatrix = game.getBatch().getProjectionMatrix().cpy().scale(Const.PTM, 
                 Const.PTM, 0);
 		game.getBatch().begin();
-		game.getBatch().draw(img, x, y);
+		//game.getBatch().draw(img, x, y);
 		
 		game.getBatch().setProjectionMatrix(camera.combined);
 		ground.render(game.getBatch());
@@ -154,5 +158,6 @@ private OrthogonalTiledMapRenderer renderer;
 		renderer.dispose();
 		
 	}
+	
 
 }
