@@ -16,6 +16,8 @@ import com.qxbytes.entities.Const;
 import com.qxbytes.entities.Entity;
 import com.qxbytes.entities.SpriteHandler;
 import com.qxbytes.spacegame.SpaceGame;
+import com.qxbytes.camera.CameraUpdater;
+
 
 /**
  * Main Game screen.
@@ -39,7 +41,7 @@ public class GameScreen implements Screen {
 	Entity ground = new Entity(world,BodyDef.BodyType.StaticBody, -3200,0,12800,20,SpriteHandler.getAnimation(0));
 	
 	/**
-	 * Temporary
+	 * Temporary Solution.
 	 * 
 	 */
 	Texture img;
@@ -56,10 +58,13 @@ public class GameScreen implements Screen {
 	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(3));
 	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(4));
 	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(5));
+	
+	private CameraUpdater cameraUdate;
 	/**
 	 * End Temporary
 	 * 
 	 */
+	
 	DirectControl a = new DirectControl(testDummy);
 	
 	private SpaceGame game;
@@ -76,8 +81,9 @@ public class GameScreen implements Screen {
 	    camera.position.set(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
 
 	    Gdx.input.setInputProcessor(new MainInputProcessor(camera));
+	    
         debug = new Box2DDebugRenderer();
-
+        cameraUdate = new CameraUpdater(camera,testDummy);
 	}
 
 	@Override
@@ -91,7 +97,8 @@ public class GameScreen implements Screen {
 		
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		camera.update();
+//		camera.update();
+		cameraUdate.render();
 		debugMatrix = game.getBatch().getProjectionMatrix().cpy().scale(Const.PTM, 
                 Const.PTM, 0);
 		game.getBatch().begin();
@@ -106,7 +113,6 @@ public class GameScreen implements Screen {
 		testDummy3.render(game.getBatch());
 		testDummy4.render(game.getBatch());
 		testDummy5.render(game.getBatch());
-		
 		
 		/*
 		 * Draw Everything now by passing the Batch in

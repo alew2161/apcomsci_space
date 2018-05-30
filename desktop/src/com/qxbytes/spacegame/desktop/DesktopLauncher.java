@@ -13,6 +13,8 @@ public class DesktopLauncher {
 		config.foregroundFPS = 60;	//	60fps 
 		config.vSyncEnabled = true; // here we go.	
 		config.forceExit = false;	//	apparently i need to do this.
+		config.height = 720;	//	720p 16:9.
+		config.width = 1280;
 		new LwjglApplication(new SpaceGame(), config);
 	}
 }

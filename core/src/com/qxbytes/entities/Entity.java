@@ -9,17 +9,22 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 
+/**
+ *	Entity class.
+ *
+ *	@param world 
+ *	@param definition
+ *	@param animation
+ *	@author alew2161
+ *	@author Metastable1883 
+ **/
 public class Entity {
 	private EntityGraphics graphics;
 	private EntityPhysics physics;
-    
 
 	/**
 	 * Ideally, when an object is created, a call to the Sprite Handler will return an animation to be passed into the constructor. Fix this
-	 * Owen. Remember: Owen is not a word.
-	 * @param world
-	 * @param definition
-	 * @param animation
+	 * Owen. Also remember: Owen is not a word.
 	 */
 	public Entity(World world, BodyDef definition, FixtureDef fixture, Animation<TextureRegion> animation) {
 		initialize(world,definition,fixture,animation);

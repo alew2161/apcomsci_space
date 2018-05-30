@@ -7,7 +7,7 @@ import com.qxbytes.screens.GameScreen;
 
 public class EntityGraphics {
 	//String name;
-	private Sprite positionData;//THIS SPRITE WILL NEVER BE RENDERED AND IS ONLY USED FOR POSITION DATA
+	private Sprite positionData;	//THIS SPRITE WILL NEVER BE RENDERED AND IS ONLY USED FOR POSITION DATA
 	private Animation<TextureRegion> animation;
 	private float lifetime = 0;
 
@@ -51,9 +51,4 @@ public class EntityGraphics {
 	public Sprite getPositionData() {
 		return positionData;
 	}
-
-
-	
-	
-
 }

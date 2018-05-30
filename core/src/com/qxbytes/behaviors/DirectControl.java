@@ -9,7 +9,6 @@ public class DirectControl extends Behavior{
 
 	public DirectControl(Entity entity) {
 		super(entity);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
