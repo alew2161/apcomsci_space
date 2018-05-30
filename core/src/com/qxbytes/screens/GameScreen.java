@@ -51,11 +51,11 @@ public class GameScreen implements Screen {
 	 */
 	
 	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(0));
-	//Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(1));
-	//Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(2));
-	//Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(3));
-	//Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(4));
-	//Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(5));
+	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(1));
+	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(2));
+	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(3));
+	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(4));
+	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(5));
 	/**
 	 * End Temporary
 	 * 
@@ -102,17 +102,17 @@ public class GameScreen implements Screen {
 		//ground.restitution = 0.5f;
 		testDummy.render(game.getBatch());
 		//testDummy1.render(game.getBatch());
-		/**testDummy2.render(game.getBatch());
+		testDummy2.render(game.getBatch());
 		testDummy3.render(game.getBatch());
 		testDummy4.render(game.getBatch());
-		testDummy5.render(game.getBatch());*/
+		testDummy5.render(game.getBatch());
 		
 		
 		/*
 		 * Draw Everything now by passing the Batch in
 		 */
 		game.getBatch().end();
-        //debug.render(world, debugMatrix);
+        debug.render(world, debugMatrix);
 
 	}
 
