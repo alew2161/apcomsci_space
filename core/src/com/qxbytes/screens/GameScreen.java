@@ -70,7 +70,7 @@ public class GameScreen implements Screen {
 	
 	@Override
 	public void show() {
-		img = new Texture("badlogic.jpg");
+		img = new Texture("untitled.png");
 
 	    camera = new OrthographicCamera(WORLD_WIDTH ,WORLD_HEIGHT);
 	    camera.position.set(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
