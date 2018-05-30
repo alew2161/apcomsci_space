@@ -3,13 +3,16 @@ package com.qxbytes.behaviors;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.math.Vector2;
-import com.qxbytes.entities.Entity;
 
 public class DirectControl extends Behavior{
 
+<<<<<<< HEAD
 	public DirectControl(Entity entity) {
 		super(entity);
 	}
+=======
+
+>>>>>>> eb2290b467e8458974a37d70fb586ccd1617e15f
 
 	@Override
 	public void doBehavior() {

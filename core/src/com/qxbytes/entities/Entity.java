@@ -8,6 +8,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.qxbytes.behaviors.Behavior;
 
 /**
  *	Entity class.
@@ -21,15 +22,20 @@ import com.badlogic.gdx.physics.box2d.World;
 public class Entity {
 	private EntityGraphics graphics;
 	private EntityPhysics physics;
+<<<<<<< HEAD
+=======
+	private Behavior behavior;
+    
+>>>>>>> eb2290b467e8458974a37d70fb586ccd1617e15f
 
 	/**
 	 * Ideally, when an object is created, a call to the Sprite Handler will return an animation to be passed into the constructor. Fix this
 	 * Owen. Also remember: Owen is not a word.
 	 */
-	public Entity(World world, BodyDef definition, FixtureDef fixture, Animation<TextureRegion> animation) {
-		initialize(world,definition,fixture,animation);
+	public Entity(World world, BodyDef definition, FixtureDef fixture, Animation<TextureRegion> animation, Behavior behavior) {
+		initialize(world,definition,fixture,animation,behavior);
 	}
-	public Entity(World world, BodyDef.BodyType type, float xPixels, float yPixels, float widthPixels, float heightPixels, Animation<TextureRegion> animation) {
+	public Entity(World world, BodyDef.BodyType type, float xPixels, float yPixels, float widthPixels, float heightPixels, Animation<TextureRegion> animation, Behavior behavior) {
 		BodyDef definition = new BodyDef();
 		definition.position.set(xPixels/Const.PTM, yPixels/Const.PTM);
 		definition.type = type;
@@ -44,14 +50,17 @@ public class Entity {
         fixtureDef.density = .5f;
         fixtureDef.restitution = 0.5f;
 
-        initialize(world,definition,fixtureDef,animation);
+        initialize(world,definition,fixtureDef,animation,behavior);
 	}
-	public void initialize(World world, BodyDef definition, FixtureDef fixture, Animation<TextureRegion> animation) {
+	public void initialize(World world, BodyDef definition, FixtureDef fixture, Animation<TextureRegion> animation, Behavior behavior) {
 		graphics = new EntityGraphics(animation);
         physics = new EntityPhysics(this,world,definition,fixture);
+        this.behavior = behavior;
+        this.behavior.addEntity(this);
 	}
 	public void render(SpriteBatch g) {
 		graphics.render(g);
+		behavior.doBehavior();
 		physics.update();
 		//Store the sprite the body represents in UserData
         physics.getEntityBody().setUserData(graphics.getPositionData());
