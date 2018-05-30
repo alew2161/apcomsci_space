@@ -22,11 +22,7 @@ import com.qxbytes.behaviors.Behavior;
 public class Entity {
 	private EntityGraphics graphics;
 	private EntityPhysics physics;
-<<<<<<< HEAD
-=======
 	private Behavior behavior;
-    
->>>>>>> eb2290b467e8458974a37d70fb586ccd1617e15f
 
 	/**
 	 * Ideally, when an object is created, a call to the Sprite Handler will return an animation to be passed into the constructor. Fix this

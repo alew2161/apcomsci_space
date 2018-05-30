@@ -53,32 +53,18 @@ public class GameScreen implements Screen {
 	 * Insert TEST Sprite handler image	
 	 */
 	
-<<<<<<< HEAD
-	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(0));
-	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(1));
-	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(2));
-	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(3));
-	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(4));
-	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(5));
-	
 	private CameraUpdater cameraUdate;
-=======
 	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(0), new DirectControl());
 	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(1), new DoNothing());
 	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(2), new DoNothing());
 	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(3), new DoNothing());
 	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(4), new DoNothing());
 	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(5), new DoNothing());
->>>>>>> eb2290b467e8458974a37d70fb586ccd1617e15f
+
 	/**
 	 * End Temporary
 	 * 
 	 */
-<<<<<<< HEAD
-	
-	DirectControl a = new DirectControl(testDummy);
-=======
->>>>>>> eb2290b467e8458974a37d70fb586ccd1617e15f
 	
 	private SpaceGame game;
 	

@@ -6,14 +6,6 @@ import com.badlogic.gdx.math.Vector2;
 
 public class DirectControl extends Behavior{
 
-<<<<<<< HEAD
-	public DirectControl(Entity entity) {
-		super(entity);
-	}
-=======
-
->>>>>>> eb2290b467e8458974a37d70fb586ccd1617e15f
-
 	@Override
 	public void doBehavior() {
 		if(Gdx.input.isKeyPressed(Input.Keys.W)){
