@@ -200,7 +200,7 @@ public class GameScreen implements Screen {
 		 * Draw Everything now by passing the Batch in
 		 */
 		game.getBatch().end();
-		//debug.render(world, debugMatrix);
+		debug.render(world, debugMatrix);
 
 	}
 
