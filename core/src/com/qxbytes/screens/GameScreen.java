@@ -102,6 +102,19 @@ public class GameScreen implements Screen {
         debug = new Box2DDebugRenderer();
         cameraUdate = new CameraUpdater(camera,testDummy);
         
+        TiledMapTileLayer interactionLayer = (TiledMapTileLayer) map.getLayers().get("hazards");
+        tileSize = interactionLayer.getTileHeight();
+      for(int row = 0; row < interactionLayer.getHeight(); row++) {
+      	for(int col = 0; col < interactionLayer.getWidth(); col++) {
+
+/**
+ * ADD MEMES HERE
+ */
+          	 
+          }
+      }
+      
+	}
         TiledMapTileLayer interactionLayer = (TiledMapTileLayer) map.getLayers().get("object");
           tileSize = interactionLayer.getTileHeight();
         for(int row = 0; row < interactionLayer.getHeight(); row++) {
