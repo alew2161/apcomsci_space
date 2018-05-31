@@ -1,5 +1,7 @@
 package com.qxbytes.screens;
 
+import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -63,6 +65,7 @@ public class GameScreen implements Screen {
 	 */
 
 	private CameraUpdater cameraUdate;
+	private ArrayList<Entity> entities = new ArrayList<Entity>();
 	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(0), new DirectControl());
 	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(1), new DoNothing());
 	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(2), new DoNothing());
@@ -105,10 +108,11 @@ public class GameScreen implements Screen {
 		tileSize = EnemyLayer.getTileHeight();
 		for(int row = 0; row < EnemyLayer.getHeight(); row++) {
 			for(int col = 0; col < EnemyLayer.getWidth(); col++) {
-				/**
-				 * add memes here
-				 */
-
+				Cell cell = EnemyLayer.getCell(col , row);
+				if(cell == null) continue;
+				if(cell.getTile() == null) continue;
+				System.out.println(row + "," + col);
+				entities.add(new Entity(world, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight(), SpriteHandler.getAnimation(1), new DoNothing()));
 			}
 		}
 
@@ -122,14 +126,14 @@ public class GameScreen implements Screen {
 				BodyDef definition = new BodyDef();// alexander idk where u initialized bodydef
 				definition.type = BodyType.StaticBody; 
 				definition.position.set(
-						(col+.5f)* tileSize/100, (row+.5f)*tileSize/100);
+						(col+.5f)* tileSize/Const.PTM, (row+.5f)*tileSize/Const.PTM);
 				ChainShape cs = new ChainShape(); 
 				Vector2[] v = new Vector2[3];
-				v[0] = new Vector2(-tileSize/2/100, -tileSize/2/100);
+				v[0] = new Vector2(-tileSize/2/Const.PTM, -tileSize/2/Const.PTM);
 
-				v[1]= new Vector2(-tileSize/2/100, tileSize/2/100);
+				v[1]= new Vector2(-tileSize/2/Const.PTM, tileSize/2/Const.PTM);
 
-				v[2]= new Vector2(tileSize/2/100, tileSize/2/100);
+				v[2]= new Vector2(tileSize/2/Const.PTM, tileSize/2/Const.PTM);
 
 				cs.createChain(v);
 
@@ -171,15 +175,20 @@ public class GameScreen implements Screen {
 		testDummy3.render(game.getBatch());
 		testDummy4.render(game.getBatch());
 		testDummy5.render(game.getBatch());
-
+		
+		for (Entity e : entities) {
+			e.render(game.getBatch());
+		}
+		
 		ground.render(game.getBatch());
 		renderer.render();
 		renderer.setView(camera);
+
 		/*
 		 * Draw Everything now by passing the Batch in
 		 */
 		game.getBatch().end();
-		debug.render(world, debugMatrix);
+		//debug.render(world, debugMatrix);
 
 	}
 
