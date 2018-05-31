@@ -63,13 +63,12 @@ public class GameScreen implements Screen {
 	 */
 	
 	private CameraUpdater cameraUdate;
-	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(0), new DirectControl());
-	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(1), new DoNothing());
-	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(2), new DoNothing());
-	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(3), new DoNothing());
-	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(4), new DoNothing());
-	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(5), new DoNothing());
-	Entity interactions = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(5), new DoNothing());
+	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(0), new DirectControl());
+	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(1), new DoNothing());
+	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(2), new DoNothing());
+	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(3), new DoNothing());
+	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(4), new DoNothing());
+	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(5), new DoNothing());
 
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer renderer;
@@ -91,7 +90,7 @@ public class GameScreen implements Screen {
 		
 		
 		img = new Texture("untitled.png");
-		map = new TmxMapLoader().load("untitled1.tmx");
+		map = new TmxMapLoader().load("oneSec.tmx");
 		renderer = new OrthogonalTiledMapRenderer(map);
 		
 
@@ -155,13 +154,15 @@ public class GameScreen implements Screen {
 		//game.getBatch().draw(img, x, y);
 		
 		game.getBatch().setProjectionMatrix(camera.combined);
-		ground.render(game.getBatch());
+		
 		testDummy.render(game.getBatch());
 		testDummy1.render(game.getBatch());
 		testDummy2.render(game.getBatch());
 		testDummy3.render(game.getBatch());
 		testDummy4.render(game.getBatch());
 		testDummy5.render(game.getBatch());
+		
+		ground.render(game.getBatch());
 		renderer.render();
 		renderer.setView(camera);
 		/*
