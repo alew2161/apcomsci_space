@@ -63,9 +63,9 @@ public class Entity {
 		behavior.doBehavior();
 		physics.update();
 		//Store the sprite the body represents in UserData
-        physics.getEntityBody().setUserData(graphics.getPositionData());
+		physics.getEntityBody().setUserData(this);
         //Access the sprite
-        ((Sprite)physics.getEntityBody().getUserData()).setPosition(physics.getEntityBody().getPosition().x,physics.getEntityBody().getPosition().y);
+        ((Entity)physics.getEntityBody().getUserData()).getGraphics().getPositionData().setPosition(physics.getEntityBody().getPosition().x,physics.getEntityBody().getPosition().y);
 	
 	}
 	public EntityGraphics getGraphics() {
