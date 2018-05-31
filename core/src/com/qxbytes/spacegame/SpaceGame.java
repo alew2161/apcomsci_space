@@ -1,5 +1,6 @@
 package com.qxbytes.spacegame;
 
+import java.time.Instant;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.qxbytes.screens.MainMenuScreen;
@@ -9,6 +10,7 @@ public class SpaceGame extends Game {
 	 * The main (and only) sprite batch there is- and it should be.
 	 */
 	private SpriteBatch batch;
+	final float init = Instant.now().getEpochSecond();
 
 	@Override
 	public void create () {
@@ -28,6 +30,10 @@ public class SpaceGame extends Game {
 	
 	public SpriteBatch getBatch() {
 		return batch;
+	}
+	
+	public float getInit() {
+		return init;
 	}
 
 	public void setBatch(SpriteBatch batch) {

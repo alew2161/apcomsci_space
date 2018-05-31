@@ -1,5 +1,7 @@
 package com.qxbytes.screens;
 
+import java.time.Instant;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -58,11 +60,14 @@ public class GameScreen implements Screen {
 	float x;
 	float y;
 	
+	static float init = (Instant.now().getEpochSecond());	//	STAGE INIT TIME!
+	
 	/**
 	 * Insert TEST Sprite handler image	
 	 */
 	
 	private CameraUpdater cameraUdate;
+	private HudOverlay hud;
 	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(0), new DirectControl());
 	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(1), new DoNothing());
 	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(2), new DoNothing());
@@ -102,6 +107,9 @@ public class GameScreen implements Screen {
 	    
         debug = new Box2DDebugRenderer();
         cameraUdate = new CameraUpdater(camera,testDummy);
+        System.out.print((WORLD_WIDTH));
+        
+        hud = new HudOverlay(testDummy,init,WORLD_WIDTH,WORLD_HEIGHT,camera);
         
         TiledMapTileLayer interactionLayer = (TiledMapTileLayer) map.getLayers().get("object");
           tileSize = interactionLayer.getTileHeight();
@@ -149,12 +157,14 @@ public class GameScreen implements Screen {
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 //		camera.update();
 		cameraUdate.render();
+
 		debugMatrix = game.getBatch().getProjectionMatrix().cpy().scale(Const.PTM, 
                 Const.PTM, 0);
 		game.getBatch().begin();
 		//game.getBatch().draw(img, x, y);
 		
-		game.getBatch().setProjectionMatrix(camera.combined);
+		game.getBatch().setProjectionMatrix(hud.hud.getCamera().combined);
+				//camera.combined);
 		ground.render(game.getBatch());
 		testDummy.render(game.getBatch());
 		testDummy1.render(game.getBatch());
@@ -164,6 +174,8 @@ public class GameScreen implements Screen {
 		testDummy5.render(game.getBatch());
 		renderer.render();
 		renderer.setView(camera);
+		hud.update(1,1);
+		
 		/*
 		 * Draw Everything now by passing the Batch in
 		 */
