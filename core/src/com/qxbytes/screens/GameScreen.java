@@ -1,11 +1,8 @@
 package com.qxbytes.screens;
 
-<<<<<<< HEAD
-import java.time.Instant;
-=======
-import java.util.ArrayList;
->>>>>>> 23091242ce177887fe8edbe3dcadc84d2ffad41d
 
+import java.time.Instant;
+import java.util.ArrayList;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -63,28 +60,14 @@ public class GameScreen implements Screen {
 	Texture img;
 	float x;
 	float y;
-<<<<<<< HEAD
-	
 	static float init = (Instant.now().getEpochSecond());	//	STAGE INIT TIME!
 	
-=======
-
->>>>>>> 23091242ce177887fe8edbe3dcadc84d2ffad41d
 	/**
 	 * Insert TEST Sprite handler image	
 	 */
 
 	private CameraUpdater cameraUdate;
-<<<<<<< HEAD
 	private HudOverlay hud;
-	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(0), new DirectControl());
-	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(1), new DoNothing());
-	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(2), new DoNothing());
-	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(3), new DoNothing());
-	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(4), new DoNothing());
-	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(5), new DoNothing());
-	Entity interactions = new Entity(world, BodyDef.BodyType.DynamicBody, 400, 400, 50, 50, SpriteHandler.getAnimation(5), new DoNothing());
-=======
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
 	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(0), new DirectControl());
 	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(1), new DoNothing());
@@ -92,7 +75,6 @@ public class GameScreen implements Screen {
 	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(3), new DoNothing());
 	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(4), new DoNothing());
 	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(5), new DoNothing());
->>>>>>> 23091242ce177887fe8edbe3dcadc84d2ffad41d
 
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer renderer;
@@ -112,56 +94,9 @@ public class GameScreen implements Screen {
 	@Override
 	public void show() {
 
-
 		img = new Texture("untitled.png");
 		map = new TmxMapLoader().load("oneSec.tmx");
 		renderer = new OrthogonalTiledMapRenderer(map);
-
-<<<<<<< HEAD
-	    camera = new OrthographicCamera(WORLD_WIDTH ,WORLD_HEIGHT);
-	    camera.position.set(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
-
-	    Gdx.input.setInputProcessor(new MainInputProcessor(camera));
-	    
-        debug = new Box2DDebugRenderer();
-        cameraUdate = new CameraUpdater(camera,testDummy);
-        System.out.print((WORLD_WIDTH));
-        
-        hud = new HudOverlay(testDummy,init,WORLD_WIDTH,WORLD_HEIGHT,camera);
-        
-        TiledMapTileLayer interactionLayer = (TiledMapTileLayer) map.getLayers().get("object");
-          tileSize = interactionLayer.getTileHeight();
-        for(int row = 0; row < interactionLayer.getHeight(); row++) {
-        	for(int col = 0; col < interactionLayer.getWidth(); col++) {
-            	Cell cell = interactionLayer.getCell(col , row);
-            	if(cell == null) continue;
-            	if(cell.getTile() == null) continue;
-            	BodyDef definition = new BodyDef();// alexander idk where u initialized bodydef
-            	definition.type = BodyType.StaticBody; 
-            	definition.position.set(
-            			(col+.5f)* tileSize/100, (row+.5f)*tileSize/100);
-            	ChainShape cs = new ChainShape(); 
-            	Vector2[] v = new Vector2[3];
-            	v[0] = new Vector2(-tileSize/2/100, -tileSize/2/100);
-
-            	v[1]= new Vector2(-tileSize/2/100, tileSize/2/100);
-            	
-            	v[2]= new Vector2(tileSize/2/100, tileSize/2/100);
-            	
-            	cs.createChain(v);
-            	
-            	FixtureDef fdef = new FixtureDef();
-            	 fdef.friction = 1;
-            	 fdef.shape = cs;
-            	 fdef.filter.categoryBits = 1;
-            	 fdef.filter.maskBits = -1;
-            	 fdef.isSensor = false;
-            	 world.createBody(definition).createFixture(fdef);
-            	 
-            }
-        }
-        
-=======
 
 		camera = new OrthographicCamera(WORLD_WIDTH ,WORLD_HEIGHT);
 		camera.position.set(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
@@ -170,6 +105,8 @@ public class GameScreen implements Screen {
 
 		debug = new Box2DDebugRenderer();
 		cameraUdate = new CameraUpdater(camera,testDummy);
+		hud = new HudOverlay(testDummy,init,WORLD_WIDTH,WORLD_HEIGHT,camera);
+		
 		TiledMapTileLayer EnemyLayer = (TiledMapTileLayer) map.getLayers().get("hazard");
 		tileSize = EnemyLayer.getTileHeight();
 		for(int row = 0; row < EnemyLayer.getHeight(); row++) {
@@ -224,8 +161,6 @@ public class GameScreen implements Screen {
 
 			}
 		}
-
->>>>>>> 23091242ce177887fe8edbe3dcadc84d2ffad41d
 	}
 
 	@Override
@@ -245,16 +180,7 @@ public class GameScreen implements Screen {
 				Const.PTM, 0);
 		game.getBatch().begin();
 		//game.getBatch().draw(img, x, y);
-<<<<<<< HEAD
-		
 		game.getBatch().setProjectionMatrix(hud.hud.getCamera().combined);
-				//camera.combined);
-		ground.render(game.getBatch());
-=======
-
-		game.getBatch().setProjectionMatrix(camera.combined);
-
->>>>>>> 23091242ce177887fe8edbe3dcadc84d2ffad41d
 		testDummy.render(game.getBatch());
 		testDummy1.render(game.getBatch());
 		testDummy2.render(game.getBatch());
@@ -269,12 +195,7 @@ public class GameScreen implements Screen {
 		ground.render(game.getBatch());
 		renderer.render();
 		renderer.setView(camera);
-<<<<<<< HEAD
 		hud.update(1,1);
-		
-=======
-
->>>>>>> 23091242ce177887fe8edbe3dcadc84d2ffad41d
 		/*
 		 * Draw Everything now by passing the Batch in
 		 */
