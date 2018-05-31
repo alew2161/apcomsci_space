@@ -33,7 +33,7 @@ public class MainMenuScreen implements Screen {
 		// TODO Auto-generated method stub
         skin = new Skin(Gdx.files.internal("uiskin.json"));
         stage = new Stage();
-
+        
         final TextButton button = new TextButton("Start", skin, "default");
         final TextButton button1 = new TextButton("MEME!!!!",skin,"default");
         
