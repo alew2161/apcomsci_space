@@ -115,6 +115,17 @@ public class GameScreen implements Screen {
 				entities.add(new Entity(world, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight(), SpriteHandler.getAnimation(1), new DoNothing()));
 			}
 		}
+		TiledMapTileLayer EnemyLayer1 = (TiledMapTileLayer) map.getLayers().get("turret");
+		tileSize = EnemyLayer1.getTileHeight();
+		for(int row = 0; row < EnemyLayer1.getHeight(); row++) {
+			for(int col = 0; col < EnemyLayer1.getWidth(); col++) {
+				Cell cell = EnemyLayer1.getCell(col , row);
+				if(cell == null) continue;
+				if(cell.getTile() == null) continue;
+				System.out.println(row + "," + col);
+				entities.add(new Entity(world, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight(), SpriteHandler.getAnimation(3), new DoNothing()));
+			}
+		}
 
 		TiledMapTileLayer interactionLayer = (TiledMapTileLayer) map.getLayers().get("object");
 		tileSize = interactionLayer.getTileHeight();
