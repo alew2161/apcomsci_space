@@ -240,7 +240,14 @@ public class GameScreen implements Screen {
 		img.dispose();
 		map.dispose();
 		renderer.dispose();
-
+		testDummy.dispose();
+		testDummy1.dispose();
+		testDummy2.dispose();
+		testDummy3.dispose();
+		testDummy4.dispose();
+		testDummy5.dispose();
+		ground.dispose();
+		hud.dispose();
 	}
 
 

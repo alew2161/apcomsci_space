@@ -1,5 +1,6 @@
 package com.qxbytes.entities;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -78,6 +79,10 @@ public class Entity {
 	}
 	public void setPhysics(EntityPhysics physics) {
 		this.physics = physics;
+	}
+	public void dispose() {
+		// TODO Auto-generated method stub
+		
 	}
 	
 }
