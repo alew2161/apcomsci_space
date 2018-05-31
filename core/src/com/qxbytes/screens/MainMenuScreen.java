@@ -3,6 +3,7 @@ package com.qxbytes.screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -20,8 +21,10 @@ public class MainMenuScreen implements Screen {
 
 	private Skin skin;
     private Stage stage;
+    private Texture bg;
 	SpaceGame game;
 	BitmapFont font;
+	
 	
 	public MainMenuScreen(SpaceGame game) 
 	{
@@ -32,10 +35,11 @@ public class MainMenuScreen implements Screen {
 	public void show() {
 		// TODO Auto-generated method stub
         skin = new Skin(Gdx.files.internal("uiskin.json"));
+        bg = new Texture(Gdx.files.internal("titleScreen.png"));
         stage = new Stage();
         
         final TextButton button = new TextButton("Start", skin, "default");
-        final TextButton button1 = new TextButton("MEME!!!!",skin,"default");
+        final TextButton button1 = new TextButton("Exit game",skin,"default");
         
         button.setWidth(200f);
         button.setHeight(20f);
@@ -67,9 +71,11 @@ public class MainMenuScreen implements Screen {
 		// TODO Auto-generated method stub
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        
         game.getBatch().begin();
+        
+//        game.getBatch().draw(bg, 0, 0);
         stage.draw();
+       
         game.getBatch().end();
 		
 	}
