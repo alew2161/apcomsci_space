@@ -107,7 +107,7 @@ public class GameScreen implements Screen {
 		cameraUdate = new CameraUpdater(camera,testDummy);
 		hud = new HudOverlay(testDummy,init,WORLD_WIDTH,WORLD_HEIGHT,camera);
 		
-		TiledMapTileLayer EnemyLayer = (TiledMapTileLayer) map.getLayers().get("hazard");
+		TiledMapTileLayer EnemyLayer = (TiledMapTileLayer) map.getLayers().get("spike");
 		tileSize = EnemyLayer.getTileHeight();
 		for(int row = 0; row < EnemyLayer.getHeight(); row++) {
 			for(int col = 0; col < EnemyLayer.getWidth(); col++) {
