@@ -7,7 +7,9 @@ import com.qxbytes.screens.MainMenuScreen;
 
 public class SpaceGame extends Game {
 	/**
-	 * The main (and only) sprite batch there is- and it should be.
+	 *@author Alexander Lew
+	 *@author Owen Ryan
+	 *@author Edward Choi
 	 */
 	private SpriteBatch batch;
 	final float init = Instant.now().getEpochSecond();

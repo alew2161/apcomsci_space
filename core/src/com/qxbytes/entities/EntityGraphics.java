@@ -11,11 +11,7 @@ public class EntityGraphics {
 	private Animation<TextureRegion> animation;
 	private float lifetime = 0;
 
-	/**
-	 * TODO:
-	 * 
-	 * @param animation
-	 */
+
 	public EntityGraphics(Animation<TextureRegion> animation) {
 		this.animation = animation;
 		this.positionData = new Sprite(animation.getKeyFrame(1).getTexture());
