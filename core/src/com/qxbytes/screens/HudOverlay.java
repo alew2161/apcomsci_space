@@ -2,6 +2,7 @@ package com.qxbytes.screens;
 
 import java.time.Instant;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -38,7 +39,7 @@ public class HudOverlay implements Disposable{
 	OrthographicCamera camera;
 	Table table = new Table();
 	
-	private Label s,l,t,pos;
+	private Label s,l,t,pos,fps;
 	
 	public HudOverlay(Entity ent,float init,float sw,float sh,OrthographicCamera camera) {
 		/**
@@ -80,8 +81,17 @@ public class HudOverlay implements Disposable{
 							Color.WHITE
 							)
 	    			);
-	    
+	    	this.fps = new Label(
+	    			String.format(
+	    					"%d fps", 
+	    					Gdx.graphics.getFramesPerSecond()),
+	    			new Label.LabelStyle(
+	    					new BitmapFont(), 
+	    					Color.WHITE
+	    					)
+	    			);
 	    	table.add(pos).expandX().padTop(10);
+	    	table.add(fps).expandX().padTop(10);
 	    }
 	    table.row();
 	    hud.addActor(table);
@@ -103,6 +113,12 @@ public class HudOverlay implements Disposable{
 									(ent.getPhysics().getEntityBody().getPosition().y)*Const.PTM
 								)
 						);
+			fps.setText(
+					String.format(
+								"%d fps",
+								Gdx.graphics.getFramesPerSecond()
+							)
+					);
 		}
 		hud.getViewport().update(((int)Math.round(sw)),((int)Math.round(sh)),true);
 		hud.draw();
