@@ -20,6 +20,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
+import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.qxbytes.behaviors.DirectControl;
 import com.qxbytes.behaviors.DoNothing;
@@ -141,19 +142,25 @@ public class GameScreen implements Screen {
 				definition.type = BodyType.StaticBody; 
 				definition.position.set(
 						(col+.5f)* tileSize/Const.PTM, (row+.5f)*tileSize/Const.PTM);
-				ChainShape cs = new ChainShape(); 
-				Vector2[] v = new Vector2[3];
-				v[0] = new Vector2(-tileSize/2/Const.PTM, -tileSize/2/Const.PTM);
+//				ChainShape cs = new ChainShape(); 
+//				Vector2[] v = new Vector2[3];
+//				v[0] = new Vector2(-tileSize/2/Const.PTM, -tileSize/2/Const.PTM);
+//
+//				v[1]= new Vector2(-tileSize/2/Const.PTM, tileSize/2/Const.PTM);
+//
+//				v[2]= new Vector2(tileSize/2/Const.PTM, tileSize/2/Const.PTM);
+//
+//				cs.createChain(v);
+				
+				PolygonShape shape = new PolygonShape();
+		        shape.setAsBox(tileSize/2 / Const.PTM, tileSize/2
+		                        / Const.PTM);
+		       
 
-				v[1]= new Vector2(-tileSize/2/Const.PTM, tileSize/2/Const.PTM);
-
-				v[2]= new Vector2(tileSize/2/Const.PTM, tileSize/2/Const.PTM);
-
-				cs.createChain(v);
 
 				FixtureDef fdef = new FixtureDef();
 				fdef.friction = 1;
-				fdef.shape = cs;
+				fdef.shape = shape;
 				fdef.filter.categoryBits = 1;
 				fdef.filter.maskBits = -1;
 				fdef.isSensor = false;
