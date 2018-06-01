@@ -20,8 +20,12 @@ public class CameraUpdater {
 		this.camera = camera;
 	}
 
+	/**
+	 * renders camera.
+	 * 
+	 * @return void
+	 */
 	public void render() {
-		
 		camera.position.set((entity.getPhysics().getEntityBody().getPosition().x)*Const.PTM,
 				(entity.getPhysics().getEntityBody().getPosition().y)*Const.PTM
 				,0);

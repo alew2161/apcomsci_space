@@ -206,7 +206,7 @@ public class GameScreen implements Screen {
 		ground.render(game.getBatch());
 		renderer.render();
 		renderer.setView(camera);
-		hud.update(1,1);
+		hud.update();
 		/*
 		 * Draw Everything now by passing the Batch in
 		 */

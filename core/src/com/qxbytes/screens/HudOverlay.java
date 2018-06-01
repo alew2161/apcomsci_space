@@ -34,12 +34,13 @@ public class HudOverlay implements Disposable{
 	public Stage hud;
 	private Viewport viewport;
 	Entity ent;
-	private int hp,lives;
 	private float init,score,sw,sh;
 	OrthographicCamera camera;
-	Table table = new Table();
 	
-	private Label s,l,t,pos,fps;
+	Table top = new Table();
+	Table bottom = new Table();
+	
+	private Label h,s,l,t,pos,fps,p;
 	
 	public HudOverlay(Entity ent,float init,float sw,float sh,OrthographicCamera camera) {
 		/**
@@ -53,10 +54,19 @@ public class HudOverlay implements Disposable{
 
 		this.camera = camera;
 		viewport = new FitViewport(sw, sh, camera);
-	    hud = new Stage(viewport);
-	    table.top();
-	    table.setFillParent(true);
 
+		hud = new Stage(viewport);
+		
+		
+		/*
+		 *	Labels. 
+		 *
+		 */
+		
+	    top.setFillParent(true);
+	    top.top();
+	    bottom.setFillParent(true);
+	    bottom.bottom();
 /*	    this.t = new Label(
 				String.format(
 						"time: %fs", 
@@ -69,6 +79,7 @@ public class HudOverlay implements Disposable{
 				);*/
 	    
 //	    table.add(t).expandX().padTop(10);	//time
+	    
 	    if(debug) {
 	    	this.pos = new Label(
 					String.format(
@@ -83,18 +94,51 @@ public class HudOverlay implements Disposable{
 	    			);
 	    	this.fps = new Label(
 	    			String.format(
-	    					"%d hp", 
-	    					ent.getHp()),
+	    					"%d fps", 
+	    					Gdx.graphics.getFramesPerSecond()
+	    					),
 	    			new Label.LabelStyle(
 	    					new BitmapFont(), 
 	    					Color.WHITE
 	    					)
 	    			);
-	    	table.add(pos).expandX().padTop(10);
-	    	table.add(fps).expandX().padTop(10);
+	    	top.add(pos).expandX().padTop(10);
+	    	top.add(fps).expandX().padTop(10);
 	    }
-	    table.row();
-	    hud.addActor(table);
+	    
+	    this.h = new Label(
+    			String.format(
+    					"HP: %d",
+    					ent.getHp()
+    					), 
+    			new Label.LabelStyle(
+    					new BitmapFont(), 
+    					Color.WHITE
+    					)
+    			);
+	    bottom.add(h).expandX().padTop(10);
+	    
+	    //top()
+	    bottom.row();
+	    hud.addActor(top);
+	    hud.addActor(bottom);
+	    
+	    /*
+	     *	Mouse Pointer
+	     * 
+	     */
+	    
+	    this.p = new Label(
+	    			"*",
+	    			new Label.LabelStyle(
+	    					new BitmapFont(), 
+	    					Color.WHITE
+    					)
+	    			); 
+	    p.setPosition(Gdx.input.getX(),Gdx.input.getY());
+	    
+	    hud.addActor(p);
+//	    Gdx.input.getX() and Gdx.input.getY()
 	}
 	
 	/**
@@ -102,9 +146,27 @@ public class HudOverlay implements Disposable{
 	 * 
 	 * @param hp Player HP
 	 * @param score Player Score
+	 * @return void
 	 */
-	public void update(int hp,float score) {
+	public void update() {
 //		System.out.print(( (int)(Instant.now().getEpochSecond())  +" "+ (int)(init) )+"\n");
+
+		/*
+		 * Mouse Pointer
+		 * 
+		 */
+		
+		
+		
+		p.setPosition(Gdx.input.getX(),Gdx.input.getY());
+		
+		
+		
+		/*
+		 *	Text Labels
+		 *
+		 */
+		
 		if(debug) {
 			pos.setText(
 					String.format(
@@ -115,14 +177,22 @@ public class HudOverlay implements Disposable{
 						);
 			fps.setText(
 					String.format(
-								"%d HP",
-								ent.getHp()
+								"%d fps",
+								Gdx.graphics.getFramesPerSecond()
 							)
 					);
 		}
+		h.setText(
+				String.format(
+								"HP: %d",
+								ent.getHp()
+							)
+				);
+		
+		
+		
 		hud.getViewport().update(((int)Math.round(sw)),((int)Math.round(sh)),true);
 		hud.draw();
-		//	https://gamedev.stackexchange.com/questions/31379/how-do-i-make-an-on-screen-hud-in-libgdx
 	}
 	@Override
 	public void dispose() { 
