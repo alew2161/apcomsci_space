@@ -8,7 +8,7 @@ public class DirectControl extends Behavior{
 
 	@Override
 	public void doBehavior() {
-		
+		if (disable) {
 		if(Gdx.input.isKeyPressed(Input.Keys.W)){
 			Vector2 loc = new Vector2(0,0.4f);//needs to be replaced w/ world vector
 			this.getEntity().getPhysics().getEntityBody().applyForceToCenter(loc, true);
@@ -32,7 +32,7 @@ public class DirectControl extends Behavior{
 
 			this.getEntity().getPhysics().getEntityBody().applyForceToCenter(loc, true);
 		}
-
+		}
 	}
 
 }

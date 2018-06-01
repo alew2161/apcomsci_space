@@ -82,6 +82,10 @@ public class Entity {
 	public void addHp(int hp) {
 		this.hp += hp;
 	}
+	
+	public Behavior getBehavior() {
+		return behavior;
+	}
 	public int getHp(){
 		return this.hp;
 	}

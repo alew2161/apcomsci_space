@@ -18,6 +18,9 @@ public class SpaceGame extends Game {
 	public void create () {
 		batch = new SpriteBatch();
 		this.setScreen(new MainMenuScreen(this));
+		if(1==0) {
+			this.setScreen(new MainMenuScreen(this));
+		}
 	}
  
 	@Override
