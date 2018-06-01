@@ -4,6 +4,7 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.qxbytes.screens.GameScreen;
+import com.qxbytes.utils.Const;
 
 public class EntityGraphics {
 	//String name;

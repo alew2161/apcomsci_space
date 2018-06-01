@@ -32,7 +32,6 @@ public class DirectControl extends Behavior{
 
 			this.getEntity().getPhysics().getEntityBody().applyForceToCenter(loc, true);
 		}
-		
 
 	}
 

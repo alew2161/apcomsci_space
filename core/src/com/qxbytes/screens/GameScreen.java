@@ -3,6 +3,7 @@ package com.qxbytes.screens;
 
 import java.time.Instant;
 import java.util.ArrayList;
+
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
@@ -18,18 +19,20 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
-import com.badlogic.gdx.physics.box2d.ChainShape;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.qxbytes.behaviors.DirectControl;
 import com.qxbytes.behaviors.DoNothing;
 import com.qxbytes.camera.CameraUpdater;
 import com.qxbytes.camera.MainInputProcessor;
-import com.qxbytes.entities.Const;
+import com.qxbytes.entities.CollisionEffects;
 import com.qxbytes.entities.Entity;
-import com.qxbytes.entities.SpriteHandler;
+import com.qxbytes.entities.Player;
+import com.qxbytes.entities.Spike;
+import com.qxbytes.entities.Turret;
 import com.qxbytes.spacegame.SpaceGame;
+import com.qxbytes.utils.Const;
+import com.qxbytes.utils.SpriteHandler;
 
 
 /**
@@ -48,7 +51,7 @@ public class GameScreen implements Screen {
 	private float tileSize;
 
 	private OrthographicCamera camera;
-	private World world = new World(new Vector2(0,-.5f), true);
+	private World world = new World(new Vector2(0,-2f), true);
 	SpriteHandler robot = new SpriteHandler();
 
 	//Ground Entity
@@ -70,12 +73,12 @@ public class GameScreen implements Screen {
 	private CameraUpdater cameraUdate;
 	private HudOverlay hud;
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
-	Entity testDummy = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(0), new DirectControl());
+	Player testDummy = new Player(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50);
 	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(1), new DoNothing());
 	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(2), new DoNothing());
 	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(3), new DoNothing());
 	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(4), new DoNothing());
-	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(5), new DoNothing());
+	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(0), new DoNothing());
 
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer renderer;
@@ -107,6 +110,7 @@ public class GameScreen implements Screen {
 		debug = new Box2DDebugRenderer();
 		cameraUdate = new CameraUpdater(camera,testDummy);
 		hud = new HudOverlay(testDummy,init,WORLD_WIDTH,WORLD_HEIGHT,camera);
+		world.setContactListener(new CollisionEffects());
 		
 		TiledMapTileLayer EnemyLayer = (TiledMapTileLayer) map.getLayers().get("spike");
 		tileSize = EnemyLayer.getTileHeight();
@@ -115,8 +119,8 @@ public class GameScreen implements Screen {
 				Cell cell = EnemyLayer.getCell(col , row);
 				if(cell == null) continue;
 				if(cell.getTile() == null) continue;
-				System.out.println(row + "," + col);
-				entities.add(new Entity(world, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight(), SpriteHandler.getAnimation(1), new DoNothing()));
+				//System.out.println(row + "," + col);
+				entities.add(new Spike(world, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight()));
 			}
 		}
 		TiledMapTileLayer EnemyLayer1 = (TiledMapTileLayer) map.getLayers().get("turret");
@@ -126,8 +130,8 @@ public class GameScreen implements Screen {
 				Cell cell = EnemyLayer1.getCell(col , row);
 				if(cell == null) continue;
 				if(cell.getTile() == null) continue;
-				System.out.println(row + "," + col);
-				entities.add(new Entity(world, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight(), SpriteHandler.getAnimation(3), new DoNothing()));
+				//System.out.println(row + "," + col);
+				entities.add(new Turret(world, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight()));
 			}
 		}
 

@@ -1,8 +1,8 @@
 package com.qxbytes.camera;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.qxbytes.entities.Const;
 import com.qxbytes.entities.Entity;
+import com.qxbytes.utils.Const;
 import com.badlogic.gdx.math.Vector2;
 
 /**

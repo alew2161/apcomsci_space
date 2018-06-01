@@ -1,8 +1,9 @@
 package com.qxbytes.entities;
 
-import com.badlogic.gdx.Game;
+import java.util.HashMap;
+import java.util.Map;
+
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.BodyDef;
@@ -10,6 +11,7 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.qxbytes.behaviors.Behavior;
+import com.qxbytes.utils.Const;
 
 /**
  *	Entity class.
@@ -24,7 +26,9 @@ public class Entity {
 	private EntityGraphics graphics;
 	private EntityPhysics physics;
 	private Behavior behavior;
-
+	private int hp = -1; //i.e. invincible
+	private int invincibility = 0;
+	
 	/**
 	 * Ideally, when an object is created, a call to the Sprite Handler will return an animation to be passed into the constructor. Fix this
 	 * Owen. Also remember: Owen is not a word.
@@ -66,7 +70,20 @@ public class Entity {
 		physics.getEntityBody().setUserData(this);
         //Access the sprite
         ((Entity)physics.getEntityBody().getUserData()).getGraphics().getPositionData().setPosition(physics.getEntityBody().getPosition().x,physics.getEntityBody().getPosition().y);
+        invincibility-=1;
+	}
 	
+	public void takeDamage(int hp) {
+		if (invincibility < 0) {
+			this.hp -= hp;
+			invincibility = 120;
+		}
+	}
+	public void addHp(int hp) {
+		this.hp += hp;
+	}
+	public int getHp(){
+		return this.hp;
 	}
 	public EntityGraphics getGraphics() {
 		return graphics;

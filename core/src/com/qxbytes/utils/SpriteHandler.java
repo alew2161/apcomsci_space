@@ -1,4 +1,4 @@
-package com.qxbytes.entities;
+package com.qxbytes.utils;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.Gdx;

@@ -12,8 +12,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.qxbytes.entities.Const;
 import com.qxbytes.entities.Entity;
+import com.qxbytes.utils.Const;
 
 /**
  * the game's hud updater
@@ -83,8 +83,8 @@ public class HudOverlay implements Disposable{
 	    			);
 	    	this.fps = new Label(
 	    			String.format(
-	    					"%d fps", 
-	    					Gdx.graphics.getFramesPerSecond()),
+	    					"%d hp", 
+	    					ent.getHp()),
 	    			new Label.LabelStyle(
 	    					new BitmapFont(), 
 	    					Color.WHITE
@@ -115,8 +115,8 @@ public class HudOverlay implements Disposable{
 						);
 			fps.setText(
 					String.format(
-								"%d fps",
-								Gdx.graphics.getFramesPerSecond()
+								"%d HP",
+								ent.getHp()
 							)
 					);
 		}

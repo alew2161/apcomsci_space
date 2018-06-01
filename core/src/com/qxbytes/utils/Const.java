@@ -1,4 +1,4 @@
-package com.qxbytes.entities;
+package com.qxbytes.utils;
 
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
