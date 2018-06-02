@@ -22,7 +22,7 @@ import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
-import com.qxbytes.behaviors.DoNothing;
+import com.qxbytes.behaviors.NothingSpecial;
 import com.qxbytes.camera.CameraUpdater;
 import com.qxbytes.camera.MainInputProcessor;
 import com.qxbytes.entities.CollisionEffects;
@@ -55,7 +55,7 @@ public class GameScreen implements Screen {
 	SpriteHandler robot = new SpriteHandler();
 
 	//Ground Entity
-	Entity ground = new Entity(world,BodyDef.BodyType.StaticBody, -3200,0,12800,20,SpriteHandler.getAnimation(0),new DoNothing());
+	Entity ground = new Entity(world,BodyDef.BodyType.StaticBody, -3200,0,12800,20,SpriteHandler.getAnimation(0),new NothingSpecial());
 
 	/**
 	 * Temporary Solution.
@@ -74,11 +74,11 @@ public class GameScreen implements Screen {
 	private HudOverlay hud;
 	private ArrayList<Entity> entities = new ArrayList<Entity>();
 	Player testDummy = new Player(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50);
-	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(1), new DoNothing());
-	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(2), new DoNothing());
-	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(3), new DoNothing());
-	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(4), new DoNothing());
-	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(0), new DoNothing());
+	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(1), new NothingSpecial());
+	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(2), new NothingSpecial());
+	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(3), new NothingSpecial());
+	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(4), new NothingSpecial());
+	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(0), new NothingSpecial());
 
 	private TiledMap map;
 	private OrthogonalTiledMapRenderer renderer;

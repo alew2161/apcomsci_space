@@ -39,7 +39,7 @@ public class EntityGraphics {
 		lifetime+= GameScreen.deltaTime;
 		TextureRegion currentFrame = animation.getKeyFrame(lifetime, true);
 		g.draw(currentFrame,(positionData.getX()*Const.PTM-positionData.getRegionWidth()/2),(positionData.getY()*Const.PTM)-positionData.getRegionHeight()/2);
-
+		
 	}
 	/**
 	 * Temp Sprite

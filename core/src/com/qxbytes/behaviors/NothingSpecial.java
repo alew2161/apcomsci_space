@@ -1,6 +1,6 @@
 package com.qxbytes.behaviors;
 
-public class DoNothing extends Behavior {
+public class NothingSpecial extends Behavior {
 
 
 

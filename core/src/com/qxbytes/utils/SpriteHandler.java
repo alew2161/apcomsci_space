@@ -13,13 +13,10 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 
 public class SpriteHandler {
-	private TiledMap map;
-	private OrthogonalTiledMapRenderer renderer;
 
 	private static ArrayList<Animation<TextureRegion>> allAnimations = new ArrayList<Animation<TextureRegion>>();
 	private static TextureAtlas textureAtlas;
 	private static Animation<TextureRegion> animation;
-	TiledMapTileLayer collisionLayer = new TiledMapTileLayer(0, 0, 0, 0);
 
 	public SpriteHandler() {
 		createAnimation("redRobotWalkRight.atlas", 0.2f);

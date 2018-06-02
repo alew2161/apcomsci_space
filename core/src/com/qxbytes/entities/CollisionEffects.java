@@ -11,14 +11,24 @@ public class CollisionEffects implements ContactListener{
 	 */
 	@Override
 	public void beginContact(Contact contact) {
-		//only collisions where player is involved
-		if (contact.getFixtureA().getBody().getUserData() instanceof Player || contact.getFixtureB().getBody().getUserData() instanceof Player) {
-			//only collisions where both are entities i.e. spikes, turrets, etc. (world objects have no user data)
-			if (contact.getFixtureA().getBody().getUserData() instanceof Entity && contact.getFixtureB().getBody().getUserData() instanceof Entity) {
-				//then remove one health from each
-				((Entity)contact.getFixtureA().getBody().getUserData()).takeDamage(1);
-				((Entity)contact.getFixtureB().getBody().getUserData()).takeDamage(1);
+		/**
+		 * Go from least to most general
+		 */
+		//only collisions where entities are involved
+		if (contact.getFixtureA().getBody().getUserData() instanceof Entity && contact.getFixtureB().getBody().getUserData() instanceof Entity) {
+			Entity fixA = ((Entity)contact.getFixtureA().getBody().getUserData());
+			Entity fixB = ((Entity)contact.getFixtureB().getBody().getUserData());
+			if (fixA.isHostile() != fixB.isHostile()) {
+				fixA.takeDamage();
+				fixB.takeDamage();
 			}
+		}
+		
+		if (contact.getFixtureA().getBody().getUserData() instanceof Bullet) {
+			((Entity)contact.getFixtureA().getBody().getUserData()).takeDamage();
+		}
+		if (contact.getFixtureB().getBody().getUserData() instanceof Bullet) {
+			((Entity)contact.getFixtureB().getBody().getUserData()).takeDamage();
 		}
 	}
 

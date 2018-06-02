@@ -28,6 +28,7 @@ public class Entity {
 	private Behavior behavior;
 	private int hp = -1; //i.e. invincible
 	private int invincibility = 0;
+	private boolean hostile = false;
 	
 	/**
 	 * Ideally, when an object is created, a call to the Sprite Handler will return an animation to be passed into the constructor. Fix this
@@ -73,9 +74,9 @@ public class Entity {
         invincibility-=1;
 	}
 	
-	public void takeDamage(int hp) {
+	public void takeDamage() {
 		if (invincibility < 0) {
-			this.hp -= hp;
+			this.hp -= 1;
 			invincibility = 120;
 		}
 	}
@@ -96,6 +97,12 @@ public class Entity {
 	}
 	public void setPhysics(EntityPhysics physics) {
 		this.physics = physics;
+	}
+	public boolean isHostile() {
+		return hostile;
+	}
+	public void setHostile(boolean hostile) {
+		this.hostile = hostile;
 	}
 	public void dispose() {
 		// TODO Auto-generated method stub
