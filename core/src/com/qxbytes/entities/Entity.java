@@ -3,6 +3,7 @@ package com.qxbytes.entities;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -90,7 +91,23 @@ public class Entity {
 			}
 		}
 	}
-	
+	public void setState(Cell cell) {
+
+		if (cell.getRotation() == 0) {
+			/**
+			 * Omfg this took so long and I still have zero idea why I have to do it this stupid way but #satisfaction in squashing a bug
+			 */
+			if (cell.getFlipHorizontally()) this.state = 3; else
+			this.state = 1;
+		} else if (cell.getRotation() == 1) {
+			this.state = 2;
+		} else if (cell.getRotation() == 2) {
+			//never called
+			this.state = 3;
+		} else if (cell.getRotation() == 3) {
+			this.state = 4;
+		}
+	}
 	public int getState() {
 		return state;
 	}

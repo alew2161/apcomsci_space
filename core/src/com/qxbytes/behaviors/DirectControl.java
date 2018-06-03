@@ -13,7 +13,8 @@ public class DirectControl extends Behavior{
 			Vector2 loc = new Vector2(0,0.4f);//needs to be replaced w/ world vector
 			this.getEntity().getPhysics().getEntityBody().applyForceToCenter(loc, true);
 		}
-		if (this.getEntity().getPhysics().getEntityBody().getLinearVelocity().y > 2) this.getEntity().getPhysics().getEntityBody().setLinearVelocity(this.getEntity().getPhysics().getEntityBody().getLinearVelocity().x,2);;
+		if (this.getEntity().getPhysics().getEntityBody().getLinearVelocity().y > 8) this.getEntity().getPhysics().getEntityBody().setLinearVelocity(this.getEntity().getPhysics().getEntityBody().getLinearVelocity().x,8);;
+		if (this.getEntity().getPhysics().getEntityBody().getLinearVelocity().y < -4) this.getEntity().getPhysics().getEntityBody().setLinearVelocity(this.getEntity().getPhysics().getEntityBody().getLinearVelocity().x,-4);;
 
 		if(Gdx.input.isKeyPressed(Input.Keys.S)) {
 			Vector2 loc = new Vector2(0,-0.9f);//needs to be replaced w/ world vector

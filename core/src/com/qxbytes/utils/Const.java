@@ -7,9 +7,10 @@ public class Const {
 	public static final int NOAI = -1;
 	public static final int IDLE = 0;
 	public static final int MOVE_RIGHT = 1;
-	public static final int MOVE_LEFT = 2;
-	public static final int MOVE_UP = 3;
-	public static final int MOVE_DOWN = 4;
+	public static final int MOVE_DOWN = 2;
+	public static final int MOVE_LEFT = 3;
+	public static final int MOVE_UP = 4;
+	
 	
 	/**
 	 * DIVIDE = Pixels --> Meters
