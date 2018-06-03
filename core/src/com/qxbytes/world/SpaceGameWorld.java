@@ -14,6 +14,7 @@ import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.qxbytes.entities.Electricity;
 import com.qxbytes.entities.Entity;
 import com.qxbytes.entities.Spike;
 import com.qxbytes.entities.Turret;
@@ -57,6 +58,17 @@ public class SpaceGameWorld {
 				if(cell.getTile() == null) continue;
 				//System.out.println(row + "," + col);
 				entities.add(new Turret(this, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight()));
+			}
+		}
+		TiledMapTileLayer EnemyLayer2 = (TiledMapTileLayer) map.getLayers().get("electricity");
+		tileSize = EnemyLayer2.getTileHeight();
+		for(int row = 0; row < EnemyLayer2.getHeight(); row++) {
+			for(int col = 0; col < EnemyLayer2.getWidth(); col++) {
+				Cell cell = EnemyLayer2.getCell(col , row);
+				if(cell == null) continue;
+				if(cell.getTile() == null) continue;
+				//System.out.println(row + "," + col);
+				entities.add(new Electricity(this, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight()));
 			}
 		}
 
