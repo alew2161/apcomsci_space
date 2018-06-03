@@ -9,6 +9,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
@@ -18,6 +19,11 @@ import com.badlogic.gdx.math.Matrix4;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
@@ -77,7 +83,7 @@ public class GameScreen implements Screen {
 
 	private CameraUpdater cameraUdate;
 	private HudOverlay hud;
-
+boolean pause = false;
 //	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(1), new NothingSpecial());
 //	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(2), new NothingSpecial());
 //	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(3), new NothingSpecial());
@@ -92,7 +98,10 @@ public class GameScreen implements Screen {
 	 */
 
 	private SpaceGame game;
-	
+	private Skin skin;
+    private Stage stage;
+    private Texture bg;
+	BitmapFont font;
 
 	public GameScreen(SpaceGame game) {
 		this.game = game;
@@ -100,6 +109,23 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void show() {
+		skin = new Skin(Gdx.files.internal("uiskin.json"));
+        bg = new Texture(Gdx.files.internal("titleScreen.png"));
+        stage = new Stage();
+        final TextButton button = new TextButton("Start", skin, "default");
+        button.setWidth(200f);
+        button.setHeight(20f);
+        button.setPosition(Gdx.graphics.getWidth() /2 - 100f, Gdx.graphics.getHeight()/2 - 10f);
+        button.addListener(new ClickListener(){
+            @Override 
+            public void clicked(InputEvent event, float x, float y){
+            	game.setScreen(new GameScreen(game));
+            
+            }
+        });
+        stage.addActor(button);
+        Gdx.input.setInputProcessor(stage);
+        
 		gameWorld.getEntities().add(0,new Player(gameWorld, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50));
 
 		gameWorld.getCamera().position.set(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
@@ -115,12 +141,18 @@ public class GameScreen implements Screen {
 	public static int rendersTemp = 0;
 	@Override
 	public void render(float delta) {
+		int i = 1;
+		i++;
+		if(elapsedTime>10)pause = true;
+		if(pause == true) delta = 0;
+		else delta = 1f/SPEED;
 		/*boolean collisionX;
 		collisionX = collisionLayer.getCell((int) ((testDummy.getPhysics().getEntityBody().getPosition().x)*100), (int) ((testDummy.getPhysics().getEntityBody().getPosition().y)*100)).getTile().getProperties().containsKey("object");
 		System.out.println(collisionX);*/
 		deltaTime = delta;
 		elapsedTime+=delta;
 		rendersTemp++;
+	
 
 		gameWorld.getWorld().step(delta, 6, 2);
 
