@@ -28,6 +28,7 @@ public class SpaceGameWorld {
 	private OrthogonalTiledMapRenderer renderer;
 	private float tileSize;
 	private ArrayList<Entity> entities;
+	private ArrayList<Entity> queue = new ArrayList<Entity>();
 	
 	public SpaceGameWorld(World world, OrthographicCamera camera, String tmxFileName, ArrayList<Entity> entities) {
 		this.world = world;
@@ -44,7 +45,7 @@ public class SpaceGameWorld {
 				if(cell == null) continue;
 				if(cell.getTile() == null) continue;
 				//System.out.println(row + "," + col);
-				entities.add(new Spike(world, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight()));
+				entities.add(new Spike(this, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight()));
 			}
 		}
 		TiledMapTileLayer EnemyLayer1 = (TiledMapTileLayer) map.getLayers().get("turret");
@@ -55,7 +56,7 @@ public class SpaceGameWorld {
 				if(cell == null) continue;
 				if(cell.getTile() == null) continue;
 				//System.out.println(row + "," + col);
-				entities.add(new Turret(world, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight()));
+				entities.add(new Turret(this, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight()));
 			}
 		}
 
@@ -97,6 +98,28 @@ public class SpaceGameWorld {
 			}
 		}
 		
+	}
+	public void disposeAllDead() {
+		for (int i = entities.size()-1 ; i >= 0 ; i--) {
+			System.out.println( i + ":" + entities.get(i));
+			if (entities.get(i).isDead()) {
+				world.destroyBody(entities.get(i).getPhysics().getEntityBody());
+				entities.get(i).dispose();
+				
+				entities.remove(i);
+
+			}
+		}
+	}
+	public void addQueued() {
+		this.entities.addAll(queue);
+		queue.clear();
+	}
+	public ArrayList<Entity> getQueue() {
+		return queue;
+	}
+	public void setQueue(ArrayList<Entity> queue) {
+		this.queue = queue;
 	}
 	public ArrayList<Entity> getEntities() {
 		return entities;

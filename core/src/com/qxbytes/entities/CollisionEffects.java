@@ -16,14 +16,18 @@ public class CollisionEffects implements ContactListener{
 		 */
 		//only collisions where entities are involved
 		if (contact.getFixtureA().getBody().getUserData() instanceof Entity && contact.getFixtureB().getBody().getUserData() instanceof Entity) {
+
 			Entity fixA = ((Entity)contact.getFixtureA().getBody().getUserData());
 			Entity fixB = ((Entity)contact.getFixtureB().getBody().getUserData());
-			if (fixA.isHostile() != fixB.isHostile()) {
-				fixA.takeDamage();
-				fixB.takeDamage();
+			//you gotta be alive to take damage, right?
+			if (!fixA.isDead() && !fixB.isDead()) {
+				if (fixA.isHostile() != fixB.isHostile()) {
+					fixA.takeDamage();
+					fixB.takeDamage();
+				}
 			}
 		}
-		
+		//bullets colliding into walls
 		if (contact.getFixtureA().getBody().getUserData() instanceof Bullet) {
 			((Entity)contact.getFixtureA().getBody().getUserData()).takeDamage();
 		}
@@ -35,19 +39,19 @@ public class CollisionEffects implements ContactListener{
 	@Override
 	public void endContact(Contact contact) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void preSolve(Contact contact, Manifold oldManifold) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void postSolve(Contact contact, ContactImpulse impulse) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

@@ -1,8 +1,5 @@
 package com.qxbytes.entities;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -12,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.qxbytes.behaviors.Behavior;
 import com.qxbytes.utils.Const;
+import com.qxbytes.world.SpaceGameWorld;
 
 /**
  *	Entity class.
@@ -23,21 +21,23 @@ import com.qxbytes.utils.Const;
  *	@author Metastable1883 
  **/
 public class Entity {
+	private SpaceGameWorld gameWorld;
 	private EntityGraphics graphics;
 	private EntityPhysics physics;
 	private Behavior behavior;
 	private int hp = -1; //i.e. invincible
 	private int invincibility = 0;
 	private boolean hostile = false;
+	private boolean isDead = false;
 	
 	/**
 	 * Ideally, when an object is created, a call to the Sprite Handler will return an animation to be passed into the constructor. Fix this
 	 * Owen. Also remember: Owen is not a word.
 	 */
-	public Entity(World world, BodyDef definition, FixtureDef fixture, Animation<TextureRegion> animation, Behavior behavior) {
-		initialize(world,definition,fixture,animation,behavior);
+	public Entity(SpaceGameWorld gameWorld, BodyDef definition, FixtureDef fixture, Animation<TextureRegion> animation, Behavior behavior) {
+		initialize(gameWorld,definition,fixture,animation,behavior);
 	}
-	public Entity(World world, BodyDef.BodyType type, float xPixels, float yPixels, float widthPixels, float heightPixels, Animation<TextureRegion> animation, Behavior behavior) {
+	public Entity(SpaceGameWorld gameWorld, BodyDef.BodyType type, float xPixels, float yPixels, float widthPixels, float heightPixels, Animation<TextureRegion> animation, Behavior behavior) {
 		BodyDef definition = new BodyDef();
 		definition.fixedRotation = true;
 		definition.position.set(xPixels/Const.PTM, yPixels/Const.PTM);
@@ -55,13 +55,15 @@ public class Entity {
         fixtureDef.friction = 1;	
 
 
-        initialize(world,definition,fixtureDef,animation,behavior);
+        initialize(gameWorld,definition,fixtureDef,animation,behavior);
 	}
-	public void initialize(World world, BodyDef definition, FixtureDef fixture, Animation<TextureRegion> animation, Behavior behavior) {
+	public void initialize(SpaceGameWorld gameWorld, BodyDef definition, FixtureDef fixture, Animation<TextureRegion> animation, Behavior behavior) {
+		this.gameWorld = gameWorld;
 		graphics = new EntityGraphics(animation);
-        physics = new EntityPhysics(this,world,definition,fixture);
+        physics = new EntityPhysics(this,gameWorld.getWorld(),definition,fixture);
         this.behavior = behavior;
         this.behavior.addEntity(this);
+        
 	}
 	public void render(SpriteBatch g) {
 		graphics.render(g);
@@ -78,7 +80,18 @@ public class Entity {
 		if (invincibility < 0) {
 			this.hp -= 1;
 			invincibility = 120;
+
+			if (this.hp == 0) {
+				this.isDead = true;
+			}
 		}
+	}
+	
+	public SpaceGameWorld getGameWorld() {
+		return gameWorld;
+	}
+	public void setGameWorld(SpaceGameWorld gameWorld) {
+		this.gameWorld = gameWorld;
 	}
 	public void addHp(int hp) {
 		this.hp += hp;
@@ -103,6 +116,10 @@ public class Entity {
 	}
 	public void setHostile(boolean hostile) {
 		this.hostile = hostile;
+	}
+	
+	public boolean isDead() {
+		return isDead;
 	}
 	public void dispose() {
 		// TODO Auto-generated method stub

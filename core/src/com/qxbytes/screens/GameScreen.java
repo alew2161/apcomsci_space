@@ -47,6 +47,7 @@ public class GameScreen implements Screen {
 
 	public static final float SPEED = 60;
 	public static float deltaTime = 0;
+	public static float elapsedTime = 0;
 	private Box2DDebugRenderer debug;
 	private     Matrix4 debugMatrix;
 	SpriteHandler robot = new SpriteHandler();
@@ -59,7 +60,7 @@ public class GameScreen implements Screen {
 	
 
 	//Ground Entity
-	Entity ground = new Entity(gameWorld.getWorld(),BodyDef.BodyType.StaticBody, -3200,0,12800,20,SpriteHandler.getAnimation(0),new NothingSpecial());
+	Entity ground = new Entity(gameWorld,BodyDef.BodyType.StaticBody, -3200,0,12800,20,SpriteHandler.getAnimation(0),new NothingSpecial());
 
 	/**
 	 * Temporary Solution.
@@ -77,7 +78,6 @@ public class GameScreen implements Screen {
 	private CameraUpdater cameraUdate;
 	private HudOverlay hud;
 
-	Player testDummy = new Player(gameWorld.getWorld(), BodyDef.BodyType.DynamicBody, 100, 400, 50, 50);
 //	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(1), new NothingSpecial());
 //	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(2), new NothingSpecial());
 //	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(3), new NothingSpecial());
@@ -100,25 +100,28 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void show() {
-
+		gameWorld.getEntities().add(0,new Player(gameWorld, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50));
 
 		gameWorld.getCamera().position.set(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
 
 		Gdx.input.setInputProcessor(new MainInputProcessor(gameWorld.getCamera()));
 
 		debug = new Box2DDebugRenderer();
-		cameraUdate = new CameraUpdater(gameWorld.getCamera(),testDummy);
-		hud = new HudOverlay(testDummy,init,WORLD_WIDTH,WORLD_HEIGHT,gameWorld.getCamera());
+		cameraUdate = new CameraUpdater(gameWorld.getCamera(),gameWorld.getEntities().get(0));
+		hud = new HudOverlay(gameWorld.getEntities().get(0),init,WORLD_WIDTH,WORLD_HEIGHT,gameWorld.getCamera());
 		gameWorld.getWorld().setContactListener(new CollisionEffects());
 		
 	}
-
+	public static int rendersTemp = 0;
 	@Override
 	public void render(float delta) {
 		/*boolean collisionX;
 		collisionX = collisionLayer.getCell((int) ((testDummy.getPhysics().getEntityBody().getPosition().x)*100), (int) ((testDummy.getPhysics().getEntityBody().getPosition().y)*100)).getTile().getProperties().containsKey("object");
 		System.out.println(collisionX);*/
 		deltaTime = delta;
+		elapsedTime+=delta;
+		rendersTemp++;
+
 		gameWorld.getWorld().step(delta, 6, 2);
 
 		Gdx.gl.glClearColor(0, 0, 0, 1);
@@ -131,7 +134,7 @@ public class GameScreen implements Screen {
 		game.getBatch().begin();
 		//game.getBatch().draw(img, x, y);
 		game.getBatch().setProjectionMatrix(hud.hud.getCamera().combined);
-		testDummy.render(game.getBatch());
+		//testDummy.render(game.getBatch());
 //		testDummy1.render(game.getBatch());
 //		testDummy2.render(game.getBatch());
 //		testDummy3.render(game.getBatch());
@@ -141,6 +144,8 @@ public class GameScreen implements Screen {
 		for (Entity e : gameWorld.getEntities()) {
 			e.render(game.getBatch());
 		}
+		gameWorld.disposeAllDead();
+		gameWorld.addQueued();
 		
 		ground.render(game.getBatch());
 		gameWorld.getRenderer().render();
@@ -182,7 +187,7 @@ public class GameScreen implements Screen {
 	public void dispose() {
 		img.dispose();
 
-		testDummy.dispose();
+		//testDummy.dispose();
 //		testDummy1.dispose();
 //		testDummy2.dispose();
 //		testDummy3.dispose();
