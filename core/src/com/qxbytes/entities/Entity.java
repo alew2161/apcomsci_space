@@ -27,6 +27,7 @@ public class Entity {
 	private Behavior behavior;
 	private int hp = -1; //i.e. invincible
 	private int invincibility = 0;
+	private int state = 1;
 	private boolean hostile = false;
 	private boolean isDead = false;
 	
@@ -67,7 +68,10 @@ public class Entity {
 	}
 	public void render(SpriteBatch g) {
 		graphics.render(g);
-		behavior.doBehavior();
+		
+		if (state != Const.NOAI) {
+			behavior.doBehavior();
+		}
 		physics.update();
 		//Store the sprite the body represents in UserData
 		physics.getEntityBody().setUserData(this);
@@ -87,6 +91,12 @@ public class Entity {
 		}
 	}
 	
+	public int getState() {
+		return state;
+	}
+	public void setState(int state) {
+		this.state = state;
+	}
 	public SpaceGameWorld getGameWorld() {
 		return gameWorld;
 	}
