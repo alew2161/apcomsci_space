@@ -60,7 +60,7 @@ public class GameScreen implements Screen {
 	private SpaceGameWorld gameWorld = new SpaceGameWorld(
 			new World(new Vector2(0,-2f), true),
 			new OrthographicCamera(WORLD_WIDTH ,WORLD_HEIGHT),
-			"oneSec.tmx", 
+			"level3.tmx", 
 			new ArrayList<Entity>());
 
 	
@@ -143,7 +143,7 @@ boolean pause = false;
 	public void render(float delta) {
 		int i = 1;
 		i++;
-		if(elapsedTime>10)pause = true;
+		if(elapsedTime>100)pause = true;
 		if(pause == true) gameWorld.getEntities().get(0).setState(-1);
 		else delta = 1f/SPEED;
 		/*boolean collisionX;
