@@ -45,8 +45,10 @@ public class SpaceGameWorld {
 				Cell cell = EnemyLayer.getCell(col , row);
 				if(cell == null) continue;
 				if(cell.getTile() == null) continue;
-				//System.out.println(row + "," + col);
-				entities.add(new Spike(this, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight()));
+				//System.out.println(row + "," + col);\
+				Spike s = new Spike(this, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight());
+				s.setState(cell);
+				entities.add(s);
 			}
 		}
 		TiledMapTileLayer EnemyLayer1 = (TiledMapTileLayer) map.getLayers().get("turret");
@@ -57,7 +59,10 @@ public class SpaceGameWorld {
 				if(cell == null) continue;
 				if(cell.getTile() == null) continue;
 				//System.out.println(row + "," + col);
-				entities.add(new Turret(this, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight()));
+				Turret t = new Turret(this, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight());
+				t.setState(cell);
+				entities.add(t);
+
 			}
 		}
 		TiledMapTileLayer EnemyLayer2 = (TiledMapTileLayer) map.getLayers().get("electricity");
