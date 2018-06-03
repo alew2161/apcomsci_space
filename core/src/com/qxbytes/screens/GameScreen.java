@@ -63,7 +63,7 @@ public class GameScreen implements Screen {
 			"level3.tmx", 
 			new ArrayList<Entity>());
 
-	
+
 
 	//Ground Entity
 	Entity ground = new Entity(gameWorld,BodyDef.BodyType.StaticBody, -3200,0,12800,20,SpriteHandler.getAnimation(0),new NothingSpecial());
@@ -88,7 +88,7 @@ boolean pause = false;
 //	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(2), new NothingSpecial());
 //	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(3), new NothingSpecial());
 //	Entity testDummy4 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(4), new NothingSpecial());
-//	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(0), new NothingSpecial());
+//wwwwwwwwwwwwwwww	Entity testDummy5 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(0), new NothingSpecial());
 
 
 	//OrthogonalTiledMapRenderer renderer = new OrthogonalTiledMapRenderer(map, 2f);//1f / 32f);
@@ -194,13 +194,13 @@ boolean pause = false;
 	@Override
 	public void resize(int width, int height) {
 		// TODO Auto-generated method stub
-
+pause = false;
 	}
 
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
-
+		pause = true;
 	}
 
 	@Override
