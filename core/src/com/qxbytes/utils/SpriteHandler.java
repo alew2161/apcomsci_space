@@ -21,7 +21,7 @@ public class SpriteHandler {
 	public SpriteHandler() {
 		createAnimation("redRobotWalkRight.atlas", 0.2f);
 		createAnimation("spikeSpriteSheet.atlas", .2f);
-		createAnimation("bullet.atlas", .2f);
+		createAnimation("electricity.atlas", .2f);
 		createAnimation("turretSpriteSheet.atlas", .5f);
 		/**
 		 * Can't have this - all sprites are ON ONE sprite sheet, BUT each has a DIFFERENT texture atlas!
