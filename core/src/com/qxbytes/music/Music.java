@@ -9,13 +9,13 @@ import com.badlogic.gdx.audio.Sound;
 
 public class Music {
 
-	Sound background1 = Gdx.audio.newSound(Gdx.files.internal("file")); //background music1
-	Sound background2 = Gdx.audio.newSound(Gdx.files.internal("file"));//
-	Sound background3 = Gdx.audio.newSound(Gdx.files.internal("file"));//
-	Sound shoot = Gdx.audio.newSound(Gdx.files.internal("file"));// weapon music
-	Sound damage = Gdx.audio.newSound(Gdx.files.internal("file"));// oof
-	Sound damageDone = Gdx.audio.newSound(Gdx.files.internal("file"));// oof for an AI
-	Sound click = Gdx.audio.newSound(Gdx.files.internal("file"));
+	Sound background1 = Gdx.audio.newSound(Gdx.files.internal("Darkling.mp3")); //background music1
+	Sound background2 = Gdx.audio.newSound(Gdx.files.internal("Darkling.mp3"));//
+	Sound background3 = Gdx.audio.newSound(Gdx.files.internal("Darkling.mp3"));//
+	Sound shoot = Gdx.audio.newSound(Gdx.files.internal("Darkling.mp3"));// weapon music
+	Sound damage = Gdx.audio.newSound(Gdx.files.internal("Darkling.mp3"));// oof
+	Sound damageDone = Gdx.audio.newSound(Gdx.files.internal("Darkling.mp3"));// oof for an AI
+	Sound click = Gdx.audio.newSound(Gdx.files.internal("Darkling.mp3"));
 	boolean gameIsRunning = false; // becomes true if user has begun a new game
 	int x; // volume modifier for music (defined in user settings)
 
