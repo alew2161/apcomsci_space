@@ -29,6 +29,7 @@ public class SpriteHandler {
 		createAnimation("dumpSpriteSheet.atlas", .2f);
 		createAnimation("greenRobotWalkRight.atlas", .2f);
 		createAnimation("electricity.atlas", .2f);
+		createAnimation("end.atlas",.2f);
 	}
 
 	private static void createAnimation(String fileName, float frameDuration) {
