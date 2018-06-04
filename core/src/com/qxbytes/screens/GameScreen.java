@@ -139,12 +139,13 @@ public class GameScreen implements Screen {
 		cameraUdate = new CameraUpdater(gameWorld.getCamera(),gameWorld.getEntities().get(0));
 		hud = new HudOverlay(gameWorld.getEntities().get(0),init,WORLD_WIDTH,WORLD_HEIGHT,gameWorld.getCamera());
 		gameWorld.getWorld().setContactListener(new CollisionEffects(gameWorld));
+		music.PlayBakgroundMusic(100);
 		
 	}
 	public static int rendersTemp = 0;
 	@Override
 	public void render(float delta) {
-		music.PlayBakgroundMusic(100);
+		
 		int i = 1;
 		i++;
 		//if(elapsedTime>1000)pause = true;

@@ -14,13 +14,13 @@ import com.badlogic.gdx.audio.Sound;
 
 public class Music {
 
-	Sound background1 = Gdx.audio.newSound(Gdx.files.internal("Darkling.mp3")); //background music1
-	Sound background2 = Gdx.audio.newSound(Gdx.files.internal("Darkling.mp3"));//
-	Sound background3 = Gdx.audio.newSound(Gdx.files.internal("Darkling.mp3"));//
-	Sound shoot = Gdx.audio.newSound(Gdx.files.internal("Darkling.mp3"));// weapon music
-	Sound damage = Gdx.audio.newSound(Gdx.files.internal("Darkling.mp3"));// oof
-	Sound damageDone = Gdx.audio.newSound(Gdx.files.internal("Darkling.mp3"));// oof for an AI
-	Sound click = Gdx.audio.newSound(Gdx.files.internal("Darkling.mp3"));
+	Sound background1 = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3")); //background music1
+	Sound background2 = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));//
+	Sound background3 = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));//
+	Sound shoot = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));// weapon music
+	Sound damage = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));// oof
+	Sound damageDone = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));// oof for an AI
+	Sound click = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));
 	boolean gameIsRunning = true; // becomes true if user has begun a new game
 	
 
