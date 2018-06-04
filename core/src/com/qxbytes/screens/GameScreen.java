@@ -60,7 +60,7 @@ public class GameScreen implements Screen {
 	private SpaceGameWorld gameWorld = new SpaceGameWorld(
 			new World(new Vector2(0,-2f), true),
 			new OrthographicCamera(WORLD_WIDTH ,WORLD_HEIGHT),
-			"level1.tmx", 
+			"level2.tmx", 
 			new ArrayList<Entity>());
 
 
