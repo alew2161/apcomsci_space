@@ -3,7 +3,6 @@ package com.qxbytes.world;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
@@ -15,12 +14,11 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.qxbytes.entities.Electricity;
+import com.qxbytes.entities.End;
 import com.qxbytes.entities.Entity;
 import com.qxbytes.entities.Spike;
 import com.qxbytes.entities.Turret;
-import com.qxbytes.screens.GameScreen;
 import com.qxbytes.utils.Const;
-import com.qxbytes.utils.SpriteHandler;
 
 public class SpaceGameWorld {
 	private World world;
@@ -32,17 +30,38 @@ public class SpaceGameWorld {
 	private ArrayList<Entity> queue = new ArrayList<Entity>();
 	
 	public SpaceGameWorld(World world, OrthographicCamera camera, String tmxFileName, ArrayList<Entity> entities) {
-		this.world = world;
+		
 		this.camera = camera;
-		this.map = new TmxMapLoader().load(tmxFileName);
-		this.renderer = new OrthogonalTiledMapRenderer(map);
+		
+		this.world = world;
+		
+		changeMap(tmxFileName);
+		
 		this.entities = entities;
 		
-		TiledMapTileLayer EnemyLayer = (TiledMapTileLayer) map.getLayers().get("spike");
+		
+	}
+	public void changeMap(String tmxFileName) {
+		this.map = new TmxMapLoader().load(tmxFileName);
+		this.renderer = new OrthogonalTiledMapRenderer(map);
+		TiledMapTileLayer EnemyLayer = (TiledMapTileLayer) map.getLayers().get("end");
 		tileSize = EnemyLayer.getTileHeight();
 		for(int row = 0; row < EnemyLayer.getHeight(); row++) {
 			for(int col = 0; col < EnemyLayer.getWidth(); col++) {
 				Cell cell = EnemyLayer.getCell(col , row);
+				if(cell == null) continue;
+				if(cell.getTile() == null) continue;
+				//System.out.println(row + "," + col);\
+				End s = new End(this, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight());
+				s.setState(cell);
+				entities.add(s);
+			}
+		}
+		TiledMapTileLayer EnemyLayer0 = (TiledMapTileLayer) map.getLayers().get("spike");
+		tileSize = EnemyLayer0.getTileHeight();
+		for(int row = 0; row < EnemyLayer0.getHeight(); row++) {
+			for(int col = 0; col < EnemyLayer0.getWidth(); col++) {
+				Cell cell = EnemyLayer0.getCell(col , row);
 				if(cell == null) continue;
 				if(cell.getTile() == null) continue;
 				//System.out.println(row + "," + col);\
@@ -114,7 +133,6 @@ public class SpaceGameWorld {
 
 			}
 		}
-		
 	}
 	public void disposeAllDead() {
 		for (int i = entities.size()-1 ; i >= 0 ; i--) {
