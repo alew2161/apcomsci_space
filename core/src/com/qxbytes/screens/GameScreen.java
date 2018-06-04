@@ -143,9 +143,9 @@ boolean pause = false;
 	public void render(float delta) {
 		int i = 1;
 		i++;
-		if(elapsedTime>1000)pause = true;
-		if(pause == true) gameWorld.getEntities().get(0).setState(-1);
-		else delta = 1f/SPEED;
+		//if(elapsedTime>1000)pause = true;
+		//if(pause == true) gameWorld.getEntities().get(0).setState(-1);
+		//else delta = 1f/SPEED;
 		/*boolean collisionX;
 		collisionX = collisionLayer.getCell((int) ((testDummy.getPhysics().getEntityBody().getPosition().x)*100), (int) ((testDummy.getPhysics().getEntityBody().getPosition().y)*100)).getTile().getProperties().containsKey("object");
 		System.out.println(collisionX);*/
