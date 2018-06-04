@@ -35,9 +35,11 @@ public class SpaceGameWorld {
 		
 		this.world = world;
 		
+		this.entities = entities;
+		
 		changeMap(tmxFileName);
 		
-		this.entities = entities;
+		
 		
 		
 	}

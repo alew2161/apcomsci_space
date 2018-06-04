@@ -138,7 +138,7 @@ public class GameScreen implements Screen {
 		debug = new Box2DDebugRenderer();
 		cameraUdate = new CameraUpdater(gameWorld.getCamera(),gameWorld.getEntities().get(0));
 		hud = new HudOverlay(gameWorld.getEntities().get(0),init,WORLD_WIDTH,WORLD_HEIGHT,gameWorld.getCamera());
-		gameWorld.getWorld().setContactListener(new CollisionEffects());
+		gameWorld.getWorld().setContactListener(new CollisionEffects(gameWorld));
 		
 	}
 	public static int rendersTemp = 0;
