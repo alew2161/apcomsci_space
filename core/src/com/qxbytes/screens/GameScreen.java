@@ -36,6 +36,7 @@ import com.qxbytes.entities.Entity;
 import com.qxbytes.entities.Player;
 import com.qxbytes.entities.Spike;
 import com.qxbytes.entities.Turret;
+import com.qxbytes.music.Music;
 import com.qxbytes.spacegame.SpaceGame;
 import com.qxbytes.utils.Const;
 import com.qxbytes.utils.SpriteHandler;
@@ -84,6 +85,7 @@ public class GameScreen implements Screen {
 	private CameraUpdater cameraUdate;
 	private HudOverlay hud;
 	boolean pause = false;
+	private Music music;
 //	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(1), new NothingSpecial());
 //	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(2), new NothingSpecial());
 //	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(3), new NothingSpecial());
@@ -109,6 +111,7 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void show() {
+		music = new Music();
 		skin = new Skin(Gdx.files.internal("uiskin.json"));
         bg = new Texture(Gdx.files.internal("titleScreen.png"));
         stage = new Stage();
@@ -141,6 +144,7 @@ public class GameScreen implements Screen {
 	public static int rendersTemp = 0;
 	@Override
 	public void render(float delta) {
+		music.PlayBakgroundMusic(100);
 		int i = 1;
 		i++;
 		//if(elapsedTime>1000)pause = true;
