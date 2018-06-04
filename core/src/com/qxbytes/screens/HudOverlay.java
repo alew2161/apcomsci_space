@@ -1,11 +1,12 @@
 package com.qxbytes.screens;
 
 import java.time.Instant;
-
+import com.qxbytes.screens.GameScreen;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -37,10 +38,20 @@ public class HudOverlay implements Disposable{
 	private float init,score,sw,sh;
 	OrthographicCamera camera;
 	
-	Table top = new Table();
-	Table bottom = new Table();
+	Table top = new Table(), 
+			bottom = new Table();
 	
-	private Label h,s,l,t,pos,fps,p;
+	
+	private Label h,
+				s,
+				l,
+				t,
+				pos,
+				fps,
+				p,
+				speec;
+	
+	ShapeRenderer shape;
 	
 	public HudOverlay(Entity ent,float init,float sw,float sh,OrthographicCamera camera) {
 		/**
@@ -54,9 +65,9 @@ public class HudOverlay implements Disposable{
 
 		this.camera = camera;
 		viewport = new FitViewport(sw, sh, camera);
+		shape = new ShapeRenderer();
 
 		hud = new Stage(viewport);
-		
 		
 		/*
 		 *	Labels. 
@@ -136,9 +147,18 @@ public class HudOverlay implements Disposable{
     					)
 	    			); 
 	    p.setPosition(Gdx.input.getX(),Gdx.input.getY());
-	    
 	    hud.addActor(p);
-//	    Gdx.input.getX() and Gdx.input.getY()
+	}
+	
+	/**
+	 *	Speech Bubbles.
+	 * 
+	 *	@param text Speech text
+	 */
+	public void speech(String text) {
+		
+		
+		//	Pause here
 	}
 	
 	/**
@@ -156,11 +176,7 @@ public class HudOverlay implements Disposable{
 		 * 
 		 */
 		
-		
-		
 		p.setPosition(Gdx.input.getX(),Gdx.input.getY());
-		
-		
 		
 		/*
 		 *	Text Labels
@@ -170,9 +186,11 @@ public class HudOverlay implements Disposable{
 		if(debug) {
 			pos.setText(
 					String.format(
-									"x: %f, y: %f", 
+									"pos x: %f, y: %f m x: %d, y: %d", 
 									(ent.getPhysics().getEntityBody().getPosition().x)*Const.PTM,
-									(ent.getPhysics().getEntityBody().getPosition().y)*Const.PTM
+									(ent.getPhysics().getEntityBody().getPosition().y)*Const.PTM,
+									Gdx.input.getX(),
+									Gdx.input.getY()
 								)
 						);
 			fps.setText(
@@ -188,8 +206,6 @@ public class HudOverlay implements Disposable{
 								ent.getHp()
 							)
 				);
-		
-		
 		
 		hud.getViewport().update(((int)Math.round(sw)),((int)Math.round(sh)),true);
 		hud.draw();
