@@ -83,7 +83,7 @@ public class GameScreen implements Screen {
 
 	private CameraUpdater cameraUdate;
 	private HudOverlay hud;
-boolean pause = false;
+	boolean pause = false;
 //	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(1), new NothingSpecial());
 //	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(2), new NothingSpecial());
 //	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(3), new NothingSpecial());
@@ -194,7 +194,7 @@ boolean pause = false;
 	@Override
 	public void resize(int width, int height) {
 		// TODO Auto-generated method stub
-pause = false;
+		pause = false;
 	}
 
 	@Override
@@ -206,7 +206,7 @@ pause = false;
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
-
+		pause = false;
 	}
 
 	@Override

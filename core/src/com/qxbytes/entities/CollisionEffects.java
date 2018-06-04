@@ -4,8 +4,13 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.qxbytes.world.SpaceGameWorld;
 
 public class CollisionEffects implements ContactListener{
+	private SpaceGameWorld gameWorld;
+	public CollisionEffects (SpaceGameWorld gameWorld) {
+		this.gameWorld = gameWorld;
+	}
 	/**
 	 * Probably the ABSOLUTE WORST CLASS I have written this entire program. Not OOP at all!
 	 */
@@ -25,7 +30,16 @@ public class CollisionEffects implements ContactListener{
 					fixA.takeDamage();
 					fixB.takeDamage();
 				}
+				
+				if (fixA instanceof Player || fixB instanceof Player) {
+					if (fixA instanceof End || fixB instanceof End) {
+						/**
+						 * Todo: Change map Behavior
+						 */
+					}
+				}
 			}
+			
 		}
 		//bullets colliding into walls
 		if (contact.getFixtureA().getBody().getUserData() instanceof Bullet) {
