@@ -8,16 +8,22 @@ import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer.Cell;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
+import com.qxbytes.camera.CameraUpdater;
 import com.qxbytes.entities.Electricity;
 import com.qxbytes.entities.End;
 import com.qxbytes.entities.Entity;
+import com.qxbytes.entities.Player;
 import com.qxbytes.entities.Spike;
 import com.qxbytes.entities.Turret;
+import com.qxbytes.screens.GameScreen;
+import com.qxbytes.screens.HudOverlay;
 import com.qxbytes.utils.Const;
 
 public class SpaceGameWorld {
@@ -28,7 +34,23 @@ public class SpaceGameWorld {
 	private float tileSize;
 	private ArrayList<Entity> entities;
 	private ArrayList<Entity> queue = new ArrayList<Entity>();
+	private CameraUpdater cameraUpdater;
+	private HudOverlay hud;
+	private boolean queueChange = false;
+	private int mapNumber = 2;
 	
+	public CameraUpdater getCameraUpdater() {
+		return cameraUpdater;
+	}
+	public void setCameraUpdater(CameraUpdater cameraUpdater) {
+		this.cameraUpdater = cameraUpdater;
+	}
+	public HudOverlay getHud() {
+		return hud;
+	}
+	public void setHud(HudOverlay hud) {
+		this.hud = hud;
+	}
 	public SpaceGameWorld(World world, OrthographicCamera camera, String tmxFileName, ArrayList<Entity> entities) {
 		
 		this.camera = camera;
@@ -43,7 +65,42 @@ public class SpaceGameWorld {
 		
 		
 	}
-	public void changeMap(String tmxFileName) {
+	public void queueChange() {
+		queueChange = true;
+	}
+	
+	public void doQueuedChange() {
+		if (queueChange == false || world.isLocked()) return;
+		changeMap("level" + mapNumber + ".tmx");
+		queueChange = false;
+		mapNumber++;
+	}
+	/**
+	 * Do not call. Use Queue change instead
+	 * @param tmxFileName
+	 */
+	private void changeMap(String tmxFileName) {
+		//reset business
+		Array<Body> allBodies = new Array<Body>();
+		world.getBodies(allBodies);
+		for (int i = allBodies.size-1 ; i >= 0 ; i--) {
+			world.destroyBody(allBodies.get(i));
+		}
+		for (int i = entities.size()-1 ; i >= 0 ; i--) {
+			entities.get(i).dispose();
+		}
+		
+		entities.clear();
+		
+		getEntities().add(0,new Player(this, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50));
+		
+		getCamera().position.set(GameScreen.WORLD_WIDTH/2,GameScreen.WORLD_HEIGHT/2,0);
+		this.cameraUpdater = new CameraUpdater(getCamera(),getEntities().get(0));
+		hud = new HudOverlay(getEntities().get(0),GameScreen.init,GameScreen.WORLD_WIDTH,GameScreen.WORLD_HEIGHT,getCamera());
+		
+		//
+		
+		
 		this.map = new TmxMapLoader().load(tmxFileName);
 		this.renderer = new OrthogonalTiledMapRenderer(map);
 		TiledMapTileLayer EnemyLayer = (TiledMapTileLayer) map.getLayers().get("end");

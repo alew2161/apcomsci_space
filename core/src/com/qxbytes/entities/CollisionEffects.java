@@ -33,9 +33,7 @@ public class CollisionEffects implements ContactListener{
 				
 				if (fixA instanceof Player || fixB instanceof Player) {
 					if (fixA instanceof End || fixB instanceof End) {
-						/**
-						 * Todo: Change map Behavior
-						 */
+						gameWorld.queueChange();
 					}
 				}
 			}
