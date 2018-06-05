@@ -49,8 +49,8 @@ import com.qxbytes.world.SpaceGameWorld;
  */
 public class GameScreen implements Screen {
 
-	final float WORLD_WIDTH = Gdx.graphics.getWidth();
-	final float WORLD_HEIGHT = Gdx.graphics.getHeight();
+	public static final float WORLD_WIDTH = Gdx.graphics.getWidth();
+	public static final float WORLD_HEIGHT = Gdx.graphics.getHeight();
 
 	public static final float SPEED = 60;
 	public static float deltaTime = 0;
@@ -61,7 +61,7 @@ public class GameScreen implements Screen {
 	private SpaceGameWorld gameWorld = new SpaceGameWorld(
 			new World(new Vector2(0,-2f), true),
 			new OrthographicCamera(WORLD_WIDTH ,WORLD_HEIGHT),
-			"level2.tmx", 
+			"level1.tmx", 
 			new ArrayList<Entity>());
 
 
@@ -76,14 +76,14 @@ public class GameScreen implements Screen {
 	Texture img;
 	float x;
 	float y;
-	static float init = (Instant.now().getEpochSecond());	//	STAGE INIT TIME!
+	public static float init = (Instant.now().getEpochSecond());	//	STAGE INIT TIME!
 	
 	/**
 	 * Insert TEST Sprite handler image	
 	 */
 
-	private CameraUpdater cameraUdate;
-	private HudOverlay hud;
+//	private CameraUpdater cameraUdate;
+//	private HudOverlay hud;
 	boolean pause = false;
 	private Music music;
 //	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(1), new NothingSpecial());
@@ -111,7 +111,8 @@ public class GameScreen implements Screen {
 
 	@Override
 	public void show() {
-		music = new Music();
+		//super laggy
+		//music = new Music();
 		skin = new Skin(Gdx.files.internal("uiskin.json"));
         bg = new Texture(Gdx.files.internal("titleScreen.png"));
         stage = new Stage();
@@ -127,24 +128,24 @@ public class GameScreen implements Screen {
             }
         });
         stage.addActor(button);
+        /**
+         * You only should have one of these things so move to another class
+         */
         Gdx.input.setInputProcessor(stage);
-        
-		gameWorld.getEntities().add(0,new Player(gameWorld, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50));
+        Gdx.input.setInputProcessor(new MainInputProcessor(gameWorld.getCamera()));
 
-		gameWorld.getCamera().position.set(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
-
-		Gdx.input.setInputProcessor(new MainInputProcessor(gameWorld.getCamera()));
-
+//		gameWorld.getCamera().position.set(WORLD_WIDTH/2,WORLD_HEIGHT/2,0);
+//		cameraUdate = new CameraUpdater(gameWorld.getCamera(),gameWorld.getEntities().get(0));
+//		hud = new HudOverlay(gameWorld.getEntities().get(0),init,WORLD_WIDTH,WORLD_HEIGHT,gameWorld.getCamera());
+		
 		debug = new Box2DDebugRenderer();
-		cameraUdate = new CameraUpdater(gameWorld.getCamera(),gameWorld.getEntities().get(0));
-		hud = new HudOverlay(game,gameWorld.getEntities().get(0),init,WORLD_WIDTH,WORLD_HEIGHT,gameWorld.getCamera());
 		gameWorld.getWorld().setContactListener(new CollisionEffects(gameWorld));
-		music.PlayBakgroundMusic(100);
+		
 	}
 	public static int rendersTemp = 0;
 	@Override
 	public void render(float delta) {
-		
+		//music.PlayBakgroundMusic(100);
 		int i = 1;
 		i++;
 		//if(elapsedTime>1000)pause = true;
@@ -156,20 +157,21 @@ public class GameScreen implements Screen {
 		deltaTime = delta;
 		elapsedTime+=delta;
 		rendersTemp++;
-		
-
+	
+		gameWorld.doQueuedChange();
+		//Code above must go before the line below
 		gameWorld.getWorld().step(delta, 6, 2);
 
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		//		camera.update();
-		cameraUdate.render();
+		gameWorld.getCameraUpdater().render();
 
 		debugMatrix = game.getBatch().getProjectionMatrix().cpy().scale(Const.PTM, 
 				Const.PTM, 0);
 		game.getBatch().begin();
 		//game.getBatch().draw(img, x, y);
-		game.getBatch().setProjectionMatrix(hud.hud.getCamera().combined);
+		game.getBatch().setProjectionMatrix(gameWorld.getHud().hud.getCamera().combined);
 		//testDummy.render(game.getBatch());
 //		testDummy1.render(game.getBatch());
 //		testDummy2.render(game.getBatch());
@@ -186,12 +188,13 @@ public class GameScreen implements Screen {
 		ground.render(game.getBatch());
 		gameWorld.getRenderer().render();
 		gameWorld.getRenderer().setView(gameWorld.getCamera());
-		hud.update();
+		gameWorld.getHud().update();
 		/*
 		 * Draw Everything now by passing the Batch in
 		 */
 		game.getBatch().end();
 		debug.render(gameWorld.getWorld(), debugMatrix);
+
 	}
 
 	@Override
@@ -229,7 +232,7 @@ public class GameScreen implements Screen {
 //		testDummy4.dispose();
 //		testDummy5.dispose();
 		ground.dispose();
-		hud.dispose();
+		//hud.dispose();
 	}
 
 
