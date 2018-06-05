@@ -41,18 +41,7 @@ public class SpaceGameWorld {
 	private int mapNumber = 2;
 	private SpaceGame theGame;
 	
-	public CameraUpdater getCameraUpdater() {
-		return cameraUpdater;
-	}
-	public void setCameraUpdater(CameraUpdater cameraUpdater) {
-		this.cameraUpdater = cameraUpdater;
-	}
-	public HudOverlay getHud() {
-		return hud;
-	}
-	public void setHud(HudOverlay hud) {
-		this.hud = hud;
-	}
+	
 	public SpaceGameWorld(SpaceGame theGame, World world, OrthographicCamera camera, String tmxFileName, ArrayList<Entity> entities) {
 		
 		this.theGame = theGame;
@@ -100,7 +89,7 @@ public class SpaceGameWorld {
 		
 		getCamera().position.set(GameScreen.WORLD_WIDTH/2,GameScreen.WORLD_HEIGHT/2,0);
 		this.cameraUpdater = new CameraUpdater(getCamera(),getEntities().get(0));
-		hud = new HudOverlay(theGame,getEntities().get(0),GameScreen.init,GameScreen.WORLD_WIDTH,GameScreen.WORLD_HEIGHT,getCamera());
+		//hud = new HudOverlay(theGame,getEntities().get(0),GameScreen.init,GameScreen.WORLD_WIDTH,GameScreen.WORLD_HEIGHT,getCamera());
 		
 		//
 		
@@ -222,7 +211,18 @@ public class SpaceGameWorld {
 	public ArrayList<Entity> getEntities() {
 		return entities;
 	}
-
+	public CameraUpdater getCameraUpdater() {
+		return cameraUpdater;
+	}
+	public void setCameraUpdater(CameraUpdater cameraUpdater) {
+		this.cameraUpdater = cameraUpdater;
+	}
+	public HudOverlay getHud() {
+		return hud;
+	}
+	public void setHud(HudOverlay hud) {
+		this.hud = hud;
+	}
 	public void setEntities(ArrayList<Entity> entities) {
 		this.entities = entities;
 	}
