@@ -73,8 +73,7 @@ public class HudOverlay implements Disposable{
 		viewport = new FitViewport(sw, sh, camera);
 		
 		shape = new ShapeRenderer();
-		shape.setProjectionMatrix(game.getBatch()
-				.getProjectionMatrix());
+		shape.setProjectionMatrix(game.getBatch().getProjectionMatrix());
 			
 		hud = new Stage(viewport);
 		
