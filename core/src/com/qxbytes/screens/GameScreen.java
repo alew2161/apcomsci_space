@@ -141,6 +141,7 @@ public class GameScreen implements Screen {
 //		hud = new HudOverlay(gameWorld.getEntities().get(0),init,WORLD_WIDTH,WORLD_HEIGHT,gameWorld.getCamera());
 		
 		debug = new Box2DDebugRenderer();
+		gameWorld.setHud(new HudOverlay(game,gameWorld.getEntities().get(0),init,WORLD_WIDTH,WORLD_HEIGHT,gameWorld.getCamera()));
 		gameWorld.getWorld().setContactListener(new CollisionEffects(gameWorld));
 		
 	}
