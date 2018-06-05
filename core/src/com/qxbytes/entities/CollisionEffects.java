@@ -4,6 +4,8 @@ import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Manifold;
+import com.qxbytes.screens.GameScreen;
+import com.qxbytes.screens.HudOverlay;
 import com.qxbytes.world.SpaceGameWorld;
 
 public class CollisionEffects implements ContactListener{
@@ -33,6 +35,7 @@ public class CollisionEffects implements ContactListener{
 				
 				if (fixA instanceof Player || fixB instanceof Player) {
 					if (fixA instanceof End || fixB instanceof End) {
+						
 						gameWorld.queueChange();
 					}
 				}
