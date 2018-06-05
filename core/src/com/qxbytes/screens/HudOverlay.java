@@ -237,6 +237,15 @@ public class HudOverlay implements Disposable{
 		hud.getViewport().update(((int)Math.round(sw)),((int)Math.round(sh)),true);
 		hud.draw();
 	}
+	
+	public Entity getEnt() {
+		return ent;
+	}
+
+	public void setEnt(Entity ent) {
+		this.ent = ent;
+	}
+
 	@Override
 	public void dispose() { 
 		hud.dispose(); 

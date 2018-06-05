@@ -65,8 +65,7 @@ public class SpaceGameWorld {
 	public void doQueuedChange() {
 		if (queueChange == false || world.isLocked()) return;
 		changeMap("level" + mapNumber + ".tmx");
-		this.setHud(new HudOverlay(this.getTheGame(), this.getEntities().get(0), GameScreen.init, GameScreen.WORLD_WIDTH,GameScreen.WORLD_HEIGHT,this.getCamera()));
-
+		this.getHud().setEnt(this.getEntities().get(0));
 		queueChange = false;
 		mapNumber++;
 	}
