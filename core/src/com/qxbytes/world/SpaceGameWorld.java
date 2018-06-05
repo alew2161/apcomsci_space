@@ -24,6 +24,7 @@ import com.qxbytes.entities.Spike;
 import com.qxbytes.entities.Turret;
 import com.qxbytes.screens.GameScreen;
 import com.qxbytes.screens.HudOverlay;
+import com.qxbytes.spacegame.SpaceGame;
 import com.qxbytes.utils.Const;
 
 public class SpaceGameWorld {
@@ -38,6 +39,7 @@ public class SpaceGameWorld {
 	private HudOverlay hud;
 	private boolean queueChange = false;
 	private int mapNumber = 2;
+	private SpaceGame theGame;
 	
 	public CameraUpdater getCameraUpdater() {
 		return cameraUpdater;
@@ -51,7 +53,9 @@ public class SpaceGameWorld {
 	public void setHud(HudOverlay hud) {
 		this.hud = hud;
 	}
-	public SpaceGameWorld(World world, OrthographicCamera camera, String tmxFileName, ArrayList<Entity> entities) {
+	public SpaceGameWorld(SpaceGame theGame, World world, OrthographicCamera camera, String tmxFileName, ArrayList<Entity> entities) {
+		
+		this.theGame = theGame;
 		
 		this.camera = camera;
 		
@@ -96,7 +100,7 @@ public class SpaceGameWorld {
 		
 		getCamera().position.set(GameScreen.WORLD_WIDTH/2,GameScreen.WORLD_HEIGHT/2,0);
 		this.cameraUpdater = new CameraUpdater(getCamera(),getEntities().get(0));
-		hud = new HudOverlay(getEntities().get(0),GameScreen.init,GameScreen.WORLD_WIDTH,GameScreen.WORLD_HEIGHT,getCamera());
+		hud = new HudOverlay(theGame,getEntities().get(0),GameScreen.init,GameScreen.WORLD_WIDTH,GameScreen.WORLD_HEIGHT,getCamera());
 		
 		//
 		

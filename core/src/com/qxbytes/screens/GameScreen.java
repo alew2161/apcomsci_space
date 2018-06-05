@@ -58,7 +58,13 @@ public class GameScreen implements Screen {
 	private Box2DDebugRenderer debug;
 	private     Matrix4 debugMatrix;
 	SpriteHandler robot = new SpriteHandler();
+	private SpaceGame game;
+	private Skin skin;
+    private Stage stage;
+    private Texture bg;
+	BitmapFont font;
 	private SpaceGameWorld gameWorld = new SpaceGameWorld(
+			game,
 			new World(new Vector2(0,-2f), true),
 			new OrthographicCamera(WORLD_WIDTH ,WORLD_HEIGHT),
 			"level1.tmx", 
@@ -99,11 +105,7 @@ public class GameScreen implements Screen {
 	 * 
 	 */
 
-	private SpaceGame game;
-	private Skin skin;
-    private Stage stage;
-    private Texture bg;
-	BitmapFont font;
+	
 
 	public GameScreen(SpaceGame game) {
 		this.game = game;
