@@ -26,12 +26,15 @@ public class DirectControl extends Behavior{
 		if(Gdx.input.isKeyPressed(Input.Keys.A)) {
 			Vector2 loc = new Vector2(-0.9f,0);//needs to be replaced w/ world vector
 			this.getEntity().getPhysics().getEntityBody().applyForceToCenter(loc, true);
+			getEntity().setState(3);
 
 		}
 		if(Gdx.input.isKeyPressed(Input.Keys.D)) {
 			Vector2 loc = new Vector2(0.9f,0);//needs to be replaced w/ world vector
 
 			this.getEntity().getPhysics().getEntityBody().applyForceToCenter(loc, true);
+			getEntity().setState(1);
+
 		}
 
 	}

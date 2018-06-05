@@ -11,9 +11,11 @@ public class EntityGraphics {
 	private Sprite positionData;	//THIS SPRITE WILL NEVER BE RENDERED AND IS ONLY USED FOR POSITION DATA
 	private Animation<TextureRegion> animation;
 	private float lifetime = 0;
+	private Entity entity;
 
 
-	public EntityGraphics(Animation<TextureRegion> animation) {
+	public EntityGraphics(Entity entity,Animation<TextureRegion> animation) {
+		this.entity = entity;
 		this.animation = animation;
 		this.positionData = new Sprite(animation.getKeyFrame(1).getTexture());
 		this.positionData.setRegionHeight(animation.getKeyFrame(1).getRegionHeight());
@@ -38,7 +40,23 @@ public class EntityGraphics {
 		 */
 		lifetime+= GameScreen.deltaTime;
 		TextureRegion currentFrame = animation.getKeyFrame(lifetime, true);
-		g.draw(currentFrame,(positionData.getX()*Const.PTM-positionData.getRegionWidth()/2),(positionData.getY()*Const.PTM)-positionData.getRegionHeight()/2);
+		
+		boolean flipx = false;
+		if (entity.getState() == 3) {
+			flipx = true;
+		}
+		//draw(Texture texture, float x, float y, float width, float height, int srcX, int srcY, int srcWidth, int srcHeight, boolean flipX, boolean flipY)
+		g.draw(currentFrame.getTexture(),
+				(positionData.getX()*Const.PTM-positionData.getRegionWidth()/2), 
+				(positionData.getY()*Const.PTM)-positionData.getRegionHeight()/2,
+				(positionData.getRegionWidth()), 
+				positionData.getRegionHeight(),
+				currentFrame.getRegionX(),
+				currentFrame.getRegionY(),
+				currentFrame.getRegionWidth(),
+				currentFrame.getRegionHeight(),
+				flipx, false);
+
 		
 	}
 	/**

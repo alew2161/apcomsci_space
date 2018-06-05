@@ -61,7 +61,7 @@ public class Entity {
 	}
 	public void initialize(SpaceGameWorld gameWorld, BodyDef definition, FixtureDef fixture, Animation<TextureRegion> animation, Behavior behavior) {
 		this.gameWorld = gameWorld;
-		graphics = new EntityGraphics(animation);
+		graphics = new EntityGraphics(this,animation);
         physics = new EntityPhysics(this,gameWorld.getWorld(),definition,fixture);
         this.behavior = behavior;
         this.behavior.addEntity(this);
