@@ -2,19 +2,23 @@ package com.qxbytes.screens;
 
 import java.time.Instant;
 import com.qxbytes.screens.GameScreen;
+import com.qxbytes.spacegame.SpaceGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.qxbytes.entities.Entity;
 import com.qxbytes.utils.Const;
+
 
 /**
  * the game's hud updater
@@ -37,6 +41,8 @@ public class HudOverlay implements Disposable{
 	Entity ent;
 	private float init,score,sw,sh;
 	OrthographicCamera camera;
+	private SpaceGame game;
+	private ShapeRenderer shape;
 	
 	Table top = new Table(), 
 			bottom = new Table();
@@ -51,13 +57,13 @@ public class HudOverlay implements Disposable{
 				p,
 				speec;
 	
-	ShapeRenderer shape;
 	
-	public HudOverlay(Entity ent,float init,float sw,float sh,OrthographicCamera camera) {
+	public HudOverlay(SpaceGame game, Entity ent,float init,float sw,float sh,OrthographicCamera camera) {
 		/**
 		 *	ok so maby widgets are need too later. 
 		 * 
 		 **/
+		this.game = game;
 		this.ent = ent;
 		this.init = init;	//	Stage Init time.
 		this.sw = sw;
@@ -65,8 +71,10 @@ public class HudOverlay implements Disposable{
 
 		this.camera = camera;
 		viewport = new FitViewport(sw, sh, camera);
+		
 		shape = new ShapeRenderer();
-
+		shape.setProjectionMatrix(game.getBatch().getProjectionMatrix());
+			
 		hud = new Stage(viewport);
 		
 		/*
@@ -146,7 +154,7 @@ public class HudOverlay implements Disposable{
 	    					Color.WHITE
     					)
 	    			); 
-	    p.setPosition(Gdx.input.getX(),Gdx.input.getY());
+	    p.setPosition(Gdx.input.getX(),camera.viewportHeight - Gdx.input.getY());
 	    hud.addActor(p);
 	}
 	
@@ -156,9 +164,27 @@ public class HudOverlay implements Disposable{
 	 *	@param text Speech text
 	 */
 	public void speech(String text) {
-		
-		
-		//	Pause here
+		shape.begin(ShapeType.Filled);
+		shape.setColor(Color.GRAY);
+		shape.rect(Gdx.graphics.getWidth()/2 + 450f, Gdx.graphics.getHeight()/2 + 180f, 200f, 200f);
+		shape.end();
+		Label speectext = new Label(
+				String.format(
+						text
+						),
+				new Skin(
+						Gdx.files.internal("uiskin.json")
+						),
+				"default"
+				);
+		speectext.setPosition(1100,600);	//	fix- i don't know positioning
+		speectext.setWidth(200f);
+		speectext.setHeight(200f);
+		hud.addActor(speectext);
+//		hud.draw();
+//		game.pause();
+//		speectext.remove();
+//		shape.dispose();
 	}
 	
 	/**
@@ -176,7 +202,7 @@ public class HudOverlay implements Disposable{
 		 * 
 		 */
 		
-		p.setPosition(Gdx.input.getX(),Gdx.input.getY());
+		p.setPosition(Gdx.input.getX(), camera.viewportHeight - Gdx.input.getY());
 		
 		/*
 		 *	Text Labels

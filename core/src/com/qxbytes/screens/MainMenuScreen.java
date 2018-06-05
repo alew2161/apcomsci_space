@@ -2,15 +2,18 @@ package com.qxbytes.screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.qxbytes.spacegame.SpaceGame;
+import com.qxbytes.utils.Const;
 
 /**
  * Main menu screen.
@@ -24,6 +27,7 @@ public class MainMenuScreen implements Screen {
     private Texture bg;
 	SpaceGame game;
 	BitmapFont font;
+	private Label l;
 	
 	
 	public MainMenuScreen(SpaceGame game) 
@@ -40,7 +44,16 @@ public class MainMenuScreen implements Screen {
         
         final TextButton button = new TextButton("Start", skin, "default");
         final TextButton button1 = new TextButton("Exit game",skin,"default");
-        
+    	l = new Label(
+			String.format(
+						"Loading.. please wait."
+					), 
+			new Label.LabelStyle(
+					new BitmapFont(), 
+					Color.WHITE
+					)
+			);
+    	
         button.setWidth(200f);
         button.setHeight(20f);
         button1.setWidth(200f);
@@ -50,6 +63,8 @@ public class MainMenuScreen implements Screen {
         button.addListener(new ClickListener(){
             @Override 
             public void clicked(InputEvent event, float x, float y){
+            	stage.addActor(l);
+            	stage.draw();
             	game.setScreen(new GameScreen(game));
             
             }

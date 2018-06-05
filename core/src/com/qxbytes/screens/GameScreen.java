@@ -137,10 +137,9 @@ public class GameScreen implements Screen {
 
 		debug = new Box2DDebugRenderer();
 		cameraUdate = new CameraUpdater(gameWorld.getCamera(),gameWorld.getEntities().get(0));
-		hud = new HudOverlay(gameWorld.getEntities().get(0),init,WORLD_WIDTH,WORLD_HEIGHT,gameWorld.getCamera());
+		hud = new HudOverlay(game,gameWorld.getEntities().get(0),init,WORLD_WIDTH,WORLD_HEIGHT,gameWorld.getCamera());
 		gameWorld.getWorld().setContactListener(new CollisionEffects(gameWorld));
 		music.PlayBakgroundMusic(100);
-		
 	}
 	public static int rendersTemp = 0;
 	@Override
@@ -157,7 +156,7 @@ public class GameScreen implements Screen {
 		deltaTime = delta;
 		elapsedTime+=delta;
 		rendersTemp++;
-	
+		
 
 		gameWorld.getWorld().step(delta, 6, 2);
 
@@ -193,7 +192,6 @@ public class GameScreen implements Screen {
 		 */
 		game.getBatch().end();
 		debug.render(gameWorld.getWorld(), debugMatrix);
-
 	}
 
 	@Override
