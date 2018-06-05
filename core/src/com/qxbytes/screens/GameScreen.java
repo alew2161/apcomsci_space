@@ -114,7 +114,7 @@ public class GameScreen implements Screen {
 	@Override
 	public void show() {
 		//super laggy
-		//music = new Music();
+		music = new Music();
 		skin = new Skin(Gdx.files.internal("uiskin.json"));
         bg = new Texture(Gdx.files.internal("titleScreen.png"));
         stage = new Stage();
@@ -143,12 +143,12 @@ public class GameScreen implements Screen {
 		debug = new Box2DDebugRenderer();
 		gameWorld.setHud(new HudOverlay(game,gameWorld.getEntities().get(0),init,WORLD_WIDTH,WORLD_HEIGHT,gameWorld.getCamera()));
 		gameWorld.getWorld().setContactListener(new CollisionEffects(gameWorld));
-		
+		music.PlayBakgroundMusic(100);
 	}
 	public static int rendersTemp = 0;
 	@Override
 	public void render(float delta) {
-		//music.PlayBakgroundMusic(100);
+		
 		int i = 1;
 		i++;
 		//if(elapsedTime>1000)pause = true;
