@@ -62,6 +62,7 @@ public class GameScreen implements Screen {
 	private Skin skin;
     private Stage stage;
     private Texture bg;
+    private Texture grant = new Texture("qwerty.png");
 	BitmapFont font;
 	private SpaceGameWorld gameWorld = new SpaceGameWorld(
 			game,
@@ -109,6 +110,7 @@ public class GameScreen implements Screen {
 
 	public GameScreen(SpaceGame game) {
 		this.game = game;
+		gameWorld.setTheGame(this.game);
 	}
 
 	@Override
@@ -188,7 +190,6 @@ public class GameScreen implements Screen {
 		
 		gameWorld.disposeAllDead();
 		gameWorld.addQueued();
-		
 		ground.render(game.getBatch());
 		gameWorld.getRenderer().render();
 		gameWorld.getRenderer().setView(gameWorld.getCamera());
@@ -196,8 +197,9 @@ public class GameScreen implements Screen {
 		/*
 		 * Draw Everything now by passing the Batch in
 		 */
+		
 		game.getBatch().end();
-		debug.render(gameWorld.getWorld(), debugMatrix);
+		//debug.render(gameWorld.getWorld(), debugMatrix);
 
 	}
 

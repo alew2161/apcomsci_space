@@ -39,7 +39,7 @@ public class MainMenuScreen implements Screen {
 	public void show() {
 		// TODO Auto-generated method stub ok
         skin = new Skin(Gdx.files.internal("uiskin.json"));
-        bg = new Texture("qwerty.png");
+        bg = new Texture("titleScreen.png");
         stage = new Stage();
         
         

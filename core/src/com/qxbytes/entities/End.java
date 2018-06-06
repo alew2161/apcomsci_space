@@ -8,7 +8,7 @@ import com.qxbytes.world.SpaceGameWorld;
 public class End extends Entity {
 
 	public End(SpaceGameWorld world, BodyType type, float xPixels, float yPixels, float widthPixels, float heightPixels) {
-		super(world, type, xPixels, yPixels, widthPixels, heightPixels, SpriteHandler.getAnimation(5), new NothingSpecial());
+		super(world, type, xPixels, yPixels, widthPixels, heightPixels, SpriteHandler.getAnimation(7), new NothingSpecial());
 		this.getPhysics().getEntityBody().setGravityScale(0);
 	}
 

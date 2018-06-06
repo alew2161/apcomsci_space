@@ -1,6 +1,5 @@
 package com.qxbytes.world;
 
-import java.nio.file.Files;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -25,7 +24,6 @@ import com.qxbytes.entities.Spike;
 import com.qxbytes.entities.Turret;
 import com.qxbytes.screens.GameScreen;
 import com.qxbytes.screens.HudOverlay;
-import com.qxbytes.screens.WinScreen;
 import com.qxbytes.spacegame.SpaceGame;
 import com.qxbytes.utils.Const;
 
@@ -43,6 +41,7 @@ public class SpaceGameWorld {
 	private int mapNumber = 2;
 	private SpaceGame theGame;
 	private int deathCam = 100;
+//	private boolean win = false;
 	
 	
 	public SpaceGameWorld(SpaceGame theGame, World world, OrthographicCamera camera, String tmxFileName, ArrayList<Entity> entities) {
@@ -63,7 +62,6 @@ public class SpaceGameWorld {
 	}
 	public void queueChange() {
 		queueChange = true;
-		deathCam = 540;
 	}
 	public void resetForDeath() {
 		queueChange = true;
@@ -74,9 +72,11 @@ public class SpaceGameWorld {
 	public void doQueuedChange() {
 		if (deathCam > 0 ) {deathCam--; return;}
 		if (queueChange == false || world.isLocked()) return;
+
 		changeMap("level" + mapNumber + ".tmx");
 		this.getHud().setEnt(this.getEntities().get(0));
 		queueChange = false;
+		
 		mapNumber++;
 	}
 	/**
@@ -102,14 +102,8 @@ public class SpaceGameWorld {
 		this.cameraUpdater = new CameraUpdater(getCamera(),getEntities().get(0));
 		//hud = new HudOverlay(theGame,getEntities().get(0),GameScreen.init,GameScreen.WORLD_WIDTH,GameScreen.WORLD_HEIGHT,getCamera());
 		
-		//
+		this.map = new TmxMapLoader().load(tmxFileName);
 		
-		try {
-			this.map = new TmxMapLoader().load(tmxFileName);
-		} catch (Exception e) {
-			theGame.setScreen(new WinScreen(theGame));
-			return;
-		}
 		this.renderer = new OrthogonalTiledMapRenderer(map);
 		TiledMapTileLayer EnemyLayer = (TiledMapTileLayer) map.getLayers().get("end");
 		tileSize = EnemyLayer.getTileHeight();
@@ -216,9 +210,12 @@ public class SpaceGameWorld {
 			}
 		}
 	}
-	
+
 	public SpaceGame getTheGame() {
 		return theGame;
+	}
+	public void setTheGame(SpaceGame game) {
+		this.theGame = game;
 	}
 	public void addQueued() {
 		this.entities.addAll(queue);
