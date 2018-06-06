@@ -133,7 +133,7 @@ public class HudOverlay implements Disposable{
     					), 
     			new Label.LabelStyle(
     					new BitmapFont(), 
-    					Color.WHITE
+    					Color.RED
     					)
     			);
 	    bottom.add(h).expandX().padTop(10);
