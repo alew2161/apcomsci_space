@@ -185,6 +185,7 @@ public class GameScreen implements Screen {
 		for (Entity e : gameWorld.getEntities()) {
 			e.render(game.getBatch());
 		}
+		
 		gameWorld.disposeAllDead();
 		gameWorld.addQueued();
 		

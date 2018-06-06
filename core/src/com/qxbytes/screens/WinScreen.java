@@ -1,13 +1,15 @@
 package com.qxbytes.screens;
 
 import com.badlogic.gdx.Screen;
+import com.qxbytes.spacegame.SpaceGame;
 
 /**
- * Game Over screen.
- * You're dead pal.
  */
-public class GameOverScreen implements Screen {
-
+public class WinScreen implements Screen {
+	private SpaceGame theGame;
+	public WinScreen(SpaceGame theGame) {
+		this.theGame = theGame;
+	}
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
@@ -16,7 +18,7 @@ public class GameOverScreen implements Screen {
 
 	@Override
 	public void render(float delta) {
-		// TODO Auto-generated method stub
+		theGame.getBatch().begin();
 		
 	}
 

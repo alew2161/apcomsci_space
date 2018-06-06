@@ -1,5 +1,6 @@
 package com.qxbytes.world;
 
+import java.nio.file.Files;
 import java.util.ArrayList;
 
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -24,6 +25,7 @@ import com.qxbytes.entities.Spike;
 import com.qxbytes.entities.Turret;
 import com.qxbytes.screens.GameScreen;
 import com.qxbytes.screens.HudOverlay;
+import com.qxbytes.screens.WinScreen;
 import com.qxbytes.spacegame.SpaceGame;
 import com.qxbytes.utils.Const;
 
@@ -40,6 +42,7 @@ public class SpaceGameWorld {
 	private boolean queueChange = false;
 	private int mapNumber = 2;
 	private SpaceGame theGame;
+	private int deathCam = 100;
 	
 	
 	public SpaceGameWorld(SpaceGame theGame, World world, OrthographicCamera camera, String tmxFileName, ArrayList<Entity> entities) {
@@ -60,9 +63,16 @@ public class SpaceGameWorld {
 	}
 	public void queueChange() {
 		queueChange = true;
+		deathCam = 540;
+	}
+	public void resetForDeath() {
+		queueChange = true;
+		mapNumber--;
+		deathCam = 540;
 	}
 	
 	public void doQueuedChange() {
+		if (deathCam > 0 ) {deathCam--; return;}
 		if (queueChange == false || world.isLocked()) return;
 		changeMap("level" + mapNumber + ".tmx");
 		this.getHud().setEnt(this.getEntities().get(0));
@@ -94,8 +104,12 @@ public class SpaceGameWorld {
 		
 		//
 		
-		
-		this.map = new TmxMapLoader().load(tmxFileName);
+		try {
+			this.map = new TmxMapLoader().load(tmxFileName);
+		} catch (Exception e) {
+			theGame.setScreen(new WinScreen(theGame));
+			return;
+		}
 		this.renderer = new OrthogonalTiledMapRenderer(map);
 		TiledMapTileLayer EnemyLayer = (TiledMapTileLayer) map.getLayers().get("end");
 		tileSize = EnemyLayer.getTileHeight();
@@ -118,7 +132,7 @@ public class SpaceGameWorld {
 				if(cell == null) continue;
 				if(cell.getTile() == null) continue;
 				//System.out.println(row + "," + col);\
-				Spike s = new Spike(this, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight());
+				Spike s = new Spike(this, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight()/2);
 				s.setState(cell);
 				entities.add(s);
 			}
@@ -191,6 +205,9 @@ public class SpaceGameWorld {
 		for (int i = entities.size()-1 ; i >= 0 ; i--) {
 			System.out.println( i + ":" + entities.get(i));
 			if (entities.get(i).isDead()) {
+				if (i == 0) {
+					resetForDeath();
+				}
 				world.destroyBody(entities.get(i).getPhysics().getEntityBody());
 				entities.get(i).dispose();
 				
