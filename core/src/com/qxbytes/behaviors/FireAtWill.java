@@ -42,9 +42,9 @@ public class FireAtWill extends Behavior {
 					BodyDef.BodyType.DynamicBody,
 					getEntity().getPhysics().getEntityBody().getPosition().x * Const.PTM + offx,
 					getEntity().getPhysics().getEntityBody().getPosition().y * Const.PTM + offy,
-					20,
-					20);
-			bullet.getPhysics().getEntityBody().applyForceToCenter(offx/3, offy/3,true);
+					15,
+					15);
+			bullet.getPhysics().getEntityBody().applyForceToCenter(offx/4, offy/4,true);
 			this.getEntity().getGameWorld().getQueue().add(bullet
 					);
 		}

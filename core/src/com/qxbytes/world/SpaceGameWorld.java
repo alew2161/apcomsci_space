@@ -86,7 +86,7 @@ public class SpaceGameWorld {
 		
 		entities.clear();
 		
-		getEntities().add(0,new Player(this, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50));
+		getEntities().add(0,new Player(this, BodyDef.BodyType.DynamicBody, 100, 400, 38, 45));
 		
 		getCamera().position.set(GameScreen.WORLD_WIDTH/2,GameScreen.WORLD_HEIGHT/2,0);
 		this.cameraUpdater = new CameraUpdater(getCamera(),getEntities().get(0));
