@@ -37,7 +37,7 @@ public class MainMenuScreen implements Screen {
 	
 	@Override
 	public void show() {
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub ok
         skin = new Skin(Gdx.files.internal("uiskin.json"));
         bg = new Texture(Gdx.files.internal("titleScreen.png"));
         stage = new Stage();
