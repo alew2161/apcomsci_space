@@ -39,8 +39,9 @@ public class MainMenuScreen implements Screen {
 	public void show() {
 		// TODO Auto-generated method stub ok
         skin = new Skin(Gdx.files.internal("uiskin.json"));
-        bg = new Texture(Gdx.files.internal("titleScreen.png"));
+        bg = new Texture("titleScreen.png");
         stage = new Stage();
+        
         
         final TextButton button = new TextButton("Start", skin, "default");
         final TextButton button1 = new TextButton("Exit game",skin,"default");
@@ -75,7 +76,7 @@ public class MainMenuScreen implements Screen {
             	Gdx.app.exit();
             }
         });
-        stage.addActor(button);
+        stage.addActor(button);;
         stage.addActor(button1);
         
         Gdx.input.setInputProcessor(stage);
@@ -86,12 +87,11 @@ public class MainMenuScreen implements Screen {
 		// TODO Auto-generated method stub
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        game.getBatch().begin();
         
-//        game.getBatch().draw(bg, 0, 0);
-        stage.draw();
-       
+        game.getBatch().begin();
+        game.getBatch().draw(bg, 0, 0 ,Gdx.graphics.getWidth(),Gdx.graphics.getHeight());
         game.getBatch().end();
+        stage.draw();
 		
 	}
 
@@ -122,6 +122,7 @@ public class MainMenuScreen implements Screen {
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
+		bg.dispose();
 		game.getBatch().dispose();
 	}
 
