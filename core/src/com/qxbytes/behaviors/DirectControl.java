@@ -42,7 +42,7 @@ public class DirectControl extends Behavior{
 
 		}
 		if (Gdx.input.isKeyPressed(Input.Keys.SPACE) || Gdx.input.isKeyPressed(Input.Keys.SHIFT_LEFT) || Gdx.input.isButtonPressed(Buttons.LEFT)) {
-			if (GameScreen.rendersTemp > lastshot+60) {
+			if (GameScreen.rendersTemp > lastshot+10) {
 				lastshot = GameScreen.rendersTemp;
 				int state = getEntity().getState();
 				int offx = 0;
@@ -76,6 +76,21 @@ public class DirectControl extends Behavior{
 				bullet.setHostile(false);
 				this.getEntity().getGameWorld().getQueue().add(bullet
 						);
+				for (int i = 0; i < 360 ; i+=45) {
+					offx = (int) (Math.cos(Math.toRadians(i))*30);
+					offy = (int) (Math.sin(Math.toRadians(i))*30);
+					Bullet b2 = new Bullet(
+							this.getEntity().getGameWorld(),
+							BodyDef.BodyType.DynamicBody,
+							getEntity().getPhysics().getEntityBody().getPosition().x * Const.PTM + offx,
+							getEntity().getPhysics().getEntityBody().getPosition().y * Const.PTM + offy,
+							15,
+							15);
+					b2.getPhysics().getEntityBody().applyForceToCenter(offx/4, offy/4,true);
+					b2.setHostile(false);
+					this.getEntity().getGameWorld().getQueue().add(b2
+							);
+				}
 			}
 		}
 	}
