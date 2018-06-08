@@ -43,7 +43,7 @@ public class CollisionEffects implements ContactListener{
 			
 		}
 		//bullets colliding into walls
-		if (contact.getFixtureA().getBody().getUserData() instanceof Bullet) {
+		if (contact.getFixtureA().getBody().getUserData() instanceof Bullet ) {
 			((Entity)contact.getFixtureA().getBody().getUserData()).takeDamage();
 		}
 		if (contact.getFixtureB().getBody().getUserData() instanceof Bullet) {

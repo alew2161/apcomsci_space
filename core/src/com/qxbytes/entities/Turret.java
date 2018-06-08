@@ -10,6 +10,7 @@ public class Turret extends Entity {
 		super(world, type, xPixels, yPixels, widthPixels, heightPixels, SpriteHandler.getAnimation(3), new FireAtWill());
 		// TODO Auto-generated constructor stub
 		setHostile(true);
+		addHp(2);
 	}
 
 }

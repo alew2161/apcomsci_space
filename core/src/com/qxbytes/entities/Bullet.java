@@ -1,12 +1,6 @@
 package com.qxbytes.entities;
 
-import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.BodyDef.BodyType;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
-import com.badlogic.gdx.physics.box2d.World;
-import com.qxbytes.behaviors.Behavior;
 import com.qxbytes.behaviors.NothingSpecial;
 import com.qxbytes.utils.SpriteHandler;
 import com.qxbytes.world.SpaceGameWorld;
