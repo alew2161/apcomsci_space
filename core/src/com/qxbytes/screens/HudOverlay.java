@@ -126,16 +126,22 @@ public class HudOverlay implements Disposable{
 	    	top.add(fps).expandX().padTop(10);
 	    }
 	    
+	    String hp = "|";
+	    for (int i = 0 ; i < ent.getHp(); i++) {
+	    	hp += "+|";
+	    }
+	    
 	    this.h = new Label(
     			String.format(
-    					"HP: %d",
-    					ent.getHp()
+    					"HP: ",
+    					hp
     					), 
     			new Label.LabelStyle(
     					new BitmapFont(), 
-    					Color.RED
+    					Color.CYAN
     					)
     			);
+	    this.h.setFontScale(1);
 	    bottom.add(h).expandX().padTop(10);
 	    
 	    //top()
@@ -152,7 +158,7 @@ public class HudOverlay implements Disposable{
 	    			"*",
 	    			new Label.LabelStyle(
 	    					new BitmapFont(), 
-	    					Color.WHITE
+	    					Color.CYAN
     					)
 	    			); 
 	    p.setPosition(Gdx.input.getX(),camera.viewportHeight - Gdx.input.getY());
@@ -227,11 +233,18 @@ public class HudOverlay implements Disposable{
 							)
 					);
 		}
+		 String hp = "|";
+		    for (int i = 0 ; i < ent.getHp(); i++) {
+		    	hp += "+|";
+		    }
+		if (ent.getInvincibility() > 0) {
+			if (GameScreen.rendersTemp/3 % 3 == 0)h.setColor(Color.WHITE); else
+			h.setColor(Color.BLACK);
+		} else {
+			h.setColor(Color.CYAN);
+		}
 		h.setText(
-				String.format(
-								"HP: %d",
-								ent.getHp()
-							)
+				"HP: "+ hp
 				);
 		
 		hud.getViewport().update(((int)Math.round(sw)),((int)Math.round(sh)),true);

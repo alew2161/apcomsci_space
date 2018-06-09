@@ -141,6 +141,9 @@ public class Entity {
 	public boolean isHostile() {
 		return hostile;
 	}
+	public int getInvincibility() {
+		return invincibility;
+	}
 	public void setHostile(boolean hostile) {
 		this.hostile = hostile;
 	}

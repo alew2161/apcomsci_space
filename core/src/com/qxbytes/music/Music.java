@@ -13,8 +13,7 @@ import com.badlogic.gdx.audio.Sound;
  */
 
 public class Music {
-
-	Sound background1 = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3")); //background music1
+	com.badlogic.gdx.audio.Music background1 = Gdx.audio.newMusic(Gdx.files.internal("COMPLEX.mp3"));
 	//Sound background2 = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));//
 	//Sound background3 = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));//
 	//Sound shoot = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));// weapon music
@@ -22,17 +21,19 @@ public class Music {
 	//Sound damageDone = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));// oof for an AI
 	//Sound click = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));
 	boolean gameIsRunning = true; // becomes true if user has begun a new game
-	
+	public Music() {
+		background1.setLooping(true);
+	}
 
 
 
 	// background music
-	public void PlayBakgroundMusic(int x) {
+	public void playBackgroundMusic() {
 		Random musicOption = new Random();
-		int choice = musicOption.nextInt(2);//chooses one of the three background music files to play throughout the game
 
 		if(gameIsRunning) {
-			background1.loop(x/100);
+			background1.play();
+			
 			/**System.out.println("music is playing");//checks if the user is in a game
 			if(choice == 0) {
 				background1.loop(x/100);}

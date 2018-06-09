@@ -29,8 +29,10 @@ public class CollisionEffects implements ContactListener{
 			//you gotta be alive to take damage, right?
 			if (!fixA.isDead() && !fixB.isDead()) {
 				if (fixA.isHostile() != fixB.isHostile()) {
-					fixA.takeDamage();
-					fixB.takeDamage();
+					if (fixA.getInvincibility() < 0 && fixB.getInvincibility() < 0) {
+						fixA.takeDamage();
+						fixB.takeDamage();
+					}
 				}
 				
 				if (fixA instanceof Player || fixB instanceof Player) {
