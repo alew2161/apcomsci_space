@@ -1,8 +1,5 @@
 package com.qxbytes.screens;
 
-import java.time.Instant;
-import com.qxbytes.screens.GameScreen;
-import com.qxbytes.spacegame.SpaceGame;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -17,6 +14,7 @@ import com.badlogic.gdx.utils.Disposable;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.qxbytes.entities.Entity;
+import com.qxbytes.spacegame.SpaceGame;
 import com.qxbytes.utils.Const;
 
 
