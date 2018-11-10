@@ -41,6 +41,9 @@ public class SpaceGameWorld {
 	private int mapNumber = 2;
 	private SpaceGame theGame;
 	private int deathCam = 100;
+	
+	private float respawnX = 100;
+	private float respawnY = 400;
 //	private boolean win = false;
 	
 	
@@ -62,11 +65,16 @@ public class SpaceGameWorld {
 	}
 	public void queueChange() {
 		queueChange = true;
+		respawnX = 100;
+		respawnY = 400;
 	}
-	public void resetForDeath() {
+	private void resetForDeath() {
 		queueChange = true;
 		mapNumber--;
 		deathCam = 540;
+		respawnX = entities.get(0).getPhysics().getEntityBody().getPosition().x * Const.PTM;
+		respawnY = entities.get(0).getPhysics().getEntityBody().getPosition().y * Const.PTM;
+		System.out.println(respawnX + "," + respawnY);
 	}
 	
 	public void doQueuedChange() {
@@ -76,6 +84,10 @@ public class SpaceGameWorld {
 		changeMap("level" + mapNumber + ".tmx");
 		this.getHud().setEnt(this.getEntities().get(0));
 		queueChange = false;
+		
+		if (mapNumber == 4) {
+			GameScreen.music.playApproachMusic();
+		}
 		
 		mapNumber++;
 	}
@@ -96,7 +108,7 @@ public class SpaceGameWorld {
 		
 		entities.clear();
 		
-		getEntities().add(0,new Player(this, BodyDef.BodyType.DynamicBody, 100, 400, 38, 45));
+		getEntities().add(0,new Player(this, BodyDef.BodyType.DynamicBody, respawnX, respawnY, 38, 45));
 		
 		getCamera().position.set(GameScreen.WORLD_WIDTH/2,GameScreen.WORLD_HEIGHT/2,0);
 		this.cameraUpdater = new CameraUpdater(getCamera(),getEntities().get(0));
@@ -194,6 +206,7 @@ public class SpaceGameWorld {
 
 			}
 		}
+		
 	}
 	public void disposeAllDead() {
 		for (int i = entities.size()-1 ; i >= 0 ; i--) {

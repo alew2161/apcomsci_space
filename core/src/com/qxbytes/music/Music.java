@@ -15,24 +15,29 @@ import com.badlogic.gdx.audio.Sound;
 
 public class Music {
 	com.badlogic.gdx.audio.Music background1 = Gdx.audio.newMusic(Gdx.files.internal("COMPLEX.mp3"));
+	com.badlogic.gdx.audio.Music background2 = Gdx.audio.newMusic(Gdx.files.internal("APPROACH.mp3"));
 	//Sound background2 = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));//
 	//Sound background3 = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));//
 	//Sound shoot = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));// weapon music
 	//Sound damage = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));// oof
 	//Sound damageDone = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));// oof for an AI
 	//Sound click = Gdx.audio.newSound(Gdx.files.internal("COMPLEX.mp3"));
-	boolean gameIsRunning = true; // becomes true if user has begun a new game
+	int gameIsRunning = 1; // becomes true if user has begun a new game
 	public Music() {
 		background1.setLooping(true);
+		background2.setLooping(true);
 	}
 
 
-
+	public void playApproachMusic() {
+		background1.stop();
+		background2.play();
+	}
 	// background music
 	public void playBackgroundMusic() {
-		Random musicOption = new Random();
 
-		if(gameIsRunning) {
+		if(gameIsRunning == 1) {
+			background2.stop();
 			background1.play();
 			
 			/**System.out.println("music is playing");//checks if the user is in a game

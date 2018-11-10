@@ -80,7 +80,7 @@ public class GameScreen implements Screen {
 //	private CameraUpdater cameraUdate;
 //	private HudOverlay hud;
 	boolean pause = false;
-	private Music music;
+	public static Music music;
 //	Entity testDummy1 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(1), new NothingSpecial());
 //	Entity testDummy2 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(2), new NothingSpecial());
 //	Entity testDummy3 = new Entity(world, BodyDef.BodyType.DynamicBody, 100, 400, 50, 50, SpriteHandler.getAnimation(3), new NothingSpecial());
