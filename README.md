@@ -1,4 +1,4 @@
-# apcomsci_space
+# space_game
 
 space themed program.
 
