@@ -84,7 +84,7 @@ public class Entity {
 	public void takeDamage() {
 		if (invincibility < 0) {
 			this.hp -= 1;
-			invincibility = 120;
+			invincibility = 60;
 
 			if (this.hp == 0) {
 				this.isDead = true;

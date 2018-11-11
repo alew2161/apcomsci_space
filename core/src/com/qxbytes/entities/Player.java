@@ -10,7 +10,7 @@ import com.qxbytes.world.SpaceGameWorld;
 public class Player extends Entity {
 	public Player(SpaceGameWorld world, BodyType type, float xPixels, float yPixels, float widthPixels, float heightPixels) {
 		super(world, type, xPixels, yPixels, widthPixels, heightPixels, SpriteHandler.getAnimation(5), new DirectControl());
-		this.addHp(8);//so hp = 7?
+		this.addHp(9);//so hp = 8?
 	      }
 	public void render(SpriteBatch g) {
 		super.render(g);

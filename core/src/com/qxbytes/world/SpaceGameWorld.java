@@ -16,6 +16,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.qxbytes.camera.CameraUpdater;
+import com.qxbytes.entities.Boss;
 import com.qxbytes.entities.Electricity;
 import com.qxbytes.entities.End;
 import com.qxbytes.entities.Entity;
@@ -38,7 +39,7 @@ public class SpaceGameWorld {
 	private CameraUpdater cameraUpdater;
 	private HudOverlay hud;
 	private boolean queueChange = false;
-	private int mapNumber = 2;
+	private int mapNumber = 2;//normally starts at 2
 	private SpaceGame theGame;
 	private int deathCam = 100;
 	
@@ -72,8 +73,13 @@ public class SpaceGameWorld {
 		queueChange = true;
 		mapNumber--;
 		deathCam = 540;
+		
 		respawnX = entities.get(0).getPhysics().getEntityBody().getPosition().x * Const.PTM;
 		respawnY = entities.get(0).getPhysics().getEntityBody().getPosition().y * Const.PTM;
+		if (mapNumber == 4) {
+			respawnX = 100;
+			respawnY = 400;
+		}
 		System.out.println(respawnX + "," + respawnY);
 	}
 	
@@ -117,6 +123,7 @@ public class SpaceGameWorld {
 		this.map = new TmxMapLoader().load(tmxFileName);
 		
 		this.renderer = new OrthogonalTiledMapRenderer(map);
+		
 		TiledMapTileLayer EnemyLayer = (TiledMapTileLayer) map.getLayers().get("end");
 		tileSize = EnemyLayer.getTileHeight();
 		for(int row = 0; row < EnemyLayer.getHeight(); row++) {
@@ -166,6 +173,17 @@ public class SpaceGameWorld {
 				if(cell.getTile() == null) continue;
 				//System.out.println(row + "," + col);
 				entities.add(new Electricity(this, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight()));
+			}
+		}
+		TiledMapTileLayer EnemyLayer3 = (TiledMapTileLayer) map.getLayers().get("boss");
+		tileSize = EnemyLayer3.getTileHeight();
+		for(int row = 0; row < EnemyLayer3.getHeight(); row++) {
+			for(int col = 0; col < EnemyLayer3.getWidth(); col++) {
+				Cell cell = EnemyLayer3.getCell(col , row);
+				if(cell == null) continue;
+				if(cell.getTile() == null) continue;
+				//System.out.println(row + "," + col);
+				entities.add(new Boss(this, BodyDef.BodyType.StaticBody, (col+.5f)* tileSize, (row+.5f)*tileSize, cell.getTile().getTextureRegion().getRegionWidth(), cell.getTile().getTextureRegion().getRegionHeight()));
 			}
 		}
 
